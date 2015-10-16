@@ -1,0 +1,27 @@
+#! /bin/bash
+#PBS -q debug
+#PBS -l mppwidth=120
+#PBS -l walltime=00:30:00
+#PBS -o run_eped.log
+#PBS -e run_eped.err
+#PBS -S /bin/bash
+
+umask 0022
+cd $PBS_O_WORKDIR
+
+module load python matplotlib numpy netcdf
+
+export IPS_ROOT=/project/projectdirs/atom/atom-install-edison/ips-gnu-sf
+export IPS_ROOT_SWIM=/project/projectdirs/atom/atom-install-edison/ips-gnu
+export EPED_ROOT=/project/projectdirs/atom/atom-install-edison/ips-wrappers/ips-eped
+
+export DAKOTA_ROOT=/project/projectdirs/atom/atom-install-edison/dakota
+export PATH=$DAKOTA_ROOT/bin:$IPS_ROOT/bin:$PATH
+export LD_LIBRARY_PATH=$DAKOTA_ROOT/lib:$LD_LIBRARY_PATH
+export PYTHONPATH=$EPED_ROOT/src:$PYTHONPATH
+export PYTHONPATH=$EPED_ROOT/lib:$PYTHONPATH
+export PYTHONPATH=$EPED_ROOT/lib/python:$PYTHONPATH
+export PYTHONPATH=/usr/common/usg/python/netcdf4-python/1.0.6/lib/python/:$PYTHONPATH
+
+$IPS_ROOT/bin/ips.py --config=eped.config --platform=edison.conf --log=run_ips.log
+#$IPS_ROOT/bin/ips_dakota_dynamic.py --dakotaconfig=dakota_eped.in --simulation=eped.config --platform=edison.conf  --log=eped_sweep.log  --restart=dakota_eped.rst
