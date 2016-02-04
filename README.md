@@ -122,7 +122,7 @@ Here "sequential" refers to each component being run sequentially, as opposed to
   ```
   to
   ```
-    [TIME_LOOP]
+  [TIME_LOOP]
     MODE = REGULAR
     START = $RESTART_TIME
     FINISH = 20.
