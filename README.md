@@ -99,6 +99,6 @@ Here "sequential" refers to each component being run sequentially, as opposed to
   
   ![IPS portal image 2](https://github.com/ORNL-Fusion/ips-examples/blob/master/sequential-model-simulation/images/portal2.png)
   
-  Click on "View with web graphics"
+  Click on "View Data With Web Graphics"
   
   ![IPS portal image 3](https://github.com/ORNL-Fusion/ips-examples/blob/master/sequential-model-simulation/images/portal3.png)
