@@ -2,7 +2,7 @@
 
 ##How to run "ips-hello-world" on edison.nersc.gov
 
-1. Request access to the ATOM project.
+1. Request access to the ATOM project (both on github & at NERSC).
 2. Setup your run directory
   
   ```
