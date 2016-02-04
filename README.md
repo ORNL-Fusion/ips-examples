@@ -16,6 +16,6 @@
 3. Run the example
   
   ```
-  cd ips-hello-world
+  cd ips-examples/ips-hello-world
   sbatch batchscript.ips.edison
   ```
