@@ -49,4 +49,12 @@
 
   ![IPS Portal Image](https://github.com/ORNL-Fusion/ips-examples/blob/master/hello-world/portal-image.png)
   
-## ips-sequential-model
+## ips-sequential-model-simulation
+Here "sequential" refers to each component being run sequentially, as opposed to concurrently, which will be dealt with in the next example.
+
+1. Run the example
+  
+  ```
+  cd ips-examples/sequential-model-simulation
+  sbatch batchscript.ips.edison
+  ```
