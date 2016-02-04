@@ -46,3 +46,5 @@
   ```
 
 5. Look at the web portal for details on your IPS job [http://swim.gat.com:5050/](http://swim.gat.com:5050/)
+
+  ![IPS Portal Image](https://github.com/ORNL-Fusion/ips-examples/blob/master/hello-world/portal-image.png)
