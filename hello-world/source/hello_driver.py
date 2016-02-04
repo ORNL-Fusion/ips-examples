@@ -2,7 +2,7 @@
 
 from  component import Component
 
-class HelloDriver(Component):
+class hello_driver(Component):
     def __init__(self, services, config):
         Component.__init__(self, services, config)
         print 'Created %s' % (self.__class__)
@@ -11,7 +11,7 @@ class HelloDriver(Component):
         return
 
     def step(self, timeStamp=0.0):
-        print 'HelloDriver: beginning step call' 
+        print 'hello_driver: beginning step call' 
         try:
             worker_comp = self.services.get_port('WORKER')
         except Exception:

@@ -2,7 +2,7 @@
 
 from  component import Component
 
-class HelloWorker(Component):
+class hello_worker(Component):
     def __init__(self, services, config):
         Component.__init__(self, services, config)
         print 'Created %s' % (self.__class__)
@@ -11,7 +11,7 @@ class HelloWorker(Component):
         return
 
     def step(self, timeStamp=0.0):
-        print 'Hello from HelloWorker'
+        print 'Hello from hello_worker'
         return
     
     def finalize(self, timeStamp=0.0):
