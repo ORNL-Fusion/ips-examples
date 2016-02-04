@@ -49,12 +49,32 @@
 
   ![IPS Portal Image](https://github.com/ORNL-Fusion/ips-examples/blob/master/hello-world/portal-image.png)
   
-## ips-sequential-model-simulation
+## ips-sequential-model-simulation (with restart)
 Here "sequential" refers to each component being run sequentially, as opposed to concurrently, which will be dealt with in the next example.
 
-1. Run the example
+1. Run the example for 10 time steps
   
   ```
   cd ips-examples/sequential-model-simulation
   sbatch batchscript.ips.edison
+  squeue -u $USER
   ```
+
+2. After running, successful completion looks like ...
+
+  ```
+  cat log.stdOut
+  ...
+  ```
+
+3. Visualize your IPS job on the portal 
+
+  ![IPS portal image 1](https://github.com/ORNL-Fusion/ips-examples/blob/master/sequential-model-simulation/images/portal1.png)
+  
+  Click on your job
+  
+  ![IPS portal image 2](https://github.com/ORNL-Fusion/ips-examples/blob/master/sequential-model-simulation/images/portal2.png)
+  
+  Click on "View with web graphics"
+  
+  ![IPS portal image 3](https://github.com/ORNL-Fusion/ips-examples/blob/master/sequential-model-simulation/images/portal3.png)
