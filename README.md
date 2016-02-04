@@ -103,7 +103,7 @@ Here "sequential" refers to each component being run sequentially, as opposed to
   
   ![IPS portal image 3](https://github.com/ORNL-Fusion/ips-examples/blob/master/sequential-model-simulation/images/portal3.png)
 
-4. Restart from the 10th step
+4. Restart from the 10th (latest) step
   Edit the following sections in the `ips.config` file from 
   ```
   SIMULATION_MODE = NORMAL
