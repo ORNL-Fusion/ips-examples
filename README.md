@@ -1,6 +1,6 @@
 # ips-examples
 
-How to run ips-hello-world on edison.nersc.gov
+##How to run ips-hello-world on edison.nersc.gov
 
 1. Request access to the ATOM project.
 2. Setup your run directory
