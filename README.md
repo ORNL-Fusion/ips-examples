@@ -1,6 +1,6 @@
-# ips-examples
+# ips-examples  on edison.nersc.gov
 
-##How to run "ips-hello-world" on edison.nersc.gov
+##ips-hello-world
 
 1. Request access to the ATOM project (both on github & at NERSC).
 2. Setup your run directory
@@ -48,3 +48,5 @@
 5. Look at the web portal for details on your IPS job [http://swim.gat.com:5050/](http://swim.gat.com:5050/)
 
   ![IPS Portal Image](https://github.com/ORNL-Fusion/ips-examples/blob/master/hello-world/portal-image.png)
+  
+## ips-sequential-model
