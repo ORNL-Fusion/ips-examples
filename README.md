@@ -102,3 +102,29 @@ Here "sequential" refers to each component being run sequentially, as opposed to
   Click on "View Data With Web Graphics"
   
   ![IPS portal image 3](https://github.com/ORNL-Fusion/ips-examples/blob/master/sequential-model-simulation/images/portal3.png)
+
+4. Restart from the 10th step
+  Edit the following sections in the `ips.config` file from 
+  ```
+  SIMULATION_MODE = NORMAL
+  ```
+  to
+  ```
+  SIMULATION_MODE = RESTART
+  ```
+  and (near the very bottom of `ips.config`) change
+  ```
+  [TIME_LOOP]
+    MODE = REGULAR
+    START = 10.
+    FINISH = 20.
+    NSTEP = 10
+  ```
+  to
+  ```
+    [TIME_LOOP]
+    MODE = REGULAR
+    START = $RESTART_TIME
+    FINISH = 20.
+    NSTEP = 10
+  ```
