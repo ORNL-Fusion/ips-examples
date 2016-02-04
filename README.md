@@ -128,3 +128,8 @@ Here "sequential" refers to each component being run sequentially, as opposed to
     FINISH = 20.
     NSTEP = 10
   ```
+  and then run with
+  ```
+  sbatch batchscript.ips.edison
+  squeue -u $USER
+  ```
