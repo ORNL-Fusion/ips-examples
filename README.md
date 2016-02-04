@@ -6,7 +6,9 @@
 2. Setup your run directory
   
   ```
-  cd /project/projectdirs/atom/users
+  cd /project/projectdirs/atom
+  mkdir www/$USER
+  cd users
   mkdir $USER
   cd $USER
   module load git
@@ -18,4 +20,10 @@
   ```
   cd ips-examples/hello-world
   sbatch batchscript.ips.edison
+  ```
+
+4. After running
+
+  ```
+  cat log.stdOut
   ```
