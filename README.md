@@ -23,7 +23,7 @@
   squeue -u $USER
   ```
 
-4. After running
+4. After running, successful output looks like ...
 
   ```
   cat log.stdOut
