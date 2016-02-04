@@ -20,6 +20,7 @@
   ```
   cd ips-examples/hello-world
   sbatch batchscript.ips.edison
+  squeue -u $USER
   ```
 
 4. After running
@@ -27,3 +28,5 @@
   ```
   cat log.stdOut
   ```
+
+5. Look at the web portal for details on your IPS job 
