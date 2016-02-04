@@ -1,0 +1,35 @@
+ &mdescr
+  
+   ! name: icrf_src_name  units: character
+   ! description: number & name of ICRF sources
+ 
+   icrf_src_name(1) = "Ant_1"
+ 
+   ! name: ant_model  units: character
+   ! description: antenna model filenames (1 per antenna source)
+ 
+   ant_model(1) = "icrf_antenna model_1"
+ 
+   ! name: nrz_antgeo  units: integer
+   ! description: number of (R,Z) points, antenna geometries
+ 
+   nrz_antgeo(1) = 0
+ 
+   ! name: max_nrz_antgeo  units: integer
+   ! description: Maximum size of variable length enumeration: NRZ_ANTGEO
+ 
+   max_nrz_antgeo = 0
+ 
+   ! name: R_antgeo  units: m
+   ! description: antenna geo: R pts
+ 
+   ! name: Z_antgeo  units: m
+   ! description: antenna geo: Z pts
+ 
+   ! name: dx_fshield  units: m
+   ! description: distance, antenna to Faraday shield
+ 
+   dx_fshield(1) =  0.0
+ 
+ /
+ 

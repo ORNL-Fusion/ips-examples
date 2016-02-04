@@ -1,0 +1,27 @@
+! There are two ways to allocate the plasma state arrays for the NB component:
+!
+! 1) If an input_state_file is specified in the /static_state_data/ namelist,
+!    that file is read as an aux state file and the NB component data is merged to the current
+!    plasma state.  If that input file is properly initialized then the current state will
+!    inherit a complete set of NB data and allocated arrays.  The models must then work with
+!    the allocated array sizes - i.e. including everything dimensioned by nrho_nbi
+
+Data for this method is in directory init_from_input_state 
+
+!
+! 2) If no input_state_file is specified (input_state_file = ' ') , it is assumed that this is part of
+!    a normal initialization sequence in which the EPA has set the arrays associated with
+!    the beam sources i.e. everthing dimensioned by nbeam:
+
+!       nbeam, nbi_src_name(nbeam), power_nbi(nbeam), nspec_beam(nbeam),
+!       nbion(nbeam), kvolt_nbi(nbeam), nspec_beam and the NB species arrays.
+
+!    This model component then specifies nrho_nbi and proceeds to allocate and initialize
+!    all the variables dimensioned by nrho_nbi:
+!
+!      nrho_nbi, rho_nbi(nrho_nbi), nbeami(nrho_nbi-1,nspec_beam), pbe(nrho_nbi-1),
+!      pbi(nrho_nbi-1), epll_beami(nrho_nbi-1,nspec_beam),
+!      eperp_beami(nrho_nbi-1, nspec_beam)
+
+Data for this method is in init_from_cur_state
+

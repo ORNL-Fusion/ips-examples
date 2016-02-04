@@ -1,0 +1,25 @@
+! There are two ways to allocate the plasma state arrays for the FUS component:
+!
+! 1) If an input_state_file is specified in the /static_state_data/ namelist,
+!    that file is read as an aux state file and the FUS component data is merged to the current
+!    plasma state.  If that input file is properly initialized then the current state will
+!    inherit a complete set of FUS data and allocated arrays.  The models must then work with
+!    the allocated array sizes - including everthing dimensioned by nrho_fus
+
+Data for this method is in directory init_from_input_state 
+
+!
+! 2) If no input_state_file is specified (input_state_file = ' ') , it is assumed that this is part of
+!    a normal initialization sequence in which the EPA has set the arrays assiciated with
+!    the NB species.  This includes nspec_fusion and the FUS species arrays dimensioned with it.
+!
+!    This model component then specifies nrho_fus and proceeds to allocate and initialize
+!    all the variables dimensioned by nrho_fus:
+!
+!      nrho_fus, rho_fus(nrho_fus), nfusi(nrho_fus-1,nspec_fus), pfuse(nrho_fus-1),
+!      pfusi(nrho_fus-1), epll_fusi(nrho_fus-1,nspec_fus), eperp_fusi(nrho_fus-1, nspec_fus),
+!      curfusn(nrho_fus-1)
+
+
+Data for this method is in init_from_cur_state
+
