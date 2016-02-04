@@ -112,7 +112,7 @@ Here "sequential" refers to each component being run sequentially, as opposed to
   ```
   SIMULATION_MODE = RESTART
   ```
-  and (near the very bottom of `ips.config`) change
+  **and** (near the very bottom of `ips.config`) change
   ```
   [TIME_LOOP]
     MODE = REGULAR
