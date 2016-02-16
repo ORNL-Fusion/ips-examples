@@ -8,7 +8,7 @@
   ```
   cd /project/projectdirs/atom
   mkdir www/$USER
-  chmod -R o+rx $USER
+  chmod -R o+rx www/$USER
   cd users
   mkdir $USER
   cd $USER
