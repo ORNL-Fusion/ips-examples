@@ -8,8 +8,9 @@
   ```
   cd /project/projectdirs/atom
   mkdir www/$USER
-  chmod -R o+rx www/$USER
-  cd users
+  cd www/$USER
+  /project/projectdirs/atom/atom-install-edison/ips-wrappers/setPermissionsWWW.sh
+  cd ../../users
   mkdir $USER
   cd $USER
   module load git
