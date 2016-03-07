@@ -1,0 +1,5 @@
+ &NUBEAM_FILES
+  input_plasma_state = "input_state.cdf"
+  plasma_state_update = "state_changes.cdf"
+  step_namelist = "nubeam_step_input.dat"
+ /

@@ -1,0 +1,90 @@
+  !! This file contains non-default values of initialization inputs
+  !! to NUBEAM, in namelist format.
+  !!      LOGICAL variables mapped to INTEGER: 1=TRUE; 0=FALSE
+  
+ &NBI_INIT
+ 
+  nltest_output = 1
+ 
+  ! NOTE: driver may want option to automatically reset RNG seed on each run **
+
+  nseed = 1094088621
+      !! random number seed; default not recommended!
+  
+  wghta = 20.
+
+  nzones = 20
+      !! number of radial zones (equally spaced in sqrt(tor.flux))
+      !! this determines the grid for calculation of 1d outputs
+      !! such as Pbe and Pbi.
+      !! NOTE: not included in Plasma_State_Input, because this
+      !! value is used to **set** the plasma state rho_nbi grid.
+  
+  nzone_fb = 10
+      !! number of radial zones in 4d fast ion distributions
+      !! (r,theta,E,vpll/v).  nzones should be an integer multiple
+      !! of nzone_fb; if not, nzone_fb is increased until this
+      !! condition is satisfied, or if this is not possible,
+      !! nzone_fb=nzones is imposed.
+  
+  nznbme = 75
+      !! number of energy zones for fast ion distribution functions
+      !! Plasma State data determines Emax for beam species; for fusion
+      !! products an appropriate Emax is chosen based on the fusion
+      !! reaction(s) that provide the source.
+  
+  nznbma = 50
+      !! number of pitch angle zones for distribution functions
+      !! this is the same for all NUBEAM fast ion species
+  
+      !! nlfbmflr = 0
+      !! FALSE (0): accumulate fbm @ guiding center (usually preferable)
+      !! TRUE (1): accumulate fbm @ ptcl position (NOTE: a future version
+      !! of NUBEAM will always accumulate both variants.  When this is
+      !! done, this switch will no longer be needed).
+
+  nptcls = 64000
+      !! number of Monte Carlo particles per (normal) beam ion specie
+      !! affects statistics of slowing down calculation
+  
+  nptclf = 16000
+      !! number of Monte Carlo particles per fusion product specie
+      !! affects statistics of slowing down calculation
+   
+  ndep0 = 5000
+ 
+  nsigexc = 1
+      !! set =1 to turn on approximate excited states correction model
+      !! Janev/Boley/Post article, Nucl. Fusion Vol.29, No. 12 (1989).
+
+  dt_acc = 0.001 
+      !! orbit timestep control (replacing DTN):  accuracy criterion 
+      !!  "per bounce" for orbit integration.
+      !!  The code interprets this somewhat conservatively, and the default
+      !!  value of 1.0e-3 is usually sufficient.  Reducing this to 1.0e-4
+      !!  will slow the code (NUBEAM) significantly and in standard regression
+      !!  tests there aren't any other change in observable outputs.
+
+  orbrzv_zzerr_con =  1.000000000000000E-04
+      !! relative error control criterion
+  
+  nlfatom = 0
+      !! .FALSE. (0) to suppress atomic physics calculations on
+      !! slowing down fusion product ions (recommendation:
+      !! leave this switch alone).
+ 
+  nlsawf = 0
+  
+  nlsawb = 0
+
+  ! sawtooth model:
+  ! by default, a standard "Kadomtsev" mixing model is applied.
+  !             "Porcelli" variants can be requested using switches
+  !             nmix_kdsaw and fporcelli.  Model must be selected
+  !             at INIT time.
+
+  ! ad hoc "fish bone" and "ripple loss" models also exist;
+
+  ! anomalous fast ion transport can be requested through the plasma state.
+  
+ /

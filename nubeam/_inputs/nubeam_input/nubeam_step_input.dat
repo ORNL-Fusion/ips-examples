@@ -1,0 +1,23 @@
+  !! nbi_ctrl_update_write -- this file contains
+  !!   non-default values of time step update inputs
+  !!   to NUBEAM, in namelist format.
+  !!      LOGICAL variables mapped to INTEGER: 1=TRUE; 0=FALSE
+  
+ &NBI_UPDATE
+  
+  ! if nptcls and nptclf are not set, then the value from the prior step
+  ! or from INIT is retained.
+  nptcls = 64000 ! must be .le.nptcl_max set at INIT time
+  nptclf = 16000 ! must be .le.nptcl_max set at INIT time
+
+  ! activation of sawtooth model:
+  ! sawtooth mixing should be precomputed if there is a chance that a
+  ! sawtooth will occur within the next NUBEAM time step.  To apply sawtooth
+  ! mixing at step N, it must have been precomputed at step N-1.
+
+  sawflag = 0   ! set =1 to apply previously computed sawtooth mixing
+
+  nlsawb = 0    ! set =1 to precompute sawtooth mixing: beam ions
+  nlsawf = 0    ! set =1 to precompute sawtooth mixing: fusion product ions
+
+ /
