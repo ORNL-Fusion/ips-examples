@@ -4,9 +4,12 @@
 
 ```
 tcsh
-cd $IPS-EXAMPLES-DIR
-source env.solps.edison.sh
-cd F_Run/Frun_files_DIIID
+cd /global/project/projectdirs/atom/users/$USER
+mkdir runs
+cd runs
+cp -r /global/project/projectdirs/atom/users/$USER/ips-examples/solps-5-parareal/F_run .
+cd F_run
+source ../ips-examples/solps-5-parareal/env.solps.edison.sh
 b2run b2mn < input.dat
 ```
 
