@@ -1,4 +1,15 @@
 # Running SOLPS_parareal on Edison within the AToM Environment:
+
+## Running SOLPS standalone
+
+```
+tcsh
+cd $IPS-EXAMPLES-DIR
+source env.solps.edison.sh
+cd F_Run/Frun_files_DIIID
+b2run b2mn < input.dat
+```
+
 Directories needed in some repository:
 SOLPS_bin/F_Run, SOLPS_bin/G_Run, SOLPS_bin/PR_Conv, SOLPS_bin/PR_Corr
 (current samples in /global/scratch2/sd/samaddar/IPS_SOLPS/SOLPS_bin)
