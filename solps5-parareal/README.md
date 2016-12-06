@@ -9,7 +9,7 @@ mkdir runs
 cd runs
 cp -r /global/project/projectdirs/atom/users/$USER/ips-examples/solps5-parareal/F_Run .
 cd F_Run/Frun_files_DIIID
-source ../ips-examples/solps-5-parareal/env.solps.edison.sh
+source ../../../ips-examples/solps5-parareal/env.solps.edison.sh
 b2run b2mn < input.dat
 ```
 
