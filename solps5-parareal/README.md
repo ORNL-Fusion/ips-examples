@@ -6,6 +6,8 @@
 tcsh
 cd $IPS-EXAMPLES-DIR
 source env.solps.edison.sh
+cd F_Run/Frun_files_DIIID
+b2run b2mn < input.dat
 ```
 
 Directories needed in some repository:
