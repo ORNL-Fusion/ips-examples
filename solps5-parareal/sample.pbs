@@ -1,0 +1,30 @@
+#!/bin/bash -l
+#PBS -N DIIID_dtG10F
+##PBS -m e
+##PBS -j oe
+#PBS -l walltime=03:20:00
+#PBS -l mppwidth=32
+#PBS -q regular
+#PBS -V
+# module load mkl
+cd $PBS_O_WORKDIR
+
+
+
+
+IPS_ROOT=/global/u2/s/samaddar/trunk-hopper/trunk
+
+
+module unload hdf5/1.8.8
+#module load netcdf-hdf5parallel
+module load cray-netcdf-hdf5parallel
+module load fftw/2.1.5.6
+
+ulimit -c unlimited
+
+
+echo $IPS_ROOT
+checkjob $PBS_JOBID
+
+
+$IPS_ROOT/bin/ips --config=/pfs/scratch/dsam/SOLPS/RUNS/my_solps_ORNL/src/Braams/b2/runs/DIII_Lmode/PR_runs/IPS_PR_b2fstatiD1/G_10dtGrid48_36/TOL5E-2/32PE/SOLPS_parareal2.conf --platform=$IPS_ROOT/hopper.conf.conf --log=SOLPS_sim.log
