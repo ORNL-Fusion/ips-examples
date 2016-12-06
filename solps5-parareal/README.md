@@ -1,6 +1,7 @@
 # Running SOLPS_parareal on Edison within the AToM Environment:
 
 ## Running SOLPS standalone
+## Current problem with git push. Ask David.
 
 ```
 tcsh
