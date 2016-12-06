@@ -38,25 +38,51 @@ cp -r  /pfs/work/dsam/SOLPS_bin_DIIID/G_Run/base_from_96_36to48_36/* .
 cp ../../$INPUT_file2 ../b2.sputter_save.parameters_unused
 cp ../../$INPUT_wall ../b2.wall_save.parameters_unused
 
-touch b2ah.dat
-touch b2ar.dat
 touch b2ag.dat
+sleep 1
+touch b2ag.prt
+sleep 1
+touch b2fgmtry.old
+sleep 1
 touch b2fgmtry
+sleep 1
+touch b2ah.dat
+sleep 1
+touch b2ah.prt
+sleep 1
 touch b2fpardf
+sleep 1
+touch b2ar.dat
+sleep 1
+touch b2ar.prt
+sleep 1
 touch b2frates
-touch b2mn.exe.dir
-touch b2mn.prt
-rm b2ai.prt b2ah.prt b2ar.prt
-
+sleep 1
+touch b2ai.dat
+sleep 1
+touch b2ai.prt
+sleep 1
 touch b2fstati
+sleep 1
+touch b2mn.exe.dir
+sleep 1
+touch b2mn.prt
+sleep 1
 touch b2fstate
+sleep 1
+
+
+
+
 while($b2ytval1<1)
 #	cp -r  /pfs/work/dsam/SOLPS_bin/G_Run/base_from_150_36/* .
 	cp ../../$INPUT_file1 b2fstati
 	cp ../../$INPUT_file1 b2fstate
 
 	touch b2fstati
+        sleep 1
 	touch b2fstate
+        sleep 1
 	b2run  b2yt
         @ yt1 = $yt1 + 1
 	if (-e b2fstatt) set b2ytval1 = 1
@@ -79,6 +105,9 @@ cd ..
 echo "b2fstati is updated"
 
 rm *prt
+touch b2fstati
+sleep 1
+
 b2run b2mn  < input.dat >! run_scr.log
 #./conv_2d u_OP.txt u_OP1.txt conv.txt 39601 1.5E-6
 
@@ -88,17 +117,45 @@ cd base_from_48_36to96_36
 
 set b2ytval2 = 0
 set yt2 = 0
-cp -r  /pfs/work/dsam/SOLPS_bin_DIIID/G_Run/base_from_48_36to96_36/* .
+#cp -r  /pfs/work/dsam/SOLPS_bin_DIIID/G_Run/base_from_48_36to96_36/* .
 ##cp ../b2.sputter_save.parameters .
 ##cp ../b2.wall_save.parameters .
-touch b2ah.dat
-touch b2ar.dat
 touch b2ag.dat
+sleep 1
+touch b2ag.prt
+sleep 1
+touch b2fgmtry.old
+sleep 1
 touch b2fgmtry
+sleep 1
+touch b2ah.dat
+sleep 1
+touch b2ah.prt
+sleep 1
 touch b2fpardf
+sleep 1
+touch b2ar.dat
+sleep 1
+touch b2ar.prt
+sleep 1
 touch b2frates
+sleep 1
+touch b2ai.dat
+sleep 1
+touch b2ai.prt
+sleep 1
+touch b2fstati
+sleep 1
 touch b2mn.exe.dir
+sleep 1
 touch b2mn.prt
+sleep 1
+touch b2fstate
+sleep 1
+
+
+
+
 while($b2ytval2<1)
 #	cp -r  /pfs/work/dsam/SOLPS_bin/G_Run/base_from_150_18/* .
 	cp ../b2fstate b2fstati

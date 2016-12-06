@@ -33,6 +33,31 @@ if !(-e ../baserun) echo "Create baserun"
 if !(-e ../baserun) setenv FILE 1
 if !(-e ../baserun) mkdir -p ../baserun
 if ($FILE == 1) cp -r  /pfs/work/dsam/SOLPS_bin_DIIID/G_Run/baserun_G48_36/* ../baserun/ 
+if ($FILE == 1) touch ../baserun/b2ag.dat
+sleep 1
+if ($FILE == 1) touch ../baserun/b2ag.prt
+sleep 1
+if ($FILE == 1) touch ../baserun/b2fgmtry
+sleep 1
+if ($FILE == 1) touch ../baserun/b2ah.dat
+sleep 1
+if ($FILE == 1) touch ../baserun/b2ah.prt
+sleep 1
+if ($FILE == 1) touch ../baserun/b2fpardf
+sleep 1
+if ($FILE == 1) touch ../baserun/b2ar.dat
+sleep 1
+if ($FILE == 1) touch ../baserun/b2ar.prt
+sleep 1
+if ($FILE == 1) touch ../baserun/b2frates
+sleep 1
+if ($FILE == 1) touch ../baserun/b2ai.dat
+sleep 1
+if ($FILE == 1) touch ../baserun/b2ai.prt
+sleep 1
+if ($FILE == 1) touch ../baserun/b2fstati
+sleep 1
+
 setenv FILE 0
 #mkdir -p creates dir only if it doesn not exist.
 #mkdir -p ../baserun
