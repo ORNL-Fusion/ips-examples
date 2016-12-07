@@ -4,6 +4,10 @@ touch ../baserun/b2ag.prt
 sleep 1
 touch ../baserun/b2fgmtry
 sleep 1
+touch ../baserun/fort.30
+sleep 1
+touch ../baserun/fort.31
+sleep 1
 touch ../baserun/b2ah.dat
 sleep 1
 touch ../baserun/b2ah.prt

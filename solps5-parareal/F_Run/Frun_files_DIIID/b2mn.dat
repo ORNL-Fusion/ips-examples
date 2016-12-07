@@ -11,7 +11,7 @@
 *cflim    cflme    cflmi    cflmv     ...
   '-1'    0.300    0.300    0.5     0        0        0        0        0
 *endphy
-'b2mndr_ntim'      '20'
+'b2mndr_ntim'      '4'
 'b2mndr_dtim'      '1.0e-6'
 'b2mndr_stim'      '-5.0'
 'b2mndt_nstg0'     '1'
