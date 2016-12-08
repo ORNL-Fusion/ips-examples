@@ -5,9 +5,9 @@ sbatch batchscript.ips.edison
 ```
 ##User notes
 ```
-To change number of nodes: change #SBATCH --nodes=
+To change number of nodes: change "#SBATCH --nodes=" in batchscript.ips.edison
 To change number of time slices solved on parareal: 
-In ips.config: Change:MAX_SLICE & NT_SLICE
+In ips.config: Change: "MAX_SLICE & NT_SLICE" in ips.config
 ```
 
 ## Running SOLPS standalone
