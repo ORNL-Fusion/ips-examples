@@ -25,7 +25,8 @@ else
 endif
 
 pushd $SOLPS5_SOURCE_DIR
-source setup.csh
+#source setup.csh
+source $IPS_SOLPS_PARAREAL_SUBMITDIR/env.solps.edison.sh
 popd
 
 #sbr
