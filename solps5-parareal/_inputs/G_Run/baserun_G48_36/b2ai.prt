@@ -1,0 +1,33 @@
+
+  label for the initial state:
+
+    b2ai     B2 bjb99/7  SOLPS 5.00   te **l dall*      dsam    
+    Flat initial state for D + C, all charge states             
+
+  The grid contains nx*ny interior cells, where nx =  96 and ny =  36.
+  With boundary cells included the size is (nx+2)*(ny+2).
+
+  There are ns species, ns =  9.  The species properties (zamin,zamax,zn,am) are:
+  species  0,  atomic charge range from  0.00 to  0.00,  nuclear charge  1.00,  atomic mass  2.00
+  species  1,  atomic charge range from  1.00 to  1.00,  nuclear charge  1.00,  atomic mass  2.00
+  species  2,  atomic charge range from  0.00 to  0.00,  nuclear charge  6.00,  atomic mass 12.01
+  species  3,  atomic charge range from  1.00 to  1.00,  nuclear charge  6.00,  atomic mass 12.01
+  species  4,  atomic charge range from  2.00 to  2.00,  nuclear charge  6.00,  atomic mass 12.01
+  species  5,  atomic charge range from  3.00 to  3.00,  nuclear charge  6.00,  atomic mass 12.01
+  species  6,  atomic charge range from  4.00 to  4.00,  nuclear charge  6.00,  atomic mass 12.01
+  species  7,  atomic charge range from  5.00 to  5.00,  nuclear charge  6.00,  atomic mass 12.01
+  species  8,  atomic charge range from  6.00 to  6.00,  nuclear charge  6.00,  atomic mass 12.01
+
+  Parameters for uniform, stationary initial state:
+  na( 0):     1.00E+12
+  na( 1):     1.00E+19
+  na( 2):     1.00E+16
+  na( 3):     1.00E+16
+  na( 4):     1.00E+16
+  na( 5):     1.00E+16
+  na( 6):     1.00E+16
+  na( 7):     1.00E+16
+  na( 8):     1.00E+16
+      te:     1.00E+02
+      ti:     1.00E+02
+      po:     3.10E+02
