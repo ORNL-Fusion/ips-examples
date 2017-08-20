@@ -1,0 +1,12 @@
+#!/bin/bash
+#
+#PBS -l walltime=48:00:00
+#PBS -l nodes=1:ppn=6
+#PBS -j oe
+#PBS -e log.error
+#PBS -o log.output
+#PBS -N IPS_GITR
+cd $PBS_O_WORKDIR
+source ${HOME}/gitr/env.gpufusion.sh
+source $PBS_O_WORKDIR/env.ips.gpufusion
+$IPS_PATH/bin/ips.py --config=ips.config --platform=conf.ips.gpufusion --log=log.framework 2>>log.stdErr 1>>log.stdOut
