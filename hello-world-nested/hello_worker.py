@@ -19,7 +19,9 @@ class HelloWorker(Component):
         print 'Hello from HelloWorker - new1'
         self.services.stage_input_files(self.INPUT_FILES)
         subflow_config = self.INPUT_FILES
-        (sim_name, init, driver) = self.services.create_sub_workflow("Subflow_01", subflow_config, {})
+        override = {}
+        override['PWD'] = self.services.get_config_param('PWD')
+        (sim_name, init, driver) = self.services.create_sub_workflow("Subflow_01", subflow_config, override)
         print sim_name, init, driver
         print '#############################################'
         self.services.call(driver, 'init', '0.0')
