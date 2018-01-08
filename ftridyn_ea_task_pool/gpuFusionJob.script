@@ -1,0 +1,13 @@
+#!/bin/bash
+#
+#PBS -l walltime=48:00:00
+#PBS -l nodes=1:ppn=24
+#PBS -j oe
+#PBS -e log.error
+#PBS -o log.ouput
+#PBS -N gitrBE_PSE
+cd $PBS_O_WORKDIR
+source ${HOME}/code/ips-examples/hello-world/env.ips.gpufusion
+
+$IPS_PATH/bin/ips.py --config=ips.config --platform=conf.ips.gpufusion --log=log.framework 2>>log.stdErr 1>>log.stdOut
+egrep -i 'error' log.* > log.errors
