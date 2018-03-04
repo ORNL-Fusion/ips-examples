@@ -5,7 +5,7 @@
 #PBS -j oe
 #PBS -e log.error
 #PBS -o log.ouput
-#PBS -N gitrBE_PSE
+#PBS -N IPS_ftridyn
 cd $PBS_O_WORKDIR
 source ${HOME}/code/ips-examples/hello-world/env.ips.gpufusion
 
