@@ -1,0 +1,132 @@
+<TABLE cellpadding="4" style="border: 1px solid #000000; border-collapse: collapse;" border="1">
+ <TR>
+  <TH>Time</TH>
+  <TH>Sequence Num</TH>
+  <TH>Type</TH>
+  <TH>Code</TH>
+  <TH>State</TH>
+  <TH>Wall Time</TH>
+  <TH>Physics Time</TH>
+  <TH>Comment</TH>
+ </TR>
+ <TR>
+  <TD>2018-03-07|08:24:35EST</TD>
+  <TD>2</TD>
+  <TD>IPS_STAGE_INPUTS</TD>
+  <TD>component_b_init_component_b_init</TD>
+  <TD>Running</TD>
+  <TD>0.50</TD>
+  <TD>-1</TD>
+  <TD>Elapsed time = 0.001 Path = /Users/m4c/Research/IPS/Embeded_WorkFlows/component_b/Test/inputs Files = input.component_b.namelist</TD>
+ </TR>
+ <TR>
+  <TD>2018-03-07|08:24:35EST</TD>
+  <TD>3</TD>
+  <TD>IPS_UPDATE_PLASMA_STATE</TD>
+  <TD>component_b_init_component_b_init</TD>
+  <TD>Running</TD>
+  <TD>0.53</TD>
+  <TD>-1</TD>
+  <TD>Elapsed time = 0.012   files = current_b_state.zip Success</TD>
+ </TR>
+ <TR>
+  <TD>2018-03-07|08:24:35EST</TD>
+  <TD>4</TD>
+  <TD>IPS_CALL_BEGIN</TD>
+  <TD>component_b_driver_component_b_driver</TD>
+  <TD>Running</TD>
+  <TD>0.57</TD>
+  <TD>-1</TD>
+  <TD>Target = component_b@3:init(0)</TD>
+ </TR>
+ <TR>
+  <TD>2018-03-07|08:24:35EST</TD>
+  <TD>5</TD>
+  <TD>IPS_STAGE_PLASMA_STATE</TD>
+  <TD>component_b_worker_component_b</TD>
+  <TD>Running</TD>
+  <TD>0.61</TD>
+  <TD>-1</TD>
+  <TD>Elapsed time = 0.013  files = current_b_state.zip Success</TD>
+ </TR>
+ <TR>
+  <TD>2018-03-07|08:24:35EST</TD>
+  <TD>6</TD>
+  <TD>IPS_CALL_END</TD>
+  <TD>component_b_driver_component_b_driver</TD>
+  <TD>Running</TD>
+  <TD>0.65</TD>
+  <TD>-1</TD>
+  <TD>Target = component_b@3:init(0)</TD>
+ </TR>
+ <TR>
+  <TD>2018-03-07|08:24:35EST</TD>
+  <TD>7</TD>
+  <TD>IPS_CALL_BEGIN</TD>
+  <TD>component_b_driver_component_b_driver</TD>
+  <TD>Running</TD>
+  <TD>0.67</TD>
+  <TD>-1</TD>
+  <TD>Target = component_b@3:step(0)</TD>
+ </TR>
+ <TR>
+  <TD>2018-03-07|08:24:35EST</TD>
+  <TD>8</TD>
+  <TD>IPS_CALL_BEGIN</TD>
+  <TD>component_b_driver_component_b_driver</TD>
+  <TD>Running</TD>
+  <TD>0.70</TD>
+  <TD>-1</TD>
+  <TD>Target = component_b@3:finalize(0)</TD>
+ </TR>
+ <TR>
+  <TD>2018-03-07|08:24:35EST</TD>
+  <TD>9</TD>
+  <TD>IPS_LAUNCH_TASK</TD>
+  <TD>component_b_worker_component_b</TD>
+  <TD>Running</TD>
+  <TD>0.71</TD>
+  <TD>-1</TD>
+  <TD>task_id = 1 , Tag = None , nproc = 1 , Target = mpiexec -n 1 /bin/echo Hello, this is component b with default message</TD>
+ </TR>
+ <TR>
+  <TD>2018-03-07|08:24:35EST</TD>
+  <TD>10</TD>
+  <TD>IPS_TASK_END</TD>
+  <TD>component_b_worker_component_b</TD>
+  <TD>Running</TD>
+  <TD>0.74</TD>
+  <TD>-1</TD>
+  <TD>task_id = 1  elapsed time = 0.01 S</TD>
+ </TR>
+ <TR>
+  <TD>2018-03-07|08:24:35EST</TD>
+  <TD>11</TD>
+  <TD>IPS_UPDATE_PLASMA_STATE</TD>
+  <TD>component_b_worker_component_b</TD>
+  <TD>Running</TD>
+  <TD>0.78</TD>
+  <TD>-1</TD>
+  <TD>Elapsed time = 0.012   files = current_b_state.zip Success</TD>
+ </TR>
+ <TR>
+  <TD>2018-03-07|08:24:35EST</TD>
+  <TD>12</TD>
+  <TD>IPS_CALL_END</TD>
+  <TD>component_b_driver_component_b_driver</TD>
+  <TD>Running</TD>
+  <TD>0.82</TD>
+  <TD>-1</TD>
+  <TD>Target = component_b@3:step(0)</TD>
+ </TR>
+ <TR>
+  <TD>2018-03-07|08:24:35EST</TD>
+  <TD>13</TD>
+  <TD>IPS_CALL_END</TD>
+  <TD>component_b_driver_component_b_driver</TD>
+  <TD>Running</TD>
+  <TD>0.85</TD>
+  <TD>-1</TD>
+  <TD>Target = component_b@3:finalize(0)</TD>
+ </TR>
+</TABLE>
