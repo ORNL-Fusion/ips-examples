@@ -77,18 +77,6 @@ class nested_driver(Component):
                                                                                                  'LOG_FILE'                   : 'log.ftx.warning'
                                                                                              })
         
-        #  Inialized the plasma state by calling the init components of the sub
-        #  workflows.
-
-    
-#  Initalize the sub workflow drivers. We want to pass arguments to the sub
-#  workflow components. Create a dictionary of dictionaries for the stuff to
-#  override. Need some standard naming convection here.
-        self.async_queue['component_a:driver:init'] = self.services.call_nonblocking(self.nested_components['component_a']['driver'], 'init', timeStamp)#,
-                                                                                     #override = {'message': 'called from nested'})
-
-        self.async_queue['component_ftx:driver:init'] = self.services.call_nonblocking(self.nested_components['component_ftx']['driver'], 'init', timeStamp) #,
-                                                                                     #override = {'message': 'called from nested'})
     
 #-------------------------------------------------------------------------------
 #
@@ -98,21 +86,54 @@ class nested_driver(Component):
     def step(self, timeStamp=0.0):
         print('nested_driver: step')
 
-#  Step the drivers. Here Component a doesn't depend on component b so both can
-#  be run in parallel.
-        self.services.wait_call_list([self.async_queue['component_a:driver:init']], True)
+        #  Inialized the plasma state by calling the init components of the sub
+        #  workflows.
+
+        #  Initalize the sub workflow drivers. We want to pass arguments to the sub
+        #  workflow components. Create a dictionary of dictionaries for the stuff to
+        #  override. Need some standard naming convection here.
+
+        #  Step the drivers. Here Component a doesn't depend on component b so both can 
+        #  be run in parallel.
+
+
+        print('\n')
+        print('FTridyn-GITR:init')
+        print('\n')
+        self.async_queue['component_a:driver:init'] = self.services.call(self.nested_components['component_a']['driver'], 'init', timeStamp)
+        #self.async_queue['component_a:driver:init'] = self.services.call_nonblocking(self.nested_components['component_a']['driver'], 'init', timeStamp)
+                                                                                     #, override = {'message': 'called from nested'})
+
+        print('\n')
+        print('FTridyn-GITR:step')
+        print('\n')
+        #self.services.wait_call_list([self.async_queue['component_a:driver:init']], True)
         del self.async_queue['component_a:driver:init']
-        self.async_queue['component_a:driver:step'] = self.services.call_nonblocking(self.nested_components['component_a']['driver'], 'step', 0.0)
-        
-        self.services.wait_call_list([self.async_queue['component_ftx:driver:init']], True)
+        self.async_queue['component_a:driver:step'] = self.services.call(self.nested_components['component_a']['driver'], 'step', 0.0)
+        #self.async_queue['component_a:driver:step'] = self.services.call_nonblocking(self.nested_components['component_a']['driver'], 'step', 0.0)
+
+
+        print('\n')
+        print('FTridyn-Xolotl:init')
+        print('\n')
+        self.async_queue['component_ftx:driver:init'] = self.services.call(self.nested_components['component_ftx']['driver'], 'init', timeStamp)
+        #self.async_queue['component_ftx:driver:init'] = self.services.call_nonblocking(self.nested_components['component_ftx']['driver'],'init',timeStamp)
+                                                                                     #, override = {'message': 'called from nested'})
+
+        print('\n')
+        print('FTridyn-Xolotl:step')
+        print('\n')
+        #self.services.wait_call_list([self.async_queue['component_ftx:driver:init']], True)
         del self.async_queue['component_ftx:driver:init']
-        self.async_queue['component_ftx:driver:step'] = self.services.call_nonblocking(self.nested_components['component_ftx']['driver'], 'step', 0.0)
+        self.async_queue['component_ftx:driver:step'] = self.services.call(self.nested_components['component_ftx']['driver'], 'step', 0.0)
+        #self.async_queue['component_ftx:driver:step'] = self.services.call_nonblocking(self.nested_components['component_ftx']['driver'], 'step', 0.0)
     
 #-------------------------------------------------------------------------------
 #
 #  nested_driver Component finalize method.
 #
 #-------------------------------------------------------------------------------
+
     def finalize(self, timeStamp=0.0):
         print('nested_driver: finalize')
 
