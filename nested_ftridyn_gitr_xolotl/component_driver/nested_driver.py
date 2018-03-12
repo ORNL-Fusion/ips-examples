@@ -62,7 +62,7 @@ class nested_driver(Component):
                                                                                               
         self.nested_components['component_ftx'] = {'sim_name': None, 'init': None, 'driver': None, 'sub_working_dir': 'xolotl-ftridyn_driver'}
         os.mkdir(self.nested_components['component_ftx']['sub_working_dir'])
-        shutil.copy2(self.services.get_config_param('GITR_OUTPUT'), self.nested_components['component_ftx']['sub_working_dir'])
+        #shutil.copy2(self.services.get_config_param('GITR_OUTPUT'), self.nested_components['component_ftx']['sub_working_dir'])
         paramFiles=self.services.get_config_param('XOLOTL_INPUT_FILES').split()
         for f in paramFiles:
             shutil.copy2(f, self.nested_components['component_ftx']['sub_working_dir'])
