@@ -1,0 +1,21 @@
+#!/bin/bash -l
+#SBATCH --account=atom
+#SBATCH --partition regular
+#SBATCH --nodes=2
+#SBATCH --time=3:00:00
+#SBATCH --output=log.slurm.stdOut
+
+source /project/projectdirs/atom/atom-install-edison/GITR/env.edison.sh
+
+source env.ips.edison
+
+srun -n $SLURM_NNODES --ntasks-per-node=1 hostname > .node_names.$$
+for n in $(cat .node_names.$$); do echo "$n slots=24" >> .hostfile.$$ ; done
+orte-dvm --hostfile ./.hostfile.$$ &
+
+sleep 5
+
+$IPS_PATH/bin/ips.py --config=ips.config --platform=conf.ips.edison.ompi --log=log.framework 2>>log.stdErr 1>>log.stdOut
+
+egrep -i 'error' log.* > log.errors
+./setPermissions.sh

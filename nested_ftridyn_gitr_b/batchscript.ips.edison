@@ -1,8 +1,8 @@
 #!/bin/bash -l
 #SBATCH --account=atom
 #SBATCH --partition debug
-#SBATCH --nodes=1
-#SBATCH --time=00:03:00
+#SBATCH --nodes=10
+#SBATCH --time=00:30:00
 #SBATCH --output=log.slurm.stdOut
 
 cd $SLURM_SUBMIT_DIR   # optional, since this is the default behavior
@@ -14,7 +14,6 @@ cd $SLURM_SUBMIT_DIR   # optional, since this is the default behavior
 # Greendl1
 #source /project/projectdirs/atom/users/greendl1/code/ips-wrappers/env.ips.edison 
 # tyounkin
-#source /project/projectdirs/atom/users/tyounkin/ips-examples/ftridyn_ea_task_pool/env.ips.edison
 source /project/projectdirs/atom/atom-install-edison/GITR/env.edison.sh
 source $SLURM_SUBMIT_DIR/env.ips.edison
 
@@ -22,6 +21,7 @@ source $SLURM_SUBMIT_DIR/env.ips.edison
 export OMP_NUM_THREADS=24
 export OMP_PLACES=threads
 export OMP_PROC_BIND=spread
+
 #$IPS_PATH/bin/ips.py --config=ips.config --platform=edison_ompi.conf --log=log.framework 2>>log.stdErr 1>>log.stdOut
 $IPS_PATH/bin/ips.py --config=ips.config --platform=conf.ips.edison --log=log.framework 2>>log.stdErr 1>>log.stdOut
 egrep -i 'error' log.* > log.errors
