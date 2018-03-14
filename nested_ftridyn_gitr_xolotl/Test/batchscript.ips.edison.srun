@@ -1,11 +1,19 @@
 #!/bin/bash -l
 #SBATCH --account=atom
 #SBATCH --partition debug
-#SBATCH --nodes=1
-#SBATCH --time=00:15:00
+#SBATCH --nodes=8
+#SBATCH --time=00:30:00
 #SBATCH --output=log.slurm.stdOut
 
 cd $SLURM_SUBMIT_DIR   # optional, since this is the default behavior
+
+#clean current directory:
+if [ -f cleanIpsRun.sh ]; then
+   echo "clean up directory"
+   ./cleanIpsRun.sh
+else
+   echo "WARNING: not cleaning up submission directory"
+fi
 
 # Production
 #source /project/projectdirs/atom/atom-install-edison/ips-wrappers/env.ips.edison 
