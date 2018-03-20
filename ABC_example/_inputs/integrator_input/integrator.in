@@ -1,0 +1,14 @@
+! Standard input file for integrator
+
+! code specific parameters and switches (for illustration, not actually used in this example)
+tolerance = 1.e-6
+logic_switch = True
+
+! Time evolving code data
+delta_t = 0.
+X_dot = 0.
+Y_dot = 0.
+
+! Time evolving variables from state file
+X = 0.
+Y = 0.
