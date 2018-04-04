@@ -32,8 +32,7 @@ class C_component (Component):
 #
 # Does any tasks to get needed data into the component input files and the elements
 # of the state files that this component is responsible for, as of the beginning 
-# of the simulation. For this simple example that only entails putting the initial value
-# of X into the current state file.
+# of the simulation. 
 #
 # ------------------------------------------------------------------------------
 

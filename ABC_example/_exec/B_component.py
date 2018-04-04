@@ -190,7 +190,8 @@ class B_component (Component):
         change_dict = {'c_lin':c_lin, 'd_nonlin':d_nonlin}
         edit.modify_variables_in_file(change_dict, 'Y_dot_code.in')
         
-    # Modify data in template input file with data from state file
+    # Modify data in template input file with data from state files
+        # Get data from cur_state_file
         state_dict = edit.input_file_to_variable_dict(cur_state_file)
         change_dict = {'Y':state_dict['Y'], 'Y':state_dict['Y']}
         edit.modify_variables_in_file(change_dict, 'Y_dot_code.in')
