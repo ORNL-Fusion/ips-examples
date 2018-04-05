@@ -70,12 +70,12 @@ class A_component (Component):
           raise
       
     # Get input files  
-        try:
+        #try:
           services.stage_input_files(self.INPUT_FILES)
-        except Exception, e:
-          print 'Error in call to stageInputFiles()' , e
-          self.services.error('Error in call to stageInputFiles()')
-          raise
+        #except Exception, e:
+        #  print 'Error in call to stageInputFiles()' , e
+        #  self.services.error('Error in call to stageInputFiles()')
+        #  raise
 
     # Modify data in template input file with data from config file
         change_dict = {'a_lin':a_lin, 'b_nonlin':b_nonlin}
