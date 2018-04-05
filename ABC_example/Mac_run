@@ -1,7 +1,7 @@
 echo 'Clean up first'
 echo ' '
 ./cleanIpsRun.sh
-export IPS_PATH=/Users/dbb/Lab_work/ips_framework_install/bin
+export IPS_PATH=/Users/dbh/Lab_work/ips_framework_install/bin
 export PYTHONPATH=./_exec:$PYTHONPATH
-#export PYTHONPATH=/Users/dbb/Lab_work/git_dbb/ips-examples-master/ABC_example/_exec:$PYTHONPATH
-ips.py --simulation=ABC_simulation.config --platform=platform.conf
+#export PYTHONPATH=/Users/dbb/Lab_work/git_dbh/ips-examples-master/ABC_example/_exec:$PYTHONPATH
+$IPS_PATH/ips.py --simulation=ABC_simulation.config --platform=platform.conf
