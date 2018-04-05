@@ -116,7 +116,7 @@ class basic_driver(Component):
                 edit.add_variables_to_output_file(variable_dict, cur_state_file)
             if sim_mode == 'RESTART' :
                 edit.modify_variables_in_file(variable_dict, cur_state_file)
-            else :
+            if sim_mode not in ['NORMAL', 'RESTART']:
                 message = 'Unknown Simulation mode ' + sim_mode
                 print message
                 services.exception(message)
