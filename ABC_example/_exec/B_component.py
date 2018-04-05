@@ -207,6 +207,9 @@ class B_component (Component):
             self.services.error(logMsg)
             raise Exception(logMsg)
 
+    # Modify data in state files from output of X_dot code.
+    # None for this simple example.
+
 
 # Update plasma state files in plasma_state work directory
         try:

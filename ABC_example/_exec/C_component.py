@@ -209,7 +209,7 @@ class C_component (Component):
             self.services.error(logMsg)
             raise Exception(logMsg)
 
-# Update state files from C_code output
+    # Modify data in state files from output of C_code.
         variable_dict = edit.input_file_to_variable_dict('integrator.out')
         change_dict = {'X':variable_dict['X'], 'Y':variable_dict['Y']}
         edit.modify_variables_in_file(change_dict, cur_state_file)
