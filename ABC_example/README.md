@@ -8,7 +8,7 @@ git clone https://github.com/ORNL-Fusion/ips-examples.git
 
 Then source and run ...
 ```
-source ips-wrappers/env.ips.osx
+source ips-wrappers/env.ips
 cd ips-examples/ABC_example
 ips.py --simulation=ABC_simulation.config --platform=platform.conf
 ```
