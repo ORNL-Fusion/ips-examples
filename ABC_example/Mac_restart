@@ -4,4 +4,4 @@ echo ' '
 export IPS_PATH=/Users/dbb/Lab_work/ips_framework_install/bin
 export PYTHONPATH=./_exec:$PYTHONPATH
 #export PYTHONPATH=/Users/dbb/Lab_work/git_dbh/ips-examples-master/ABC_example/_exec:$PYTHONPATH
-$IPS_PATH/ips.py --simulation=ABC_simulation.config --platform=platform.conf
+$IPS_PATH/ips.py --simulation=ABC_simulation_restart.config --platform=platform.conf
