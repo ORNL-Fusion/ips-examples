@@ -112,7 +112,16 @@ class basic_driver(Component):
         if cur_state_file != None and len(cur_state_file) > 0:
             timeloop = services.get_time_loop()
             variable_dict = {'t0' : timeloop[0], 't1' : timeloop[0]}
-            edit.add_variables_to_output_file(variable_dict, cur_state_file)
+            if sim_mode == 'NORMAL' :
+                edit.add_variables_to_output_file(variable_dict, cur_state_file)
+            if sim_mode == 'RESTART' :
+                edit.modify_variables_in_file(variable_dict, cur_state_file)
+            else :
+                message = 'Unknown Simulation mode ' + sim_mode
+                print message
+                services.exception(message)
+                raise
+            
             services.update_plasma_state()
 
        # Post init processing: stage plasma state, stage output
