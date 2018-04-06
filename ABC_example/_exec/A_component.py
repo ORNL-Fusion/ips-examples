@@ -196,20 +196,16 @@ class A_component (Component):
         edit.modify_variables_in_file(change_dict, 'X_dot_code.in')
       
     # Run X_dot_code with modified template input file
-        cmd = EXECUTABLE
+        cmd = [EXECUTABLE]
         print 'Executing = ', cmd
         services.send_portal_event(event_type = 'COMPONENT_EVENT',\
           event_comment =  cmd)
-        cwd = services.get_working_dir()
-        task_id  = services.launch_task(NPROC, cwd, cmd)
-        retcode = services.wait_task(task_id)
+        retcode = subprocess.call(cmd)
         if (retcode != 0):
-            message = 'Error executing ', cmd
-            print message
-            self.services.error(message)
-            raise Exception(message)
-            return 1
-        print cmd, ' finished \n'
+            logMsg = 'Error executing '.join(map(str, cmd))
+            self.services.error(logMsg)
+            raise Exception(logMsg)
+
 
 # Update plasma state files in plasma_state work directory
         try:
