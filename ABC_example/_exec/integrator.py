@@ -17,7 +17,7 @@ Writes Y_dot into file "integrator.out"
 import sys
 import os
 import subprocess
-import simple_assignment_file_edit as edit
+import utils.simple_assignment_file_edit as edit
 
 print 'integrator Running'
 

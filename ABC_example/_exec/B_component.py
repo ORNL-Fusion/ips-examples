@@ -18,7 +18,8 @@ wrapper is to:
 import sys
 import os
 import subprocess
-import simple_assignment_file_edit as edit
+import utils.simple_assignment_file_edit as edit
+import utils.get_IPS_config_parameters as config
 from component import Component
 
 class B_component (Component):
@@ -48,18 +49,18 @@ class B_component (Component):
         services = self.services
 
     # Get global configuration parameters
-        cur_state_file = self.get_config_param(services,'CURRENT_STATE')
+        cur_state_file = config.get_config_param(self, services,'CURRENT_STATE')
 
     # Get component-specific configuration parameters. Note: Not all of these are
     # used in 'init' but if any are missing we get an exception now instead of
     # later
-        BIN_PATH = self.get_component_param(services, 'BIN_PATH')
-        RESTART_FILES = self.get_component_param(services, 'RESTART_FILES')
-        NPROC = self.get_component_param(services, 'NPROC')
-        EXECUTABLE = self.get_component_param(services, 'EXECUTABLE')
-        Y0 = self.get_component_param(services, 'Y0')
-        c_lin = self.get_component_param(services, 'c_lin')
-        d_nonlin = self.get_component_param(services, 'd_nonlin')
+        BIN_PATH = config.get_component_param(self, services, 'BIN_PATH')
+        RESTART_FILES = config.get_component_param(self, services, 'RESTART_FILES')
+        NPROC = config.get_component_param(self, services, 'NPROC')
+        EXECUTABLE = config.get_component_param(self, services, 'EXECUTABLE')
+        Y0 = config.get_component_param(self, services, 'Y0')
+        c_lin = config.get_component_param(self, services, 'c_lin')
+        d_nonlin = config.get_component_param(self, services, 'd_nonlin')
 
     # Copy plasma state files over to working directory
         try:
@@ -128,8 +129,8 @@ class B_component (Component):
         workdir = services.get_working_dir()
 
         # Get restart files listed in config file.        
-        restart_root = self.get_config_param(services,'RESTART_ROOT')
-        restart_time = self.get_config_param(services,'RESTART_TIME')
+        restart_root = config.get_config_param(self, services,'RESTART_ROOT')
+        restart_time = config.get_config_param(self, services,'RESTART_TIME')
 
         try:
             services.get_restart_files(restart_root, restart_time, self.RESTART_FILES)
@@ -159,16 +160,16 @@ class B_component (Component):
         services = self.services
 
     # Get global configuration parameters
-        cur_state_file = self.get_config_param(services,'CURRENT_STATE')
+        cur_state_file = config.get_config_param(self, services,'CURRENT_STATE')
  
     # Get component-specific configuration parameters.
-        BIN_PATH = self.get_component_param(services, 'BIN_PATH')
-        RESTART_FILES = self.get_component_param(services, 'RESTART_FILES')
-        NPROC = self.get_component_param(services, 'NPROC')
-        EXECUTABLE = self.get_component_param(services, 'EXECUTABLE')
-        Y0 = self.get_component_param(services, 'Y0')
-        c_lin = self.get_component_param(services, 'c_lin')
-        d_nonlin = self.get_component_param(services, 'd_nonlin')
+        BIN_PATH = config.get_component_param(self, services, 'BIN_PATH')
+        RESTART_FILES = config.get_component_param(self, services, 'RESTART_FILES')
+        NPROC = config.get_component_param(self, services, 'NPROC')
+        EXECUTABLE = config.get_component_param(self, services, 'EXECUTABLE')
+        Y0 = config.get_component_param(self, services, 'Y0')
+        c_lin = config.get_component_param(self, services, 'c_lin')
+        d_nonlin = config.get_component_param(self, services, 'd_nonlin')
 
     # Copy plasma state files over to working directory
         try:
@@ -265,45 +266,3 @@ class B_component (Component):
 
     def finalize(self, timestamp=0.0):
         print 'B_component finalize() called'
-
-# ------------------------------------------------------------------------------
-#
-# "Private"  methods
-#
-# ------------------------------------------------------------------------------
-
-
-    # Try to get config parameter - wraps the exception handling for get_config_parameter()
-    def get_config_param(self, services, param_name, optional=False):
-
-        try:
-            value = services.get_config_param(param_name)
-            print param_name, ' = ', value
-        except Exception :
-            if optional: 
-                print 'config parameter ', param_name, ' not found'
-                value = None
-            else:
-                message = 'required config parameter ', param_name, ' not found'
-                print message
-                services.exception(message)
-                raise
-        
-        return value
-
-    # Try to get component specific config parameter - wraps the exception handling
-    def get_component_param(self, services, param_name, optional=False):
-
-        if hasattr(self, param_name):
-            value = getattr(self, param_name)
-            print param_name, ' = ', value
-        elif optional:
-            print 'optional config parameter ', param_name, ' not found'
-            value = None
-        else:
-            message = 'required component config parameter ', param_name, ' not found'
-            print message
-            services.exception(message)
-            raise
-        
-        return value

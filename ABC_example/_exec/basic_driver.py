@@ -21,7 +21,8 @@ parameter INIT_ONLY = True.
 
 import sys
 import os
-import simple_assignment_file_edit as edit
+import utils.simple_assignment_file_edit as edit
+import utils.get_IPS_config_parameters as config
 from component import Component
 
 class basic_driver(Component):
@@ -54,7 +55,7 @@ class basic_driver(Component):
 
       # get list of ports
 #        ports = services.getGlobalConfigParameter('PORTS')
-        ports = self.get_config_param(services,'PORTS')
+        ports = config.get_config_param(self, services,'PORTS')
         port_names = ports['NAMES'].split()
         print 'PORTS =', port_names
         port_dict = {}
@@ -77,7 +78,7 @@ class basic_driver(Component):
 
 
       # Is this a simulation startup or restart
-        sim_mode = self.get_config_param(services,'SIMULATION_MODE')
+        sim_mode = config.get_config_param(self, services,'SIMULATION_MODE')
 
       # Get timeloop for simulation
         timeloop = services.get_time_loop()
@@ -99,8 +100,8 @@ class basic_driver(Component):
         cur_state_file = services.get_config_param('CURRENT_STATE')
         
        # Get Portal RUNID and save to a file
-        run_id = self.get_config_param(services,'PORTAL_RUNID')
-        sym_root = self.get_config_param(services,'SIM_ROOT')
+        run_id = config.get_config_param(self, services,'PORTAL_RUNID')
+        sym_root = config.get_config_param(self, services,'SIM_ROOT')
         path = os.path.join(sym_root, 'PORTAL_RUNID')
         runid_file = open(path, 'a')
         runid_file.writelines(run_id + '\n')
@@ -108,7 +109,7 @@ class basic_driver(Component):
 
         # Check if there is a config parameter CURRENT_STATE and add data if so.
         # In this case set t0 = t1 = tinit
-        cur_state_file = self.get_config_param(services, 'CURRENT_STATE', optional = True)
+        cur_state_file = config.get_config_param(self, services, 'CURRENT_STATE', optional = True)
         if cur_state_file != None and len(cur_state_file) > 0:
             timeloop = services.get_time_loop()
             variable_dict = {'t0' : timeloop[0], 't1' : timeloop[0]}
@@ -129,7 +130,7 @@ class basic_driver(Component):
 
         print ' init sequence complete--ready for time loop'
 
-        INIT_ONLY = self.get_component_param(services, 'INIT_ONLY', optional = True)
+        INIT_ONLY = config.get_component_param(self, services, 'INIT_ONLY', optional = True)
         if INIT_ONLY in [True, 'true', 'True', 'TRUE']:   
             message = 'INIT_ONLY: Intentional stop after INIT phase'
             print message
@@ -240,45 +241,10 @@ class basic_driver(Component):
     def pre_step_logic(self, services, timeStamp):
 
     # Check if there is a config parameter CURRENT_STATE and update t0, t1 if so.
-        cur_state_file = self.get_config_param(services, 'CURRENT_STATE', optional = True)
+        cur_state_file = config.get_config_param(self, services, 'CURRENT_STATE', optional = True)
         print 'pre-step-logic: cur_state_file = ', cur_state_file
         if cur_state_file != None and len(cur_state_file) > 0:
             state_dict = edit.input_file_to_variable_dict(cur_state_file)
             change_dict = {'t0':state_dict['t1'], 't1':timeStamp}
             edit.modify_variables_in_file(change_dict, cur_state_file)
         return
-
-    # Try to get config parameter - wraps the exception handling for get_config_parameter()
-    def get_config_param(self, services, param_name, optional=False):
-
-        try:
-            value = services.get_config_param(param_name)
-            print param_name, ' = ', value
-        except Exception :
-            if optional: 
-                print 'config parameter ', param_name, ' not found'
-                value = None
-            else:
-                message = 'required config parameter ', param_name, ' not found'
-                print message
-                services.exception(message)
-                raise
-        
-        return value
-
-    # Try to get component specific config parameter - wraps the exception handling
-    def get_component_param(self, services, param_name, optional=False):
-
-        if hasattr(self, param_name):
-            value = getattr(self, param_name)
-            print param_name, ' = ', value
-        elif optional:
-            print 'optional config parameter ', param_name, ' not found'
-            value = None
-        else:
-            message = 'required component config parameter ', param_name, ' not found'
-            print message
-            services.exception(message)
-            raise
-        
-        return value

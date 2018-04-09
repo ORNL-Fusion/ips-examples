@@ -16,7 +16,7 @@ Writes Y_dot into file "Y_dot_code.out"
 
 """
 import time
-import simple_assignment_file_edit as edit
+import utils.simple_assignment_file_edit as edit
 
 print 'Y_dot_code Running'
 

@@ -28,7 +28,8 @@ import sys
 import os
 import subprocess
 import shutil
-import simple_assignment_file_edit as edit
+import utils.simple_assignment_file_edit as edit
+import utils.get_IPS_config_parameters as config
 from  component import Component
 
 class basic_init (Component):
@@ -64,7 +65,7 @@ class basic_init (Component):
         services = self.services
 
 # Check if this is a restart simulation
-        simulation_mode = self.get_config_param(services, 'SIMULATION_MODE')
+        simulation_mode = config.get_config_param(self, services, 'SIMULATION_MODE')
 
         if simulation_mode == 'RESTART':
             print 'basic_init: RESTART'
@@ -81,8 +82,8 @@ class basic_init (Component):
             
         if simulation_mode == 'RESTART':
             # Get restart files listed in config file. Here just the plasma state files.
-            restart_root = self.get_config_param(services, 'RESTART_ROOT')
-            restart_time = self.get_config_param(services, 'RESTART_TIME')
+            restart_root = config.get_config_param(self, services, 'RESTART_ROOT')
+            restart_time = config.get_config_param(self, services, 'RESTART_TIME')
             try:
                  services.get_restart_files(restart_root, restart_time, self.RESTART_FILES)
             except:
@@ -93,7 +94,7 @@ class basic_init (Component):
             cur_state_file = self.services.get_config_param('CURRENT_STATE')
     
         # Check if there is a config parameter CURRENT_STATE and add data
-            cur_state_file = self.get_config_param(services, 'CURRENT_STATE', optional = True)
+            cur_state_file = config.get_config_param(self, services, 'CURRENT_STATE', optional = True)
             if cur_state_file != None or len(cur_state_file) > 0:
                 timeloop = services.get_time_loop()
                 tfinal = timeloop[-1]
@@ -111,7 +112,7 @@ class basic_init (Component):
         else:
 
             print 'basic_init: simulation mode NORMAL'
-            state_file_list = self.get_config_param(services, 'PLASMA_STATE_FILES').split(' ')
+            state_file_list = config.get_config_param(self, services, 'PLASMA_STATE_FILES').split(' ')
 
         # Generate state files as dummies so framework will have a complete set
             for file in state_file_list:
@@ -121,7 +122,7 @@ class basic_init (Component):
                 except Exception:
                     print 'No file ', file
 
-            init_mode = self.get_component_param(services, 'INIT_MODE', optional = True)
+            init_mode = config.get_component_param(self, services, 'INIT_MODE', optional = True)
             if init_mode in ['touch_only', 'TOUCH_ONLY'] :
                 # Update plasma state
                 try:
@@ -132,9 +133,9 @@ class basic_init (Component):
                 return
 
         # Check if there is a config parameter CURRENT_STATE and add data if so.
-            cur_state_file = self.get_config_param(services, 'CURRENT_STATE', optional = True)
+            cur_state_file = config.get_config_param(self, services, 'CURRENT_STATE', optional = True)
             if cur_state_file != None and len(cur_state_file) > 0:
-                run_id = self.get_config_param(services, 'RUN_ID')
+                run_id = config.get_config_param(self, services, 'RUN_ID')
 
                 timeloop = services.get_time_loop()
                 tinit = timeloop[0]
@@ -153,7 +154,7 @@ class basic_init (Component):
                 services.exception(message)
                 raise
 
-            INIT_HELPER_CODE_bin = self.get_component_param(services, 'INIT_HELPER_CODE', \
+            INIT_HELPER_CODE_bin = config.get_component_param(self, services, 'INIT_HELPER_CODE', \
             optional = True)
             
             if (INIT_HELPER_CODE_bin is not None) and (len(INIT_HELPER_CODE_bin) != 0):
@@ -204,45 +205,3 @@ class basic_init (Component):
 
     def finalize(self, timestamp=0.0):
         print 'basic_init.finalize() called'
-
-# ------------------------------------------------------------------------------
-#
-# "Private"  methods
-#
-# ------------------------------------------------------------------------------
-
-
-    # Try to get config parameter - wraps the exception handling for get_config_parameter()
-    def get_config_param(self, services, param_name, optional=False):
-
-        try:
-            value = services.get_config_param(param_name)
-            print param_name, ' = ', value
-        except Exception:
-            if optional:
-                print 'config parameter ', param_name, ' not found'
-                value = None
-            else:
-                message = 'required config parameter ', param_name, ' not found'
-                print message
-                services.exception(message)
-                raise
-
-        return value
-
-    # Try to get component specific config parameter - wraps the exception handling
-    def get_component_param(self, services, param_name, optional=False):
-
-        if hasattr(self, param_name):
-            value = getattr(self, param_name)
-            print param_name, ' = ', value
-        elif optional:
-            print 'optional config parameter ', param_name, ' not found'
-            value = None
-        else:
-            message = 'required component config parameter ', param_name, ' not found'
-            print message
-            services.exception(message)
-            raise
-
-        return value
