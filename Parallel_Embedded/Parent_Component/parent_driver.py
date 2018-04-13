@@ -57,11 +57,13 @@ class parent_driver(Component):
                                                 }
 #  Input files will be staged from this directory.
             os.mkdir(self.child_components[child_comp]['input_dir'])
+            #  Copy files to the created directory.
             (self.child_components[child_comp]['sim_name'],
              self.child_components[child_comp]['init'],
              self.child_components[child_comp]['driver']) = self.services.create_sub_workflow(child_comp,
                                                                                               child_conf,
-                                                                                              keys)
+                                                                                              keys,
+                                                                                              self.child_components[child_comp]['input_dir'])
 
 #  Loop over the children and all the initize component.
         for child in self.child_components.values():
