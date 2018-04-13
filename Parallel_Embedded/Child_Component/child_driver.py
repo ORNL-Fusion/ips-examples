@@ -57,6 +57,12 @@ class child_driver(Component):
         self.running_components['child:step'] = self.services.call_nonblocking(self.ports['CHILD'],
                                                                                'step', timeStamp)
 
+#  The child component step was calling with a non blocking call. If we want
+#  callers of this components step method to wait, we need to block until the
+#  child component step is finished.
+        self.services.wait_call_list(self.running_components.values(), True)
+        self.running_components = {}
+
 #-------------------------------------------------------------------------------
 #
 #  child_driver Component finalize method.
