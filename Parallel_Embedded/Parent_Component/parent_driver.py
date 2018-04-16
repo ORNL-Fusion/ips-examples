@@ -9,6 +9,7 @@
 
 from component import Component
 import os
+import shutil
 
 #-------------------------------------------------------------------------------
 #
@@ -56,6 +57,8 @@ class parent_driver(Component):
                                                 'input_dir' : '{}_dir'.format(child_comp)
                                                 }
 #  Input files will be staged from this directory.
+            if os.path.exists(self.child_components[child_comp]['input_dir']):
+                shutil.rmtree(self.child_components[child_comp]['input_dir'])
             os.mkdir(self.child_components[child_comp]['input_dir'])
             #  Copy files to the created directory.
             (self.child_components[child_comp]['sim_name'],
@@ -72,7 +75,8 @@ class parent_driver(Component):
             
 #  Loop over the children and all the initize component.
         for child in self.child_components.values():
-            keys = {'message' : 'Hello from {}'.format(child['sim_name'])}
+#            keys = {'message' : 'Hello from {}'.format(child['sim_name'])}
+            keys = {'message' : '10'}
             self.services.wait_call(self.running_components['{}:init:init'.format(child['sim_name'])], True)
             self.running_components['{}:driver:init'.format(child['sim_name'])] = self.services.call_nonblocking(child['driver'],
                                                                                                                  'init', timeStamp,
@@ -93,7 +97,7 @@ class parent_driver(Component):
             self.running_components['{}:driver:step'.format(child['sim_name'])] = self.services.call_nonblocking(child['driver'],
                                                                                                                  'step', timeStamp)
             del self.running_components['{}:driver:init'.format(child['sim_name'])]
-    
+
 #-------------------------------------------------------------------------------
 #
 #  parent_driver Component finalize method.

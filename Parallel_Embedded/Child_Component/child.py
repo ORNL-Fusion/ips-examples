@@ -7,6 +7,7 @@
 #-------------------------------------------------------------------------------
 
 from component import Component
+import time
 
 #-------------------------------------------------------------------------------
 #
@@ -56,6 +57,7 @@ class child(Component):
                                                                      logfile = 'log.child')
     
 #  Wait for tasks to complete.
+        time.sleep(30)
         self.services.wait_tasklist(self.running_tasks.values(), True)
         self.running_tasks = {}
     
