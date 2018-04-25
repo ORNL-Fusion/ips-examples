@@ -11,6 +11,6 @@ export IPS_DIR=../..
 echo 'IPS_DIR = ' $IPS_DIR
 source $IPS_DIR/ips-wrappers/env.ips
 export PYTHONPATH=./_exec:$PYTHONPATH
-ips.py --config=ABC_simulation.config --platform=conf.ips.edison --log=log.framework 2>>log.stdErr 1>>log.stdOut
+ips.py --config=ABC_simulation_restart.config --platform=conf.ips.edison --log=log.framework 2>>log.stdErr 1>>log.stdOut
 egrep -i 'error' log.* > log.errors
 ./setPermissions.sh
