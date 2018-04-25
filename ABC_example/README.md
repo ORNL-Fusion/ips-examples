@@ -1,4 +1,6 @@
-Create a directory where your IPS installation will live, e.g.
+If you already have the IPS with the structure created in 1) then skip to 2) to run.
+
+1) Create a directory where your IPS installation will live, e.g.
 ```
 mkdir IPS
 ```
@@ -12,7 +14,7 @@ git clone https://github.com/ORNL-Fusion/ips-wrappers.git
 git clone https://github.com/ORNL-Fusion/ips-examples.git
 ```
 
-To run, if you are not already there, then cd to the IPS top level directory e.g. /IPS/,
+2) To run, if you are not already there, then cd to the IPS top level directory e.g. /IPS/,
 export, source, cd to the example directory, and run ...
 ```
 export IPS_DIR=${PWD}
