@@ -1,10 +1,9 @@
 If you already have the IPS with the structure created in 1) then skip to 2) to run.
 
-1) Create a directory where your IPS installation will live, e.g.
+1) To download, create a directory where your IPS installation will live, e.g.
 ```
 mkdir IPS
 ```
-
 cd into it and clone the IPS framework and wrappers/examples repos in this directory, e.g.
 
 ```
@@ -14,34 +13,30 @@ git clone https://github.com/ORNL-Fusion/ips-wrappers.git
 git clone https://github.com/ORNL-Fusion/ips-examples.git
 ```
 
-2) To run, if you are not already there, then cd to the IPS top level directory e.g. /IPS/,
-export, source, cd to the example directory, and run ...
+2) To set the environment, cd to the IPS top level directory (e.g. /IPS/, unless you are 
+already there).  Export IPS_DIR environment variable and source env.ips.
 ```
 export IPS_DIR=${PWD}
 source ips-wrappers/env.ips
-cd ips-examples/hello-world
-ips.py --simulation=ips.config --platform=platform.conf
 ```
 
-Hello_world is (almost) the simplest possible IPS run, exercising two components 
-DRIVER  hello_driver.py and WORKER  hello_worker.py.  
-"Almost" because it would be possible to have an IPS simulation with only a driver.
-Hello world does not use the Plasma State or use any physics components.
+3) To run, cd into the example directory and run
+```
+cd ips-examples/ABC_example
+ips.py --simulation=ABC_simulation.config --platform=platform.conf
+````
 
-There is one external connection, to an environment file that is sourced
-in the slurm batch script, run_slurm.  The environment file env.ips.edison is maintained at
-
-/project/projectdirs/atom/atom-install-edison/ips-wrappers/env.ips.edison
-  
-The components reside in the AToM project IPS_CSWIM_WRAPPERS directory as defined in env.ips.edison,
-but they have been copied here into the source directory for ease of viewing by the user.
-
-To run the "simulation" submit the batch script from the command line
-
-sbatch batchscript.ips.edison
+Hello_world is (almost) the simplest possible IPS run, exercising two components DRIVER, 
+hello_driver.py, and WORKER, hello_worker.py.  We say "almost" because it would actually 
+be possible to have an IPS simulation with only a driver and no components.  Hello world 
+does not use any STATE files or use any physics components.  There is one external connection, 
+to an environment file (env.ips) that is sourced from $IPS_DIR/ips-examples/env.ips in the 
+present setup.
 
 To clean all the run files and start with just the input deck run 
-
+```
 ./cleanIpsRun.sh
+```
+
 
 
