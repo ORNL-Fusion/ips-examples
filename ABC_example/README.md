@@ -32,9 +32,9 @@ human readable text.  It largely has the structure of a real simulation in that 
 has three components that interact. The “simulation” solves a coupled set of 2 ODEs by 
 bonehead step-by-step integration.
  
-x ̇=Ax+Bxy
+x' = Ax+Bxy
 
-y ̇=Cy+Dxy
+y' = Cy+Dxy
 
 There are 3 “physics”:  codes X_dot_code.py, Y_dot_code.py, and integrator.py.    Component
 wrapper scripts drive these “physics” codes:  A_component.py, B_component.py, and 
