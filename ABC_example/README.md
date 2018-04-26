@@ -62,6 +62,9 @@ and on Mac,
 ./Mac_run 
 ```
 This example also demonstrates simulation restart which is invoked with the Edison_restart
-and Mac_restart scripts.
+and Mac_restart scripts.  To clean all the run files and start with just the input deck run 
+```
+./cleanIpsRun.sh
+```
 
 
