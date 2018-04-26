@@ -14,8 +14,7 @@ git clone https://github.com/ORNL-Fusion/ips-examples.git
 ```
 
 2) To set the environment, cd to the IPS top level directory (e.g. /IPS/), unless you are 
-already there.  Export IPS_DIR environment variable and source env.ips cd to the example 
-directory, and run ...
+already there.  Export IPS_DIR environment variable and source env.ips.
 ```
 export IPS_DIR=${PWD}
 source ips-wrappers/env.ips
