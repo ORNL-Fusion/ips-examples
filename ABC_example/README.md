@@ -36,7 +36,7 @@ x' = Ax+Bxy
 
 y' = Cy+Dxy
 
-There are 3 “physics”:  codes X_dot_code.py, Y_dot_code.py, and integrator.py.    Component
+There are 3 “physics”:  codes X_dot_code.py, Y_dot_code.py, and integrator.py. Component
 wrapper scripts drive these “physics” codes:  A_component.py, B_component.py, and 
 C_component.py.  In addition there are simulation initializer and driver components: 
 basic_init.py and basic_driver.py.  The basic_init.py and basic_driver.py components are 
@@ -48,9 +48,9 @@ output files from the A and B components and a common state.dat file.  It also w
 the eventlog html file to a www directory.  So it pretty much has the structure of a real 
 simulation.
 
-Typically a real simulation would be run as a batch job, submitted via a batch script.  
-In trying to make this as much like a real simulation running as a batch job, a batch 
-script for Edison and a shell script for Mac are provided.  The exporting of IPS_DIR and 
+Typically a real simulation would be run as a batch job, submitted via a batch script.  In 
+trying to make this as much like a real simulation running as a batch job, a batch script 
+for Edison and a shell script for Mac are provided.  The exporting of IPS_DIR and 
 sourcing of ips.env are included in these scripts so these two steps described above can 
 be omitted.  The command lines to run from the /ips-examples/ABC_example/ directory are 
 on Edison
