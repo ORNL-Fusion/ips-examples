@@ -1,30 +1,35 @@
-If you already have the IPS with the structure created in 1) then skip to 2) to run.
+# Install the IPS
+Skip this if you've already installed the IPS. 
 
-1) To download, create a directory where your IPS installation will live, e.g.
+1. Create an IPS directory and clone the IPS-framework, wrappers, and examples repos.
 ```
 mkdir IPS
-```
-cd into it and clone the IPS framework and wrappers/examples repos in this directory, e.g.
-
-```
 cd IPS
 git clone https://github.com/HPC-SimTools/IPS-framework.git ips-framework
 git clone https://github.com/ORNL-Fusion/ips-wrappers.git
 git clone https://github.com/ORNL-Fusion/ips-examples.git
 ```
-
-2) To set the environment, cd to the IPS top level directory (e.g. /IPS/, unless you are 
-already there).  Export IPS_DIR environment variable and source env.ips.
+2. Export the `IPS_DIR` environment variable
 ```
 export IPS_DIR=${PWD}
-source ips-wrappers/env.ips
+```
+3. Add this to your `.bashrc` or otherwise so it's there next time you open a shell (Note: Adapt for `csh` or otherwise).
+```
+echo 'export IPS_DIR='${PWD} >> ~/.bashrc 
 ```
 
-3) To run, cd into the example directory and run
+# Run the example
+
+1. Source the IPS environemnt
 ```
-cd ips-examples/ABC_example
+cd $IPS_DIR
+source ips-wrappers/env.ips
+```
+2. Run the hello-world example
+```
+cd ips-examples/hello-world
 ips.py --simulation=ips.config --platform=platform.conf
-````
+```
 
 Hello_world is (almost) the simplest possible IPS run, exercising two components DRIVER, 
 hello_driver.py, and WORKER, hello_worker.py.  We say "almost" because it would actually 
