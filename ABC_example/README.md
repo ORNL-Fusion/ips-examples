@@ -1,7 +1,7 @@
 # Install the IPS
 Skip this if you've already installed the IPS. 
 
-1. Create a directory where your IPS installation will live, cd into it and clone the IPS-framework, wrappers, and examples repos.
+1. Create an IPS directory and clone the IPS-framework, wrappers, and examples repos.
 ```
 mkdir IPS
 cd IPS
@@ -26,9 +26,15 @@ cd $IPS_DIR
 source ips-wrappers/env.ips
 ```
 2. Run the ABC example
+  * Locally
 ```
 cd ips-examples/ABC_example
 ips.py --simulation=ABC_simulation.config --platform=platform.conf
+```
+  * On a batch system (e.g., Edison at NERSC)
+```
+cd ips-examples/ABC_example
+sbatch Edison_run
 ```
 
 ## Notes on the ABC exmple
