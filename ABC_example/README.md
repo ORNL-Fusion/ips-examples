@@ -1,30 +1,37 @@
-If you already have the IPS with the structure created in 1) then skip to 2) to run.
+# Install the IPS
+Skip this if you've already installed the IPS. 
 
-1) To download, create a directory where your IPS installation will live, e.g.
+1. Create a directory where your IPS installation will live, cd into it and clone the IPS-framework, wrappers, and examples repos.
 ```
 mkdir IPS
-```
-cd into it and clone the IPS framework and wrappers/examples repos in this directory, e.g.
-
-```
 cd IPS
 git clone https://github.com/HPC-SimTools/IPS-framework.git ips-framework
 git clone https://github.com/ORNL-Fusion/ips-wrappers.git
 git clone https://github.com/ORNL-Fusion/ips-examples.git
 ```
-
-2) To set the environment, cd to the IPS top level directory (e.g. /IPS/, unless you are 
-already there).  Export IPS_DIR environment variable and source env.ips.
+2. Export the `IPS_DIR` environment variable
 ```
 export IPS_DIR=${PWD}
-source ips-wrappers/env.ips
+```
+3. Add this to your `.bashrc` or otherwise so it's there next time you open a shell (Note: Adapt for `csh` or otherwise).
+```
+echo 'export IPS_DIR='${PWD} >> ~/.bashrc 
 ```
 
-3) To run, cd into the example directory and run
+# Run the example
+
+1. Source the IPS environemnt
+```
+cd $IPS_DIR
+source ips-wrappers/env.ips
+```
+2. Run the ABC example
 ```
 cd ips-examples/ABC_example
 ips.py --simulation=ABC_simulation.config --platform=platform.conf
 ```
+
+## Notes on the ABC exmple
 The ABC simulation is a somewhat more realistic example of IPS usage.  It is completely 
 written in python and has no dependencies other than IPS.  As such it should run about 
 anywhere, at least it runs on Macs and at NERSC.  The input and output files are all 
