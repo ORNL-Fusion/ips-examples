@@ -36,6 +36,10 @@ ips.py --simulation=ABC_simulation.config --platform=platform.conf
 cd ips-examples/ABC_example
 sbatch Edison_run
 ```
+To clean all the run files and start with just the input deck run 
+```
+./cleanIpsRun.sh
+```
 
 ## Notes on the ABC exmple
 The ABC simulation is a somewhat more realistic example of IPS usage.  It is completely 
@@ -75,9 +79,6 @@ and on Mac,
 ./Mac_run 
 ```
 This example also demonstrates simulation restart which is invoked with the Edison_restart
-and Mac_restart scripts.  To clean all the run files and start with just the input deck run 
-```
-./cleanIpsRun.sh
-```
+and Mac_restart scripts. 
 
 
