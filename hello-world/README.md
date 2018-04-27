@@ -23,7 +23,7 @@ source ips-wrappers/env.ips
 3) To run, cd into the example directory and run
 ```
 cd ips-examples/ABC_example
-ips.py --simulation=ABC_simulation.config --platform=platform.conf
+ips.py --simulation=ips.config --platform=platform.conf
 ````
 
 Hello_world is (almost) the simplest possible IPS run, exercising two components DRIVER, 
