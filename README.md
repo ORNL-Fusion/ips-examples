@@ -1,53 +1,44 @@
-# ips-examples  on edison.nersc.gov
+# Install the IPS
+Skip this if you've already installed the IPS. 
 
-##ips-hello-world
+1. Create an IPS directory and clone the IPS-framework, wrappers, and examples repos.
+```
+mkdir IPS
+cd IPS
+git clone https://github.com/HPC-SimTools/IPS-framework.git ips-framework
+git clone https://github.com/ORNL-Fusion/ips-wrappers.git
+git clone https://github.com/ORNL-Fusion/ips-examples.git
+```
+2. Export the `IPS_DIR` environment variable
+```
+export IPS_DIR=${PWD}
+```
+3. Add this to your `.bashrc` or otherwise so it's there next time you open a shell (Note: Adapt for `csh` or otherwise).
+```
+echo 'export IPS_DIR='${PWD} >> ~/.bashrc 
+```
 
-1. Request access to the ATOM project (both on github & at NERSC).
-2. Setup your run directory
-  
-  ```
-  cd /project/projectdirs/atom
-  mkdir www/$USER
-  cd www/$USER
-  /project/projectdirs/atom/atom-install-edison/ips-wrappers/setPermissionsWWW.sh
-  cd ../../users
-  mkdir $USER
-  cd $USER
-  module load git
-  git clone https://github.com/ORNL-Fusion/ips-examples.git
-  ```
-  
-3. Run the example
-  
-  ```
-  cd ips-examples/hello-world
-  sbatch batchscript.ips.edison
-  squeue -u $USER
-  ```
+# Run the example
 
-4. After running, successful output looks like ...
+1. Source the IPS environemnt
+```
+cd $IPS_DIR
+source ips-wrappers/env.ips
+```
+2. Run the ABC example
+  * Locally
+```
+cd ips-examples/ABC_example
+ips.py --simulation=ABC_simulation.config --platform=platform.conf
+```
+  * On a batch system (e.g., Edison at NERSC)
+```
+cd ips-examples/ABC_example
+sbatch Edison_run
+```
+To clean all the run files and start with just the input deck run 
+```
+./cleanIpsRun.sh
+```
 
-  ```
-  cat log.stdOut
-  ...
-  Starting IPS
-  Created <class 'hello_driver.hello_driver'>
-  Created <class 'hello_worker.hello_worker'>
-  Created <class 'runspaceInitComponent.runspaceInitComponent'>
-  [('nid01590', 24)] 24 2 24 True
-  Checklist config file "/global/project/projectdirs/atom/users/greendl1/runs/ips-examples/hello-world/checklist.conf" could not be found, continuing without.
-  runspaceInitComponent.init() called
-  CREATE_RUNSPACE = DONE
-  RUN_SETUP = DONE
-  RUN = DONE
-  runspaceInitComponent.step() called
-  hello_driver: beginning step call
-  Hello from hello_worker
-  runspaceInitComponent.finalize() called
-  HelloDriver: finished worker call
-  ```
 
-5. Look at the web portal for details on your IPS job [http://swim.gat.com:5050/](http://swim.gat.com:5050/)
-
-  ![IPS Portal Image](https://github.com/ORNL-Fusion/ips-examples/blob/master/hello-world/portal-image.png)
-  
