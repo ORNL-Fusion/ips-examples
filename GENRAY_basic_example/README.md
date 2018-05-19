@@ -14,4 +14,5 @@ files are specified in the config file.  The input namelist file can have any na
 copied to the generic name "genray.dat" in the component.  The name of the EQDSK file 
 appears in the namelist file and the actual filename in the input directory must match that.
 
-
+The full path to the GENRAY executable appears in the config file.  That presently points
+to the latest version maintained by Bob Harvey and is subject to change.
