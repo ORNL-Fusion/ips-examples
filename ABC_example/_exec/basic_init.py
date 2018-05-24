@@ -5,9 +5,9 @@ basic_init.py  Batchelor (3-11-2018)
 
 Version 1.0 (Batchelor 3/11/2018)
 Simplified initializer adapted from generic_ps_init.py, but eliminating reference to many
-features specific to  physics.  The immediate application is to simple, example
-simulations which do not make use of the SWIM  State system.  The IPS framework uses
-the terminology  state to refer to all state files.  But the SWIM  State need
+features specific to plasma physics.  The immediate application is to simple, example
+simulations which do not make use of the SWIM Plasma State system.  The IPS framework uses
+the terminology plasma state to refer to all state files.  But the SWIM Plasma State need
 not be used at all.
 
 By default this script merely touches all the files listed as STATE_FILES in the 

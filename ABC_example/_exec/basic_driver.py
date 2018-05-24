@@ -3,9 +3,9 @@
 """
 Version 1.0 (Batchelor 3/11/2018)
 Simplified driver adapted from generic_driver.py, but eliminating reference to many
-features specific to  physics.  The immediate application is to simple, example
-simulations which do not make use of the SWIM  State system.  The IPS framework uses
-the terminology  state to refer to all state files.  But the SWIM  State need
+features specific to plasma physics.  The immediate application is to simple, example
+simulations which do not make use of the SWIM Plasma State system.  The IPS framework uses
+the terminology plasma state to refer to all state files.  But the SWIM Plasma State need
 not be used at all.
 
 This also uses David Green's approach of iterating on the PORTS.  Thus PORTS are instantiated,
