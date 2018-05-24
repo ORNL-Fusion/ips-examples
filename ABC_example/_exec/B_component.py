@@ -62,12 +62,12 @@ class B_component (Component):
         c_lin = config.get_component_param(self, services, 'c_lin')
         d_nonlin = config.get_component_param(self, services, 'd_nonlin')
 
-    # Copy plasma state files over to working directory
+    # Copy  state files over to working directory
         try:
-          services.stage_plasma_state()
+          services.stage_state()
         except Exception, e:
-          print 'Error in call to stage_plasma_state()' , e
-          services.error('Error in call to stage_plasma_state()')
+          print 'Error in call to stage_state()' , e
+          services.error('Error in call to stage_state()')
           raise
       
     # Get input files  
@@ -88,11 +88,11 @@ class B_component (Component):
         variable_dict = {'Y' : Y0}
         edit.add_variables_to_output_file(variable_dict, cur_state_file)
 
-# Update plasma state files in plasma_state work directory
+# Update  state files in state work directory
         try:
-          services.update_plasma_state()
+          services.update_state()
         except Exception:
-          message = 'Error in call to update_plasma_state()'
+          message = 'Error in call to update_state()'
           print message
           services.error(message)
           raise
@@ -171,12 +171,12 @@ class B_component (Component):
         c_lin = config.get_component_param(self, services, 'c_lin')
         d_nonlin = config.get_component_param(self, services, 'd_nonlin')
 
-    # Copy plasma state files over to working directory
+    # Copy  state files over to working directory
         try:
-          services.stage_plasma_state()
+          services.stage_state()
         except Exception, e:
-          print 'Error in call to stage_plasma_state()' , e
-          services.error('Error in call to stage_plasma_state()')
+          print 'Error in call to stage_state()' , e
+          services.error('Error in call to stage_state()')
           raise
       
     # Get input files  
@@ -217,11 +217,11 @@ class B_component (Component):
     # None for this simple example.
 
 
-# Update plasma state files in plasma_state work directory
+# Update  state files in state work directory
         try:
-          services.update_plasma_state()
+          services.update_state()
         except Exception:
-          message = 'Error in call to update_plasma_state()'
+          message = 'Error in call to update_state()'
           print message
           services.error(message)
           raise
@@ -240,7 +240,7 @@ class B_component (Component):
 # ------------------------------------------------------------------------------
 #
 # checkpoint function
-# Saves plasma state files to restart directory
+# Saves  state files to restart directory
 #
 # ------------------------------------------------------------------------------
 

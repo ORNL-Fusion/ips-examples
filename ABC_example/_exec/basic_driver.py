@@ -3,9 +3,9 @@
 """
 Version 1.0 (Batchelor 3/11/2018)
 Simplified driver adapted from generic_driver.py, but eliminating reference to many
-features specific to plasma physics.  The immediate application is to simple, example
-simulations which do not make use of the SWIM Plasma State system.  The IPS framework uses
-the terminology plasma state to refer to all state files.  But the SWIM Plasma State need
+features specific to  physics.  The immediate application is to simple, example
+simulations which do not make use of the SWIM  State system.  The IPS framework uses
+the terminology  state to refer to all state files.  But the SWIM  State need
 not be used at all.
 
 This also uses David Green's approach of iterating on the PORTS.  Thus PORTS are instantiated,
@@ -50,7 +50,7 @@ class basic_driver(Component):
     def step(self, timestamp=0):
 
         services = self.services
-        services.stage_plasma_state()
+        services.stage_state()
         services.stage_input_files(self.INPUT_FILES)
 
       # get list of ports
@@ -96,7 +96,7 @@ class basic_driver(Component):
             self.component_call(services,port_name,port_dict[port_name],init_mode,t)
 
       # Get state files into driver work directory
-        services.stage_plasma_state()
+        services.stage_state()
         cur_state_file = services.get_config_param('CURRENT_STATE')
         
        # Get Portal RUNID and save to a file
@@ -123,9 +123,9 @@ class basic_driver(Component):
                 services.exception(message)
                 raise
             
-            services.update_plasma_state()
+            services.update_state()
 
-       # Post init processing: stage plasma state, stage output
+       # Post init processing: stage  state, stage output
         services.stage_output_files(t, self.OUTPUT_FILES)
 
         print ' init sequence complete--ready for time loop'
@@ -157,9 +157,9 @@ class basic_driver(Component):
         # equal to the end time of the last step, t1, and setting t1 = t.
 
         # call pre_step_logic
-            services.stage_plasma_state()
+            services.stage_state()
             self.pre_step_logic(services,float(t))
-            services.update_plasma_state()
+            services.update_state()
             print (' ')
 
        # Call step for each component
@@ -169,9 +169,9 @@ class basic_driver(Component):
                 if port_name in ['INIT','DRIVER']: continue 
                 self.component_call(services,port_name,port_dict[port_name],'step',t)
 
-            services.stage_plasma_state()
+            services.stage_state()
 
-         # Post step processing: stage plasma state, checkpoint components and self
+         # Post step processing: stage  state, checkpoint components and self
             services.stage_output_files(t, self.OUTPUT_FILES)
             services.checkpoint_components(port_id_list, t)
             self.checkpoint(t)
@@ -202,7 +202,7 @@ class basic_driver(Component):
 # ------------------------------------------------------------------------------
 
     def checkpoint(self, timestamp=0.0):
-        print 'generic_driver.checkpoint() called'
+        print 'basic_driver.checkpoint() called'
         
 
 # ------------------------------------------------------------------------------

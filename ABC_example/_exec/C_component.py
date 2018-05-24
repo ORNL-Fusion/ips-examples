@@ -58,12 +58,12 @@ class C_component (Component):
         NPROC = config.get_component_param(self, services, 'NPROC')
         EXECUTABLE = config.get_component_param(self, services, 'EXECUTABLE')
 
-    # Copy plasma state files over to working directory
+    # Copy  state files over to working directory
         try:
-          services.stage_plasma_state()
+          services.stage_state()
         except Exception, e:
-          print 'Error in call to stage_plasma_state()' , e
-          services.error('Error in call to stage_plasma_state()')
+          print 'Error in call to stage_state()' , e
+          services.error('Error in call to stage_state()')
           raise
       
     # Get input files  
@@ -82,11 +82,11 @@ class C_component (Component):
     # Add initial data to state file
         # None required for this example
 
-# Update plasma state files in plasma_state work directory
+# Update  state files in state work directory
         try:
-          services.update_plasma_state()
+          services.update_state()
         except Exception:
-          message = 'Error in call to update_plasma_state()'
+          message = 'Error in call to update_state()'
           print message
           services.error(message)
           raise
@@ -162,12 +162,12 @@ class C_component (Component):
         NPROC = config.get_component_param(self, services, 'NPROC')
         EXECUTABLE = config.get_component_param(self, services, 'EXECUTABLE')
 
-    # Copy plasma state files over to working directory
+    # Copy  state files over to working directory
         try:
-          services.stage_plasma_state()
+          services.stage_state()
         except Exception, e:
-          print 'Error in call to stage_plasma_state()' , e
-          services.error('Error in call to stage_plasma_state()')
+          print 'Error in call to stage_state()' , e
+          services.error('Error in call to stage_state()')
           raise
       
     # Get input files  
@@ -219,7 +219,7 @@ class C_component (Component):
         variable_dict = edit.input_file_to_variable_dict('integrator.out')
         change_dict = {'X':variable_dict['X'], 'Y':variable_dict['Y']}
         edit.modify_variables_in_file(change_dict, cur_state_file)
-        services.update_plasma_state()
+        services.update_state()
         print (' ')
 
 # "Archive" output files in history directory
@@ -236,7 +236,7 @@ class C_component (Component):
 # ------------------------------------------------------------------------------
 #
 # checkpoint function
-# Saves plasma state files to restart directory
+# Saves  state files to restart directory
 #
 # ------------------------------------------------------------------------------
 
