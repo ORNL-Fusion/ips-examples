@@ -10,7 +10,7 @@ simulations which do not make use of the SWIM Plasma State system.  The IPS fram
 the terminology plasma state to refer to all state files.  But the SWIM Plasma State need
 not be used at all.
 
-By default this script merely touches all the files listed as PLASMA_STATE_FILES in the 
+By default this script merely touches all the files listed as STATE_FILES in the 
 config file.  If a CURRENT_STATE is specified in the simulation config file, this script
 adds the run_id and time loop variables to it -> tinit, and tfinal 
 
@@ -54,7 +54,7 @@ class basic_init (Component):
 #
 # step function
 #
-# Calls fortran executable init_empty_plasma_state and updates plasma state
+# Calls fortran executable init_empty_state and updates  state
 #
 # ------------------------------------------------------------------------------
 
@@ -81,7 +81,7 @@ class basic_init (Component):
 # ------------------------------------------------------------------------------
             
         if simulation_mode == 'RESTART':
-            # Get restart files listed in config file. Here just the plasma state files.
+            # Get restart files listed in config file. Here just the  state files.
             restart_root = config.get_config_param(self, services, 'RESTART_ROOT')
             restart_time = config.get_config_param(self, services, 'RESTART_TIME')
             try:
@@ -112,7 +112,7 @@ class basic_init (Component):
         else:
 
             print 'basic_init: simulation mode NORMAL'
-            state_file_list = config.get_config_param(self, services, 'PLASMA_STATE_FILES').split(' ')
+            state_file_list = config.get_config_param(self, services, 'STATE_FILES').split(' ')
 
         # Generate state files as dummies so framework will have a complete set
             for file in state_file_list:
@@ -124,11 +124,11 @@ class basic_init (Component):
 
             init_mode = config.get_component_param(self, services, 'INIT_MODE', optional = True)
             if init_mode in ['touch_only', 'TOUCH_ONLY'] :
-                # Update plasma state
+                # Update  state
                 try:
-                    services.update_plasma_state()
+                    services.update_state()
                 except Exception, e:
-                    print 'Error in call to updatePlasmaState()', e
+                    print 'Error in call to updateState()', e
                     raise
                 return
 
@@ -169,11 +169,11 @@ class basic_init (Component):
                     raise Exception(logMsg)
 
 
-# Update plasma state
+# Update  state
         try:
-            services.update_plasma_state()
+            services.update_state()
         except Exception, e:
-            print 'Error in call to updatePlasmaState()', e
+            print 'Error in call to updateState()', e
             raise
 
 # "Archive" output files in history directory
@@ -183,14 +183,14 @@ class basic_init (Component):
 #
 # checkpoint function
 #
-# Saves plasma state files to restart directory
+# Saves  state files to restart directory
 # ------------------------------------------------------------------------------
 
     def checkpoint(self, timestamp=0.0):
         print 'basic_init.checkpoint() called'
         
         services = self.services
-        services.stage_plasma_state()
+        services.stage_state()
         services.save_restart_files(timestamp, self.RESTART_FILES)
         
 
