@@ -1,15 +1,15 @@
 #! /usr/bin/env python
 
 """
-GENRAY_basic_component (Batchelor) 5/17/2018
-A simple component script to run the GENRAY code from provided input files
+CQL3D_basic_component (Batchelor) 5/17/2018
+A simple component script to run the CQL3D code from provided input files
 
 """
 import shutil
 import utils.get_IPS_config_parameters as config
 from component import Component
 
-class GENRAY_basic (Component):
+class CQL3D_basic (Component):
     def __init__(self, services, config):
         Component.__init__(self, services, config)
         print 'Created %s' % (self.__class__)
@@ -28,12 +28,12 @@ class GENRAY_basic (Component):
 #
 # STEP function
 #
-# Runs the genray code  
+# Runs the CQL3D code  
 #
 # ------------------------------------------------------------------------------
 
     def step(self, timeStamp):
-        print 'GENRAY_basic.step() called'
+        print 'CQL3D_basic.step() called'
         services = self.services
 
     # Get global configuration parameters (none for this example)
@@ -42,7 +42,7 @@ class GENRAY_basic (Component):
         BIN_PATH = config.get_component_param(self, services, 'BIN_PATH')
         NPROC = config.get_component_param(self, services, 'NPROC')
         EXECUTABLE = config.get_component_param(self, services, 'EXECUTABLE')
-        GENRAYNML = config.get_component_param(self, services, 'GENRAYNML')
+        CQL3DNML = config.get_component_param(self, services, 'CQL3DNML')
 
     # Copy state files over to working directory (none for this example)
       
@@ -54,25 +54,25 @@ class GENRAY_basic (Component):
           self.services.error('Error in call to stageInputFiles()')
           raise
 
-    # Copy genray input namelist file to generic name "genray.dat"
+    # Copy CQL3D input namelist file to generic name "CQL3D.dat"
         try:
-            shutil.copyfile(GENRAYNML, 'genray.dat')
+            shutil.copyfile(CQL3DNML, 'CQL3D.dat')
         except IOError, (errno, strerror):
-            print 'Error copying file %s to %s' % (GENRAYNML, 'genray.dat'), strerror
-            services.error('Error copying GENRAYNM -> genray.dat')
-            raise Exception, 'Error copying GENRAYNM -> genray.dat'
+            print 'Error copying file %s to %s' % (CQL3DNML, 'CQL3D.dat'), strerror
+            services.error('Error copying CQL3DNM -> CQL3D.dat')
+            raise Exception, 'Error copying CQL3DNM -> CQL3D.dat'
 
       
-#     Launch GENRAY - N.B: Path to executable is in config parameter EXECUTABLE
-        print 'rf_genray: launching GENRAY'
+#     Launch CQL3D - N.B: Path to executable is in config parameter EXECUTABLE
+        print 'rf_CQL3D: launching CQL3D'
         cwd = services.get_working_dir()
-        task_id = services.launch_task(self.NPROC, cwd, self.EXECUTABLE, logfile='log.genray')
+        task_id = services.launch_task(self.NPROC, cwd, self.EXECUTABLE, logfile='log.CQL3D')
         retcode = services.wait_task(task_id)
         if (retcode != 0):
-            print 'Error executing command: ', genray_bin
-            services.error('Error executing genray')
-            raise Exception, 'Error executing genray'
-        print 'rf_genray: finished GENRAY'
+            print 'Error executing command: ', CQL3D_bin
+            services.error('Error executing CQL3D')
+            raise Exception, 'Error executing CQL3D'
+        print 'rf_CQL3D: finished CQL3D'
 
 # "Archive" output files in history directory
         try:
@@ -93,7 +93,7 @@ class GENRAY_basic (Component):
 # ------------------------------------------------------------------------------
 
     def checkpoint(self, timestamp=0.0):
-        print 'GENRAY_basic.checkpoint() called'
+        print 'CQL3D_basic.checkpoint() called'
         services = self.services
         services.save_restart_files(timestamp, self.RESTART_FILES)
         return 0
@@ -108,5 +108,5 @@ class GENRAY_basic (Component):
 
 
     def finalize(self, timestamp=0.0):
-        print 'GENRAY_basic finalize() called'
+        print 'CQL3D_basic finalize() called'
         
