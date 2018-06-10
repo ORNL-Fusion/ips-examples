@@ -171,7 +171,7 @@ class A_component (Component):
         a_lin = config.get_component_param(self, services, 'a_lin')
         b_nonlin = config.get_component_param(self, services, 'b_nonlin')
 
-    # Copy  state files over to working directory
+    # Copy state files over to working directory
         try:
           services.stage_state()
         except Exception, e:
@@ -213,7 +213,7 @@ class A_component (Component):
         print cmd, ' finished \n'
 
 
-# Update  state files in state work directory
+# Update state files in state work directory
         try:
           services.update_state()
         except Exception:

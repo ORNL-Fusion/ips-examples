@@ -5,4 +5,3 @@ export IPS_DIR=../..
 source $IPS_DIR/ips-wrappers/env.ips
 export PYTHONPATH=./_exec:$PYTHONPATH
 ips.py --simulation=ABC_simulation.config --platform=platform.conf
-
