@@ -42,7 +42,6 @@ class CQL3D_basic (Component):
         BIN_PATH = config.get_component_param(self, services, 'BIN_PATH')
         NPROC = config.get_component_param(self, services, 'NPROC')
         EXECUTABLE = config.get_component_param(self, services, 'EXECUTABLE')
-        CQL3DNML = config.get_component_param(self, services, 'CQL3DNML')
 
     # Copy state files over to working directory (none for this example)
       
@@ -53,15 +52,6 @@ class CQL3D_basic (Component):
           print 'Error in call to stageInputFiles()'
           self.services.error('Error in call to stageInputFiles()')
           raise
-
-    # Copy CQL3D input namelist file to generic name "CQL3D.dat"
-        try:
-            shutil.copyfile(CQL3DNML, 'CQL3D.dat')
-        except IOError, (errno, strerror):
-            print 'Error copying file %s to %s' % (CQL3DNML, 'CQL3D.dat'), strerror
-            services.error('Error copying CQL3DNM -> CQL3D.dat')
-            raise Exception, 'Error copying CQL3DNM -> CQL3D.dat'
-
       
 #     Launch CQL3D - N.B: Path to executable is in config parameter EXECUTABLE
         print 'rf_CQL3D: launching CQL3D'
