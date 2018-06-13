@@ -23,7 +23,7 @@ fi
 #source /project/projectdirs/atom/users/greendl1/code/ips-wrappers/env.ips.edison 
 # tyounkin
 #source /project/projectdirs/atom/atom-install-edison/GITR/env.edison.sh
-source $SLURM_SUBMIT_DIR/env.GITR.edison.sh
+source /project/projectdirs/atom/atom-install-edison/GITR/env.edison.sh
 source $SLURM_SUBMIT_DIR/env.ips.edison
 
 module swap PrgEnv-intel PrgEnv-gnu
