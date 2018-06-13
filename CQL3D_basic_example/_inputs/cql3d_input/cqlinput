@@ -241,7 +241,7 @@
  fpsimodl='constant',
  methflag=10,
  nconteq='disabled',
- nconteqn='50',
+ nconteqn=50,
  rbox=92.,
  rboxdst=120.,
  rmag=166.,
