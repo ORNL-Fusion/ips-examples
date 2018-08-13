@@ -18,7 +18,7 @@ def get_config_param(self, services, param_name, optional=False, verbose = True)
 		if verbose: print param_name, ' = ', value
 	except Exception :
 		if optional: 
-			print 'config parameter ', param_name, ' not found'
+			print 'optional config parameter ', param_name, ' not found'
 			value = None
 		else:
 			message = 'required config parameter ', param_name, ' not found'
