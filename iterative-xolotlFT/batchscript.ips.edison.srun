@@ -1,8 +1,8 @@
 #!/bin/bash -l
-#SBATCH --account=atom
+#SBATCH --account=m3160
 #SBATCH --partition debug
 #SBATCH --nodes=4
-#SBATCH --time=00:10:00
+#SBATCH --time=00:30:00
 #SBATCH --output=log.slurm.stdOut
 
 cd $SLURM_SUBMIT_DIR   # optional, since this is the default behavior
@@ -22,10 +22,13 @@ fi
 # Greendl1
 #source /project/projectdirs/atom/users/greendl1/code/ips-wrappers/env.ips.edison 
 # tyounkin
-#source $SLURM_SUBMIT_DIR/env.edison.sh
+#source /project/projectdirs/atom/atom-install-edison/GITR/env.edison.sh
+#source $SLURM_SUBMIT_DIR/env.GITR.edison.sh 
 source $SLURM_SUBMIT_DIR/env.ips.edison
 
 module swap PrgEnv-intel PrgEnv-gnu
+module load python/2.7-anaconda
+
 
 export OMP_NUM_THREADS=24
 export OMP_PLACES=threads
