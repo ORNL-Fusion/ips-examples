@@ -1,4 +1,13 @@
 For running this test, copy the content to a folder in $SCRATCH. Otherwise there might be issues with netcdf when running GITR.
 The test should easily be completed in 30min (debug queue), using 8 nodes.
 
-T.Y. & A.L., 03/14/2018
+This test runs F-TRIDYN+GITR for ITER, assuming a D+He plasma, with additional Be and Ne impurities (for erosion, not transport). 
+Then the workflow runs 2 instances of F-TRIDYN+Xolotl, reading input from gitrOut_0.txt and gitrOut_1.txt. As defined in ips.ftx.config,
+we assume 90% D - 10% He plasma with additional 5% Be and Ne, which are only accounted for sputtering, not implantation.
+
+A reduced version of the network is used in these examples (maxV=20, instead of maxV=50).
+
+While waiting for GITR to be ready, all species (except W) have a fixed impact energy (250eV) and angle (normal). This will be 
+changed to read from gitrOut.txt
+
+T.Y. & A.L., 08/13/2018
