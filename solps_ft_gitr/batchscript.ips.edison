@@ -1,14 +1,14 @@
 #!/bin/bash -l
 #SBATCH --account=atom
 #SBATCH --partition debug
-#SBATCH --nodes=1 
-#SBATCH --time=00:03:00
+#SBATCH --nodes=2 
+#SBATCH --time=00:30:00
 #SBATCH --output=log.slurm.stdOut
 
 cd $SLURM_SUBMIT_DIR   # optional, since this is the default behavior
 
 # Production
-source /project/projectdirs/atom/atom-install-edison/ips-wrappers/env.ips.edison 
+source $SLURM_SUBMIT_DIR/env.ips.edison 
 # Devel
 #source /project/projectdirs/atom/atom-install-edison/ips-wrappers-devel/env.ips.edison 
 # Greendl1
