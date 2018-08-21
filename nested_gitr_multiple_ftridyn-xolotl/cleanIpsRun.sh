@@ -8,3 +8,4 @@ rm checklist.conf
 rm *.zip
 rm PORTAL_RUNID
 rm log*
+rm gitrOut_*.txt
