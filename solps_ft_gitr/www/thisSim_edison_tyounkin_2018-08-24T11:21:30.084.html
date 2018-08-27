@@ -1,0 +1,202 @@
+<TABLE cellpadding="4" style="border: 1px solid #000000; border-collapse: collapse;" border="1">
+ <TR>
+  <TH>Time</TH>
+  <TH>Sequence Num</TH>
+  <TH>Type</TH>
+  <TH>Code</TH>
+  <TH>State</TH>
+  <TH>Wall Time</TH>
+  <TH>Physics Time</TH>
+  <TH>Comment</TH>
+ </TR>
+ <TR>
+  <TD>2018-08-24|11:21:30PDT</TD>
+  <TD>2</TD>
+  <TD>IPS_UPDATE_PLASMA_STATE</TD>
+  <TD>driver__solps_ft_gitr_driver</TD>
+  <TD>Running</TD>
+  <TD>7.48</TD>
+  <TD>-1</TD>
+  <TD>Elapsed time = 0.042   files = bField.nc profiles.nc solpsTarg.txt speciesList.txt ftridynBackground.nc ftridynSelf.nc hpic.nc Success</TD>
+ </TR>
+ <TR>
+  <TD>2018-08-24|11:21:30PDT</TD>
+  <TD>3</TD>
+  <TD>IPS_CALL_BEGIN</TD>
+  <TD>driver__solps_ft_gitr_driver</TD>
+  <TD>Running</TD>
+  <TD>7.54</TD>
+  <TD>-1</TD>
+  <TD>Target = solps_iter_data_worker@2:step(0.000)</TD>
+ </TR>
+ <TR>
+  <TD>2018-08-24|11:21:30PDT</TD>
+  <TD>4</TD>
+  <TD>IPS_STAGE_PLASMA_STATE</TD>
+  <TD>workers__solps_iter_data_worker</TD>
+  <TD>Running</TD>
+  <TD>7.61</TD>
+  <TD>-1</TD>
+  <TD>Elapsed time = 0.046  files = bField.nc profiles.nc solpsTarg.txt speciesList.txt ftridynBackground.nc ftridynSelf.nc hpic.nc Success</TD>
+ </TR>
+ <TR>
+  <TD>2018-08-24|11:21:30PDT</TD>
+  <TD>5</TD>
+  <TD>IPS_LAUNCH_TASK</TD>
+  <TD>workers__solps_iter_data_worker</TD>
+  <TD>Running</TD>
+  <TD>7.68</TD>
+  <TD>-1</TD>
+  <TD>task_id = 1 , Tag = None , nproc = 1 , Target = srun -N 1 -n 1 /project/projectdirs/atom/atom-install-edison/solps-iter-data/build/xsolps-iter-data -right_target=rightTargOutput -zmax=4.7 -numr=100 -zmin=-4.6 -rmax=8.4 -numz=200 -left_target=leftTargOutput -result=output -solps_geometry=/project/projectdirs/atom/atom-install-edison/solps-iter-data/b2fgmtry.txt -rmin=4.0 -task=get_gitr -solps_state=/project/projectdirs/atom/atom-install-edison/solps-iter-data/b2fstate.txt -gitr_geometry=/project/projectdirs/atom/atom-install-edison/GITR/iter/iter_milestone/2d/input/iter2dRefinedOuterTarget.cfg -solps_equilibrium=/project/projectdirs/atom/atom-install-edison/solps-iter-data/Baseline2008-li0.70.x4.equ -dakota_result=dakota</TD>
+ </TR>
+ <TR>
+  <TD>2018-08-24|11:21:38PDT</TD>
+  <TD>6</TD>
+  <TD>IPS_TASK_END</TD>
+  <TD>workers__solps_iter_data_worker</TD>
+  <TD>Running</TD>
+  <TD>15.49</TD>
+  <TD>-1</TD>
+  <TD>task_id = 1  elapsed time = 7.79 S</TD>
+ </TR>
+ <TR>
+  <TD>2018-08-24|11:22:16PDT</TD>
+  <TD>7</TD>
+  <TD>IPS_UPDATE_PLASMA_STATE</TD>
+  <TD>workers__solps_iter_data_worker</TD>
+  <TD>Running</TD>
+  <TD>53.65</TD>
+  <TD>-1</TD>
+  <TD>Elapsed time = 0.074   files = bField.nc profiles.nc solpsTarg.txt speciesList.txt ftridynBackground.nc ftridynSelf.nc hpic.nc Success</TD>
+ </TR>
+ <TR>
+  <TD>2018-08-24|11:22:16PDT</TD>
+  <TD>8</TD>
+  <TD>IPS_CALL_END</TD>
+  <TD>driver__solps_ft_gitr_driver</TD>
+  <TD>Running</TD>
+  <TD>53.68</TD>
+  <TD>-1</TD>
+  <TD>Target = solps_iter_data_worker@2:step(0.000)</TD>
+ </TR>
+ <TR>
+  <TD>2018-08-24|11:22:16PDT</TD>
+  <TD>9</TD>
+  <TD>IPS_CALL_BEGIN</TD>
+  <TD>driver__solps_ft_gitr_driver</TD>
+  <TD>Running</TD>
+  <TD>53.71</TD>
+  <TD>-1</TD>
+  <TD>Target = ftridynWorker@3:step(0.000)</TD>
+ </TR>
+ <TR>
+  <TD>2018-08-24|11:22:16PDT</TD>
+  <TD>10</TD>
+  <TD>IPS_STAGE_PLASMA_STATE</TD>
+  <TD>workers__ftridynWorker</TD>
+  <TD>Running</TD>
+  <TD>53.81</TD>
+  <TD>-1</TD>
+  <TD>Elapsed time = 0.079  files = bField.nc profiles.nc solpsTarg.txt speciesList.txt ftridynBackground.nc ftridynSelf.nc hpic.nc Success</TD>
+ </TR>
+ <TR>
+  <TD>2018-08-24|11:22:16PDT</TD>
+  <TD>11</TD>
+  <TD>IPS_LAUNCH_TASK</TD>
+  <TD>workers__ftridynWorker</TD>
+  <TD>Running</TD>
+  <TD>53.91</TD>
+  <TD>-1</TD>
+  <TD>task_id = 2 , Tag = None , nproc = 48 , Target = srun -N 2 -n 48 /global/common/edison/software/python/2.7-anaconda-4.4/bin/python /project/projectdirs/atom/atom-install-edison/GITR/ftridyn/ftMPI.py</TD>
+ </TR>
+ <TR>
+  <TD>2018-08-24|11:22:56PDT</TD>
+  <TD>12</TD>
+  <TD>IPS_TASK_END</TD>
+  <TD>workers__ftridynWorker</TD>
+  <TD>Running</TD>
+  <TD>93.34</TD>
+  <TD>-1</TD>
+  <TD>task_id = 2  elapsed time = 39.41 S</TD>
+ </TR>
+ <TR>
+  <TD>2018-08-24|11:22:56PDT</TD>
+  <TD>13</TD>
+  <TD>IPS_UPDATE_PLASMA_STATE</TD>
+  <TD>workers__ftridynWorker</TD>
+  <TD>Running</TD>
+  <TD>93.58</TD>
+  <TD>-1</TD>
+  <TD>Elapsed time = 0.206   files = bField.nc profiles.nc solpsTarg.txt speciesList.txt ftridynBackground.nc ftridynSelf.nc hpic.nc Success</TD>
+ </TR>
+ <TR>
+  <TD>2018-08-24|11:22:56PDT</TD>
+  <TD>14</TD>
+  <TD>IPS_CALL_END</TD>
+  <TD>driver__solps_ft_gitr_driver</TD>
+  <TD>Running</TD>
+  <TD>93.62</TD>
+  <TD>-1</TD>
+  <TD>Target = ftridynWorker@3:step(0.000)</TD>
+ </TR>
+ <TR>
+  <TD>2018-08-24|11:22:56PDT</TD>
+  <TD>15</TD>
+  <TD>IPS_CALL_BEGIN</TD>
+  <TD>driver__solps_ft_gitr_driver</TD>
+  <TD>Running</TD>
+  <TD>93.64</TD>
+  <TD>-1</TD>
+  <TD>Target = gitr_comp@4:init(0.000)</TD>
+ </TR>
+ <TR>
+  <TD>2018-08-24|11:22:57PDT</TD>
+  <TD>16</TD>
+  <TD>IPS_CALL_END</TD>
+  <TD>driver__solps_ft_gitr_driver</TD>
+  <TD>Running</TD>
+  <TD>94.08</TD>
+  <TD>-1</TD>
+  <TD>Target = gitr_comp@4:init(0.000)</TD>
+ </TR>
+ <TR>
+  <TD>2018-08-24|11:22:57PDT</TD>
+  <TD>17</TD>
+  <TD>IPS_CALL_BEGIN</TD>
+  <TD>driver__solps_ft_gitr_driver</TD>
+  <TD>Running</TD>
+  <TD>94.10</TD>
+  <TD>-1</TD>
+  <TD>Target = gitr_comp@4:step(0.000)</TD>
+ </TR>
+ <TR>
+  <TD>2018-08-24|11:22:57PDT</TD>
+  <TD>18</TD>
+  <TD>IPS_STAGE_PLASMA_STATE</TD>
+  <TD>workers__gitr_comp</TD>
+  <TD>Running</TD>
+  <TD>94.20</TD>
+  <TD>-1</TD>
+  <TD>Elapsed time = 0.074  files = bField.nc profiles.nc solpsTarg.txt speciesList.txt ftridynBackground.nc ftridynSelf.nc hpic.nc Success</TD>
+ </TR>
+ <TR>
+  <TD>2018-08-24|11:25:36PDT</TD>
+  <TD>19</TD>
+  <TD>IPS_LAUNCH_TASK</TD>
+  <TD>workers__gitr_comp</TD>
+  <TD>Running</TD>
+  <TD>253.20</TD>
+  <TD>-1</TD>
+  <TD>task_id = 3 , Tag = None , nproc = 2 , Target = srun -N 1 -n 2 /project/projectdirs/atom/atom-install-edison/GITR/build/GITR </TD>
+ </TR>
+ <TR>
+  <TD>2018-08-24|11:25:41PDT</TD>
+  <TD>20</TD>
+  <TD>IPS_TASK_END</TD>
+  <TD>workers__gitr_comp</TD>
+  <TD>Running</TD>
+  <TD>258.84</TD>
+  <TD>-1</TD>
+  <TD>task_id = 3  elapsed time = 5.62 S</TD>
+ </TR>
+</TABLE>
