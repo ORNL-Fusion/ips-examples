@@ -1,4 +1,4 @@
-nput files for this cql3d example are too big to go into github.  Besides which
+Input files for this cql3d example are too big to go into github.  Besides which
 some of them are binary.  So temporarily I'm moving them to my project area on Edison
 /project/projectdirs/atom/users/dbb/cql3d_input.  To run this example you
 will need to copy the contents of that directory here.  It's not satisfactory but 
