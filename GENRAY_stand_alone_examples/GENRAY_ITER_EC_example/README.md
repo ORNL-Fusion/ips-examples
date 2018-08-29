@@ -6,3 +6,6 @@ programming of multiple launcher powers and aiming angles from the simulation co
 The example is taken from an ITER simulation done several years ago by Francesca Poli in 
 conjunction with TSC.
 
+Nota Bene:  There are fortran executables in the GENRAY wrappers directory (/ips-wrappers/ips-genray)
+that must be built after cloning.  Also as of now the config file points to a GENRAY executables
+in a CompX user area.
