@@ -19,10 +19,10 @@ CANONICAL_2004_ITER_TEST_one_ray
 The full path to the GENRAY executable appears in the config file.  It presently points
 to the latest version maintained by Bob Harvey and Yuri Petrov and is subject to change.
 
-# Thre are presently two basic examples here
+## There are presently two basic examples here
 
 1. GENRAY_basic_example_EC
-_
+
 This example is a single ray ECH case from the GENRAY regresion test suite:
 CANONICAL_2004_ITER_TEST_one_ray.  To run it on Edison:
 
@@ -32,4 +32,4 @@ sbatch Edison_run_EC
 
 This example is for inside launch lower hybrid on DIII-D.  To run it on Edison:
 
-sbatch Edison_run_EC
+sbatch Edison_run_LH
