@@ -1,0 +1,159 @@
+ &sconfig
+ 
+   ! name: shot_number  units: integer
+   ! description: integer shot number
+ 
+   shot_number = 217000
+ 
+   ! name: S  units: species_list
+   ! description: thermal species list
+ 
+   iAMU_S(1) = 2, 12
+   iZatom_S(1) = 1, 6
+   iZion_S(1) = 1, 6
+ 
+   ! name: nbion  units: character
+   ! description: name of species injected by each beam.
+ 
+   nbion(1) = "D"
+   nbion(2) = "D"
+   nbion(3) = "D"
+   nbion(4) = "D"
+   nbion(5) = "D"
+   nbion(6) = "D"
+   nbion(7) = "D"
+   nbion(8) = "D"
+   nbion(9) = "D"
+   nbion(10) = "D"
+   nbion(11) = "D"
+   nbion(12) = "D"
+   nbion(13) = "D"
+   nbion(14) = "D"
+   nbion(15) = "D"
+   nbion(16) = "D"
+   nbion(17) = "D"
+   nbion(18) = "D"
+   nbion(19) = "D"
+   nbion(20) = "D"
+ 
+   ! name: nbion_trace  units: character
+   ! description: (if non-blank) beam trace element
+ 
+   nbion_trace(1) = " "
+   nbion_trace(2) = " "
+   nbion_trace(3) = " "
+   nbion_trace(4) = " "
+   nbion_trace(5) = " "
+   nbion_trace(6) = " "
+   nbion_trace(7) = " "
+   nbion_trace(8) = " "
+   nbion_trace(9) = " "
+   nbion_trace(10) = " "
+   nbion_trace(11) = " "
+   nbion_trace(12) = " "
+   nbion_trace(13) = " "
+   nbion_trace(14) = " "
+   nbion_trace(15) = " "
+   nbion_trace(16) = " "
+   nbion_trace(17) = " "
+   nbion_trace(18) = " "
+   nbion_trace(19) = " "
+   nbion_trace(20) = " "
+ 
+   ! name: SFUS  units: species_list
+   ! description: fusion product ion species
+ 
+   iAMU_SFUS(1) = 2
+   iZatom_SFUS(1) = 1
+   iZion_SFUS(1) = 1
+ 
+   ! name: RFMIN  units: species_list
+   ! description: ICRF minority species
+ 
+   ! name: freq_ic  units: Hz
+   ! description: frequency on each ICRF source
+ 
+   ! name: n_straps  units: integer
+   ! description: number of straps in the antenna
+ 
+   ! name: max_n_straps  units: integer
+   ! description: Maximum size of variable length enumeration: N_STRAPS
+ 
+   max_n_straps = 0
+ 
+   ! name: R_ant  units: m
+   ! description: major radius of antenna
+ 
+   ! name: Z_ant  units: m
+   ! description: height of antenna
+ 
+   ! name: Z_mid_ant  units: m
+   ! description: center of antenna relative to TF coil midplane
+ 
+   ! name: num_nphi_vac  units: integer
+   ! description: number of non-zero n_phi values
+ 
+   ! name: max_num_nphi_vac  units: integer
+   ! description: Maximum size of variable length enumeration: NUM_NPHI_VAC
+ 
+   max_num_nphi_vac = 0
+ 
+   ! name: Real_ant_coef  units: Amps/m
+   ! description: real part of Fourier Coef
+ 
+   ! name: Imag_ant_coef  units: Amps/m
+   ! description: imag part of Fourier Coef
+ 
+   ! name: num_nphi  units: integer
+   ! description: number of non-zero n_phi values
+ 
+   ! name: max_num_nphi  units: integer
+   ! description: Maximum size of variable length enumeration: NUM_NPHI
+ 
+   max_num_nphi = 0
+ 
+   ! name: nphi  units: integer
+   ! description: n_phi wave spectrum from antenna
+ 
+   ! name: wt_nphi  units: -
+   ! description: vacuum spectrum n_phi weight
+ 
+   ! name: kccw_Bphi  units: integer
+   ! description: B_phi orientation: +1 means CCW viewed from above
+ 
+   kccw_Bphi = 1
+ 
+   ! name: kccw_Jphi  units: integer
+   ! description: J_phi orientation: +1 means CCW viewed from above
+ 
+   kccw_Jphi = 1
+ 
+   ! name: gs_name  units: character
+   ! description: number & name of edge neutral gas sources
+ 
+   ! name: gas_atom  units: character
+   ! description: name of species introduced by each gas source
+ 
+   ! name: is_recycling  units: integer
+   ! description: 0/1; =1 to for recycling sources
+ 
+   ! name: xs_name  units: character
+   ! description: number & name of impurity sources
+ 
+   ! name: freq_ec  units: Hz
+   ! description: frequency of EC source
+ 
+   ! name: EC_theta_aim  units: degrees
+   ! description: poloidal aiming angle
+ 
+   ! name: EC_phi_aim  units: degrees
+   ! description: toroidal aiming angle
+ 
+   ! name: EC_Omode_Fraction  units: -
+   ! description: O-mode fraction of EC source
+ 
+   ! name: freq_lh  units: Hz
+   ! description: frequency on each LHRF source
+   freq_lh(1) = 4.6e9
+   freq_lh(2) = 4.6e9
+ /

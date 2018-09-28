@@ -1,0 +1,10 @@
+&state_data
+
+! power on each LHRF source, Units: W
+  power_lh = 5.0e5
+
+ /
+
+&evolving_model_data
+ source_powers_only = 'TRUE'
+ /
