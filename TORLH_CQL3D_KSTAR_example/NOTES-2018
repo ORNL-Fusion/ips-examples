@@ -1,0 +1,92 @@
+-------------------------------------------------------------------------------
+THIS DIRECTORY IS A GENERIC TEMPLATE FOR CQL3D-TORLH ITERATITVE SOLVERS
+IT IS CURRENTLY SET UP FOR A 1023 MODE RUN BUT CAN BE ADJUSTED FOR ANY DIFFERENT
+NUMBER OF MODES PRETTY EASILY.
+
+NM         - 1023
+PCBLOCK	   - 64
+REC #NODES - 83
+REC #PROC  - 1984
+
+NM  	   - 2047
+PCBLOCK	   - 256
+REC #NODES - 331
+REC #PROC  - 7936
+
+NM  	   - 4095
+PCBLOCK    - 1024
+REC #NODES - 1323
+REC #PROC  - 31744
+-------------------------------------------------------------------------------
+
+07-2018
+Don't Set Timeloop to RESTART ever. This breaks the drivers since timeloop should only ever be run in REGULAR.
+
+Don't use PRIOR/NEXT state on a RESTART. This breaks the drivers due to a coding error.
+- Removed reference to PRIOR/NEXT state in config. This avoids the driver error. In the torlh iterate driver this also needs to be removed
+
+Don't use MONITOR on a restart. For some reason this breaks the drivers I haven't figured out why.
+- Removed UTIL_MONITOR from config and should remove iterate driver since not using web portal, seems to have fixed issue for now
+
+For some reason some files in the working directory were corrupted by failed restarts (current_pwrscale.dat). 
+- Manually updated file. 
+- Should change restart so rather than reading from working directory reads values from selected restart time. This will avoid corruption and ensure the correct values is read
+
+PWRSCALE Iteration does not seem to be helpful, currently not using. 
+- Slightly faster convergence when 99% PWRSCALE accuracy is enforced (~1 fewer iteration), causes convergence to different answer at 95%?
+- Seems to slightly reduce peak power deposition when in use?
+- renamed pwrscale.config to EAST_LH.config and removed references to the pwrscale variable
+
+Adjusted jx in cqlinput_template => increased to 400 from 240. More velocity bins in CQL3D may improve quality of answers, currently testing. Doesn't seem to cause significant differences in 1023 mode case.
+
+Ptoric.e that was in use was old version. Did rebuild of Jungpyo's latest ATOMversion and replaced executable. Compile order in latest version of Jungpyo's ATOM is messed up so had to supress some diagnostics in the Chizz_interp_mod.F90 file.
+
+Added time limit of 3600sec to all TORLH runs. Should never need more unless doing 8191 modes.
+
+Many diagnostics in toric suppressed because prints wasting time:
+- die, t0_dieltn.F <= worst offender 
+- before,IPSI,broadcast,etc.  t0_master2.F
+- ope, t0_oprev.F
+- elpwr, t0_elepwr2.F
+- pre-m, t0_pre_mblock.F
+- chizz, Chizz_interep_mod.F90 (in Nonmax/FVPAR/)
+- insidemblock, t0_mblock.F
+- addbl, ptri_module2.F
+- iam_b, parallel_mod.F
+
+Maxwellian case did not match between Standalone and IPS version. ATOM & Standalone version(trunk_265_test) to make standlone work iteratively following files modified:
+- NonMax Directory updated to ATOM version (cql3d interfacing)
+- t0_mod_equil.F updated to ATOM version (file readin)
+- t0_mod_qldce.F updated to ATOM version (quasi-linear diffusion coefficient), edison scale factor removed
+- t0_powtwd.F modified profile calculation scaling to ATOM version fixes power deposition profiles
+
+Currently Standalone and IPS versions do not match additional modifications needed to match results
+
+Do not use Chebyshev polynomials for interpolation. CHB interpolation is broken in TORIC (needs better griding to remove excessive oscillation in fits). Use splines unless large discontinuity is present in input data.
+
+08-2018
+
+TORLH presents NaN problem at 4095 modes, appears to be related to out of bounds writes. All out of bounds writes fixed in Jungpyo's ATOM_test trunk, still some issues in elepwr2 post process, will handle later.
+
+TORLH fully debugged, all bounds and floating point exception errors removed.
+
+NaN error is fixed with proper PCBLOCK selection, PCBLOCK values listed at top of this file are those which should be used for consistent performance.
+
+All timeouts seem to be fixed as of 08/23 after debugging changes.
+
+Power ramp speed adjusted to half of previous value and various input values modified.
+
+CQL3D resolution increased 50% to 90 radial points. REVERTED due to slower convergence and prohibitively long IMCHIZZ run times (may need to parallelize IMCHIZZ?)
+
+Warning added to TORLH when PCBLOCK is too small and at risk of causing solver behave unpredictably.
+
+09-2018
+
+TORLH is now fully functional at high mode numbers.
+
+EAST antenna geometry support added to machine.inp file and ips-wrappers. Now using accurate antenna model
+
+Currently pwtot is not working properly and target power is not being properly matched using QLDCE. Working on a fix.
+
+
+ 

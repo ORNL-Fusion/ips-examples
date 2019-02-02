@@ -1,0 +1,19 @@
+# TORLH_CQL3D_KSTAR_example
+An example that couples the full wave Lower hybrid code TORLH with the CQL3D Fokker-Planck
+code with thermal profile data communicated through the Plasma State system.  It is a 
+rather complicated example in that several auxiliary codes are also invoked by the 
+
+Nota Bene:  There are fortran executables in the IPS wrappers directory that must be built
+after cloning, i.e. those in torlh_cql3d_iterate and ips-model-epa.
+
+
+##  Caveat (temporay I expect)
+Some of the IPS examples have input files that are big and/or binary and therefore should
+not go not the github repo.  Also we don't yet have a maintained collection of physics
+executables.  Therefore I'm collecting the inputs and executables for the examples in a
+directory in my project area -> /project/projectdirs/atom/users/dbb/IPS_examples_externals
+The files for this particular example are in the subdirectory:
+
+/project/projectdirs/atom/users/dbb/IPS_examples_externals/TORLH_CQL3D_KSTAR_example_ext
+
+It's not very satisfactory but until we find a better solution ...
