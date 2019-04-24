@@ -15,6 +15,7 @@ wrapper is to:
     to multiple components
 
 """
+from __future__ import print_function
 import sys
 import os
 import subprocess
@@ -25,7 +26,7 @@ from component import Component
 class B_component (Component):
     def __init__(self, services, config):
         Component.__init__(self, services, config)
-        print 'Created %s' % (self.__class__)
+        print('Created %s' % (self.__class__))
 
 # ------------------------------------------------------------------------------
 #
@@ -39,11 +40,11 @@ class B_component (Component):
 # ------------------------------------------------------------------------------
 
     def init(self, timeStamp=0):
-        print 'B_component.init() called'
+        print('B_component.init() called')
 
         if (self.services == None) :
             message = 'Error in B_component init (): No self.services'
-            print message
+            print(message)
             services.error(message)
             raise
         services = self.services
@@ -65,16 +66,16 @@ class B_component (Component):
     # Copy  state files over to working directory
         try:
           services.stage_state()
-        except Exception, e:
-          print 'Error in call to stage_state()' , e
+        except Exception as e:
+          print('Error in call to stage_state()' , e)
           services.error('Error in call to stage_state()')
           raise
       
     # Get input files  
         try:
           services.stage_input_files(self.INPUT_FILES)
-        except Exception, e:
-          print 'Error in call to stageInputFiles()' , e
+        except Exception as e:
+          print('Error in call to stageInputFiles()' , e)
           self.services.error('Error in call to stageInputFiles()')
           raise
 
@@ -93,7 +94,7 @@ class B_component (Component):
           services.update_state()
         except Exception:
           message = 'Error in call to update_state()'
-          print message
+          print(message)
           services.error(message)
           raise
 
@@ -103,7 +104,7 @@ class B_component (Component):
           services.stage_output_files(timeStamp, self.OUTPUT_FILES)
         except Exception:
           message = 'Error in call to stage_output_files()'
-          print message
+          print(message)
           services.error(message)
           raise
 
@@ -118,11 +119,11 @@ class B_component (Component):
 # ------------------------------------------------------------------------------
         
     def restart(self, timeStamp):
-        print 'B_component.restart() called'
+        print('B_component.restart() called')
 
         if (self.services == None) :
             message = 'Error in B_component init(): No self.services'
-            print message
+            print(message)
             services.error(message)
             raise
         services = self.services
@@ -136,7 +137,7 @@ class B_component (Component):
             services.get_restart_files(restart_root, restart_time, self.RESTART_FILES)
         except Exception:
             message = 'Error in call to get_restart_files()'
-            print message
+            print(message)
             self.services.error(message)
             raise
         return 0
@@ -150,11 +151,11 @@ class B_component (Component):
 # ------------------------------------------------------------------------------
 
     def step(self, timeStamp):
-        print 'B_component.step() called'
+        print('B_component.step() called')
 
         if (self.services == None) :
             message = 'Error in B_component init (): No self.services'
-            print message
+            print(message)
             services.error(message)
             raise
         services = self.services
@@ -174,8 +175,8 @@ class B_component (Component):
     # Copy  state files over to working directory
         try:
           services.stage_state()
-        except Exception, e:
-          print 'Error in call to stage_state()' , e
+        except Exception as e:
+          print('Error in call to stage_state()' , e)
           services.error('Error in call to stage_state()')
           raise
       
@@ -183,7 +184,7 @@ class B_component (Component):
         try:
           services.stage_input_files(self.INPUT_FILES)
         except Exception:
-          print 'Error in call to stageInputFiles()'
+          print('Error in call to stageInputFiles()')
           self.services.error('Error in call to stageInputFiles()')
           raise
 
@@ -199,7 +200,7 @@ class B_component (Component):
       
     # Run Y_dot_code with modified template input file
         cmd = EXECUTABLE
-        print 'Executing = ', cmd
+        print('Executing = ', cmd)
         services.send_portal_event(event_type = 'COMPONENT_EVENT',\
           event_comment =  cmd)
         cwd = services.get_working_dir()
@@ -207,11 +208,11 @@ class B_component (Component):
         retcode = services.wait_task(task_id)
         if (retcode != 0):
             message = 'Error executing ', cmd
-            print message
+            print(message)
             self.services.error(message)
             raise Exception(message)
             return 1
-        print cmd, ' finished \n'
+        print(cmd, ' finished \n')
 
     # Modify data in state files from output of X_dot code.
     # None for this simple example.
@@ -222,7 +223,7 @@ class B_component (Component):
           services.update_state()
         except Exception:
           message = 'Error in call to update_state()'
-          print message
+          print(message)
           services.error(message)
           raise
 
@@ -231,7 +232,7 @@ class B_component (Component):
             services.stage_output_files(timeStamp, self.OUTPUT_FILES)
         except Exception:
             message = 'Error in call to stage_output_files()'
-            print message
+            print(message)
             services.error(message)
             raise
 
@@ -245,10 +246,10 @@ class B_component (Component):
 # ------------------------------------------------------------------------------
 
     def checkpoint(self, timestamp=0.0):
-        print 'B_component.checkpoint() called'
+        print('B_component.checkpoint() called')
         if (self.services == None) :
             message = 'Error in B_component init (): No self.services'
-            print message
+            print(message)
             services.error(message)
             raise
         services = self.services
@@ -265,4 +266,4 @@ class B_component (Component):
 
 
     def finalize(self, timestamp=0.0):
-        print 'B_component finalize() called'
+        print('B_component finalize() called')

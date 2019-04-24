@@ -15,10 +15,11 @@ Y_dot = c_lin*Y + d_nonlin*X*Y
 Writes Y_dot into file "Y_dot_code.out"
 
 """
+from __future__ import print_function
 import time
 import utils.simple_assignment_file_edit as edit
 
-print 'Y_dot_code Running'
+print('Y_dot_code Running')
 
 # Get data from input file
 
