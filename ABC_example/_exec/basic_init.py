@@ -20,12 +20,12 @@ which if present will be executed here.  If input files are needed for the helpe
 they must also be specified in the [init] section of the config file.
 
 """
-from __future__ import print_function
+#from __future__ import print_function
 # ------------------------------------------------------------------------------
 #
 # ------------------------------------------------------------------------------
 
-from builtins import map
+#from builtins import map
 import sys
 import os
 import subprocess

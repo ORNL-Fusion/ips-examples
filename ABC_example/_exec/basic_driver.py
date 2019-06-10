@@ -18,7 +18,7 @@ To terminate simulation after INIT phase, set optional DRIVER config
 parameter INIT_ONLY = True.
 
 """ 
-from __future__ import print_function
+#from __future__ import print_function
 
 import sys
 import os

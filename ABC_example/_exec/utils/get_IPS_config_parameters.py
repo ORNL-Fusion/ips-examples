@@ -9,7 +9,7 @@ as an explicit argument.  e.g.
 X = config.get_component_param(self, services, 'X', optional=True, verbose=False)
 
 """
-from __future__ import print_function
+#from __future__ import print_function
 
 # Try to get config parameter - wraps the exception handling for get_config_parameter()
 def get_config_param(self, services, param_name, optional=False, verbose = True):
