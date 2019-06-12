@@ -4,13 +4,12 @@
 #SBATCH --nodes=1
 #SBATCH --time=00:02:00
 #SBATCH --output=log.slurm.stdOut
+#SBATCH --constraint=haswell
 
 cd $SLURM_SUBMIT_DIR   # optional, since this is the default behavior
 
-export IPS_DIR=../..
-echo 'IPS_DIR = ' $IPS_DIR
 source $IPS_DIR/ips-wrappers/env.ips
-export PYTHONPATH=./_exec:$PYTHONPATH
-ips.py --config=ABC_simulation_restart.config --platform=conf.ips.edison --log=log.framework 2>>log.stdErr 1>>log.stdOut
+which ips.py
+ips.py --config=ABC_simulation.config --platform=conf.ips.cori --log=log.framework 2>>log.stdErr 1>>log.stdOut
 egrep -i 'error' log.* > log.errors
 ./setPermissions.sh

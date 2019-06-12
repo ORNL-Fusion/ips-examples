@@ -14,7 +14,6 @@ X_dot = a_lin*X + b_nonlin*X*Y
 Y_dot = c_lin*Y + d_nonlin*X*Y
 Writes Y_dot into file "integrator.out"
 """
-from __future__ import print_function
 import sys
 import os
 import subprocess

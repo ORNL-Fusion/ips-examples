@@ -4,5 +4,6 @@ echo ' '
 export IPS_DIR=../..
 source $IPS_DIR/ips-wrappers/env.ips
 export PYTHONPATH=./_exec:$PYTHONPATH
+which ips.py
 ips.py --simulation=ABC_simulation_restart.config --platform=platform.conf
 
