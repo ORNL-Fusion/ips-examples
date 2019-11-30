@@ -6,9 +6,6 @@ Utilities to read, modify, and write text files with lines in the form of assign
 statements, i.e. of the form <name> = <value>
 For now it only deals with single line assignments.
 """
-from __future__ import print_function
-from builtins import str
-from builtins import range
 import sys
 
 #---------------------------------------------------------------------------------------

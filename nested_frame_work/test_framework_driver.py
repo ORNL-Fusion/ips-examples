@@ -10,6 +10,7 @@
 from component import Component
 import subprocess
 import os
+import sys
 
 #-------------------------------------------------------------------------------
 #
@@ -39,6 +40,7 @@ class test_framework_driver(Component):
 
         self.platform_conf = self.services.get_config_param('PLATFORM_FILE')
         self.simulation_conf = self.services.get_config_param('TEST_COMPONENT_CONF')
+        self.ips_path = self.services.get_config_param('IPS_PATH')
 
 #-------------------------------------------------------------------------------
 #
@@ -49,7 +51,11 @@ class test_framework_driver(Component):
         print('test_framework_driver: step')
 
         os.environ['PWD'] = os.getcwd()
-        process = subprocess.Popen(['ips.py', '--platform={}'.format(self.platform_conf), '--simulation={}'.format(self.simulation_conf)], env=os.environ)
+
+        if sys.version_info[0] == 3:
+            process = subprocess.Popen(['python3', self.ips_path + '/ips.py', '--platform={}'.format(self.platform_conf), '--simulation={}'.format(self.simulation_conf)], env=os.environ)
+        else:
+            process = subprocess.Popen(['ips.py', '--platform={}'.format(self.platform_conf), '--simulation={}'.format(self.simulation_conf)], env=os.environ)
         process.wait();
     
 #-------------------------------------------------------------------------------
