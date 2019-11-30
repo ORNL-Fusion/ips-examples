@@ -69,7 +69,7 @@ class GENRAY_basic (Component):
         task_id = services.launch_task(self.NPROC, cwd, self.EXECUTABLE, logfile='log.genray')
         retcode = services.wait_task(task_id)
         if (retcode != 0):
-            print 'Error executing command: ', genray_bin
+            print 'Error executing command: ', self.EXECUTABLE
             services.error('Error executing genray')
             raise Exception, 'Error executing genray'
         print 'rf_genray: finished GENRAY'
