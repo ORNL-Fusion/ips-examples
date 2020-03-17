@@ -1,0 +1,13 @@
+#!/bin/bash -l
+#SBATCH --account=m77
+#SBATCH --partition=debug
+#SBATCH --nodes=21
+#SBATCH --time=00:30:00
+#SBATCH --output=log.slurm.stdOut
+cd $SLURM_SUBMIT_DIR   # optional, since this is the default behavior
+source  /project/projectdirs/atom/users/u2115/ips-wrappers/env.ips.edison 
+mkdir www
+$IPS_PATH/bin/ips.py --config=KSTAR_LH.config --platform=conf.ips.edison --log=log.framework 2>>log.stdErr 1>>log.stdOut
+egrep -i 'error' log.* > log.errors
+./setPermissions.sh
+

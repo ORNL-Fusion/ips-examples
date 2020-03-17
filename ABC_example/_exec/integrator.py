@@ -19,7 +19,7 @@ import os
 import subprocess
 import utils.simple_assignment_file_edit as edit
 
-print 'integrator Running'
+print('integrator Running')
 
 # Get data from input file
 
@@ -29,7 +29,7 @@ X_in = float(data_dict['X'])
 Y_in = float(data_dict['Y'])
 X_dot = float(data_dict['X_dot'])
 Y_dot = float(data_dict['Y_dot'])
-print 'delta_t = ', delta_t, ' X_in = ', X_in, ' Y_in = ', Y_in, ' X_dot = ', X_dot, ' Y_dot = ', Y_dot
+print('delta_t = ', delta_t, ' X_in = ', X_in, ' Y_in = ', Y_in, ' X_dot = ', X_dot, ' Y_dot = ', Y_dot)
 
 # Do big calculation
 
@@ -40,6 +40,6 @@ Y = Y_in + Y_dot*delta_t
 variable_dict = {'X' : X, 'Y' : Y}
 edit.variable_dict_to_output_file(variable_dict, 'integrator.out')
 
-print ' X = ', X, ' Y = ', Y
+print(' X = ', X, ' Y = ', Y)
 
 # That's all folks

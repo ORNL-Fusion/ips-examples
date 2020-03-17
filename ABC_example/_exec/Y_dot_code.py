@@ -18,7 +18,7 @@ Writes Y_dot into file "Y_dot_code.out"
 import time
 import utils.simple_assignment_file_edit as edit
 
-print 'Y_dot_code Running'
+print('Y_dot_code Running')
 
 # Get data from input file
 

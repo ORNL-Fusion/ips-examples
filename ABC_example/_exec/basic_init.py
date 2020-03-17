@@ -20,9 +20,6 @@ which if present will be executed here.  If input files are needed for the helpe
 they must also be specified in the [init] section of the config file.
 
 """
-# ------------------------------------------------------------------------------
-#
-# ------------------------------------------------------------------------------
 
 import sys
 import os
@@ -35,7 +32,7 @@ from  component import Component
 class basic_init (Component):
     def __init__(self, services, config):
         Component.__init__(self, services, config)
-        print 'Created %s' % (self.__class__)
+        print('Created %s' % (self.__class__))
 
 # ------------------------------------------------------------------------------
 #
@@ -68,7 +65,7 @@ class basic_init (Component):
         simulation_mode = config.get_config_param(self, services, 'SIMULATION_MODE')
 
         if simulation_mode == 'RESTART':
-            print 'basic_init: RESTART'
+            print('basic_init: RESTART')
         if simulation_mode not in ['RESTART', 'NORMAL']:
             logMsg = 'basic_init: unrecoginzed SIMULATION_MODE: ' + mode
             self.services.error(logMsg)
@@ -111,24 +108,24 @@ class basic_init (Component):
         
         else:
 
-            print 'basic_init: simulation mode NORMAL'
+            print('basic_init: simulation mode NORMAL')
             state_file_list = config.get_config_param(self, services, 'STATE_FILES').split(' ')
 
         # Generate state files as dummies so framework will have a complete set
             for file in state_file_list:
-                print 'touching state file = ', file
+                print('touching state file = ', file)
                 try:
                     subprocess.call(['touch', file])
                 except Exception:
-                    print 'No file ', file
+                    print('No file ', file)
 
             init_mode = config.get_component_param(self, services, 'INIT_MODE', optional = True)
             if init_mode in ['touch_only', 'TOUCH_ONLY'] :
                 # Update  state
                 try:
                     services.update_state()
-                except Exception, e:
-                    print 'Error in call to updateState()', e
+                except Exception as e:
+                    print('Error in call to updateState()', e)
                     raise
                 return
 
@@ -150,7 +147,7 @@ class basic_init (Component):
                 services.stage_input_files(self.INPUT_FILES)
             except Exception:
                 message = 'basic_init: Error in staging input files'
-                print message
+                print(message)
                 services.exception(message)
                 raise
 
@@ -159,7 +156,7 @@ class basic_init (Component):
             
             if (INIT_HELPER_CODE_bin is not None) and (len(INIT_HELPER_CODE_bin) != 0):
                 cmd = [INIT_HELPER_CODE_bin]
-                print 'Executing ', cmd
+                print('Executing ', cmd)
                 services.send_portal_event(event_type = 'COMPONENT_EVENT',\
                   event_comment =  cmd)
                 retcode = subprocess.call(cmd)
@@ -172,8 +169,8 @@ class basic_init (Component):
 # Update  state
         try:
             services.update_state()
-        except Exception, e:
-            print 'Error in call to updateState()', e
+        except Exception as e:
+            print('Error in call to updateState()', e)
             raise
 
 # "Archive" output files in history directory
@@ -187,7 +184,7 @@ class basic_init (Component):
 # ------------------------------------------------------------------------------
 
     def checkpoint(self, timestamp=0.0):
-        print 'basic_init.checkpoint() called'
+        print('basic_init.checkpoint() called')
         
         services = self.services
         services.stage_state()
@@ -204,4 +201,4 @@ class basic_init (Component):
 
 
     def finalize(self, timestamp=0.0):
-        print 'basic_init.finalize() called'
+        print('basic_init.finalize() called')

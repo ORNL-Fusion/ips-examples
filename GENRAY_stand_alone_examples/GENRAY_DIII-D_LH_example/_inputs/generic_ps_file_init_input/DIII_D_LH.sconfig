@@ -1,0 +1,8 @@
+&sconfig
+
+   ! name: freq_lh  units: Hz
+   ! description:  frequency on each LHRF source
+   freq_lh(1) = 4.6e9
+   freq_lh(2) = 4.6e9
+
+ /

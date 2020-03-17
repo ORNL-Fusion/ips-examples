@@ -1,5 +1,6 @@
-# Install the IPS
-Skip this if you've already installed the IPS. 
+# How to develop on your own copy of ips-wrappers
+## Install the IPS
+Skip this if you've already installed the IPS.
 
 1. Create an IPS directory and clone the IPS-framework, wrappers, and examples repos.
 ```
@@ -15,10 +16,10 @@ export IPS_DIR=${PWD}
 ```
 3. Add this to your `.bashrc` or otherwise so it's there next time you open a shell (Note: Adapt for `csh` or otherwise).
 ```
-echo 'export IPS_DIR='${PWD} >> ~/.bashrc 
+echo 'export IPS_DIR='${PWD} >> ~/.bashrc
 ```
 
-# Run the example
+## Run the example
 
 1. Source the IPS environemnt
 ```
@@ -36,9 +37,7 @@ ips.py --simulation=ABC_simulation.config --platform=platform.conf
 cd ips-examples/ABC_example
 sbatch Edison_run
 ```
-To clean all the run files and start with just the input deck run 
+To clean all the run files and start with just the input deck run
 ```
 ./cleanIpsRun.sh
 ```
-
-

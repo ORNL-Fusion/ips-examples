@@ -29,7 +29,7 @@ class basic_driver(Component):
 
     def __init__(self, services, config):
         Component.__init__(self, services, config)
-        print 'Created %s' % (self.__class__)
+        print('Created %s' % (self.__class__))
 
 # ------------------------------------------------------------------------------
 #
@@ -57,7 +57,7 @@ class basic_driver(Component):
 #        ports = services.getGlobalConfigParameter('PORTS')
         ports = config.get_config_param(self, services,'PORTS')
         port_names = ports['NAMES'].split()
-        print 'PORTS =', port_names
+        print('PORTS =', port_names)
         port_dict = {}
         port_id_list = []
 
@@ -119,7 +119,7 @@ class basic_driver(Component):
                 edit.modify_variables_in_file(variable_dict, cur_state_file)
             if sim_mode not in ['NORMAL', 'RESTART']:
                 message = 'Unknown Simulation mode ' + sim_mode
-                print message
+                print(message)
                 services.exception(message)
                 raise
             
@@ -128,12 +128,12 @@ class basic_driver(Component):
        # Post init processing: stage  state, stage output
         services.stage_output_files(t, self.OUTPUT_FILES)
 
-        print ' init sequence complete--ready for time loop'
+        print(' init sequence complete--ready for time loop')
 
         INIT_ONLY = config.get_component_param(self, services, 'INIT_ONLY', optional = True)
         if INIT_ONLY in [True, 'true', 'True', 'TRUE']:   
             message = 'INIT_ONLY: Intentional stop after INIT phase'
-            print message
+            print(message)
             return
  
 # ------------------------------------------------------------------------------
@@ -146,7 +146,7 @@ class basic_driver(Component):
         # Iterate through the timeloop
         for t in tlist_str[1:len(timeloop)]:
             print (' ')
-            print 'Driver: step to time = ', t
+            print('Driver: step to time = ', t)
             services.update_time_stamp(t)
 
         # pre_step_logic
@@ -202,7 +202,7 @@ class basic_driver(Component):
 # ------------------------------------------------------------------------------
 
     def checkpoint(self, timestamp=0.0):
-        print 'basic_driver.checkpoint() called'
+        print('basic_driver.checkpoint() called')
         
 
 # ------------------------------------------------------------------------------
@@ -224,13 +224,13 @@ class basic_driver(Component):
     # Component call - wraps the exception handling for all component calls
     def component_call(self, services, port_name, comp, mode, time):
         comp_mode_string = port_name + ' ' + mode
-        print '\n', comp_mode_string
+        print('\n', comp_mode_string)
 
         try:
             services.call(comp, mode, time)
         except Exception:
             message = comp_mode_string + ' failed'
-            print message
+            print(message)
             services.exception(message)
             raise
         
@@ -242,7 +242,7 @@ class basic_driver(Component):
 
     # Check if there is a config parameter CURRENT_STATE and update t0, t1 if so.
         cur_state_file = config.get_config_param(self, services, 'CURRENT_STATE', optional = True)
-        print 'pre-step-logic: cur_state_file = ', cur_state_file
+        print('pre-step-logic: cur_state_file = ', cur_state_file)
         if cur_state_file != None and len(cur_state_file) > 0:
             state_dict = edit.input_file_to_variable_dict(cur_state_file)
             change_dict = {'t0':state_dict['t1'], 't1':timeStamp}
