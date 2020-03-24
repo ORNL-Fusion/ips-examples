@@ -5,13 +5,16 @@ import math
 import gitr
 import scipy.interpolate as scii
 import netCDF4
+import hpic
 
+def sputt_yld_by_species():
+    hpic.readFtridynBackground('/Users/tyounkin/Code/ips-examples/solps_ft_gitr/work/plasma_state/ftridynBackground.nc')
 def particleSource(spylFile = 'SpylPerSpecies.dat',solps_path='solpsTarg.txt'):
     spyl = np.loadtxt(spylFile)
-    print 'spyl',spyl.shape
-    print 'spyl',spyl
+    print('spyl',spyl.shape)
+    print('spyl',spyl)
     SOLPS = np.loadtxt(solps_path, dtype='float',skiprows=1,delimiter=' ')
-    print 'solps',SOLPS.shape
+    print('solps',SOLPS.shape)
     spFlux = 0*spyl
     rmrs = SOLPS[:,0]
     r = SOLPS[:,1]
@@ -45,13 +48,13 @@ def particleSource(spylFile = 'SpylPerSpecies.dat',solps_path='solpsTarg.txt'):
     plt.legend(['D','T','He','Be','Ne'])
     plt.savefig('totalSputtFlux2.png')
     totalFlux = spFlux[:,0]+spFlux[:,1]+heTotal+neTotal
-    print('Total flux',totalFlux)
+    print(('Total flux',totalFlux))
     #print('Total flux',totalFlux.shape())
     thisRmrs = scii.interpn([z],rmrs, [-4.3])
     localFlux = scii.interpn([rmrs],totalFlux,[thisRmrs])
-    print('Local flux',localFlux)
+    print(('Local flux',localFlux))
     localFlux = scii.interpn([z],totalFlux,[-4.3])
-    print('Local flux',localFlux)
+    print(('Local flux',localFlux))
     x1,x2,x3,y1,y2,y3,z1,z2,z3,area,Z,surfIndArray,surf,a,b,c,d,plane_norm=gitr.read3dGeom(filename='/Users/tyounkin/Code/gitr2/iter/iter_milestone/3d/input/iterRefinedTest.cfg')
     rBound = 5.554-0.018
     r1 = np.sqrt(np.multiply(x1,x1) + np.multiply(y1,y1)) 
@@ -66,20 +69,20 @@ def particleSource(spylFile = 'SpylPerSpecies.dat',solps_path='solpsTarg.txt'):
     surfaceParticleRate =np.multiply(surfaceFlux,area[Surf[0]])
     particleSurfs = np.where(surfaceParticleRate > 0.0)
     erodedSurfs = Surf[0][particleSurfs[0]]
-    print "number of w surfaces",len(particleSurfs[0])
-    print "number of particle surfaces",len(erodedSurfs)
+    print("number of w surfaces",len(particleSurfs[0]))
+    print("number of particle surfaces",len(erodedSurfs))
     particleCDF = np.cumsum(surfaceParticleRate[particleSurfs[0]])
     particleCDF = 1/particleCDF[-1]*particleCDF
-    print('particleCDF',particleCDF)
-    print('particleCDF len',len(particleCDF))
+    print(('particleCDF',particleCDF))
+    print(('particleCDF len',len(particleCDF)))
     nParticles = 10000
     particleCDFmat = np.tile(particleCDF,(nParticles,1))
-    print('particleCDFmat',particleCDFmat.shape)
+    print(('particleCDFmat',particleCDFmat.shape))
     rand1 = np.random.rand(nParticles)
     diff = particleCDFmat.T - rand1
     diff[diff<0.0] = 100
     mins = np.argmin(diff,axis=0)
-    print('mins',mins)
+    print(('mins',mins))
     xx = []
     yy=[]
     zz=[]
@@ -89,25 +92,25 @@ def particleSource(spylFile = 'SpylPerSpecies.dat',solps_path='solpsTarg.txt'):
     buff=1e-6
     pE = 4
     pVel = np.sqrt(2*pE*1.602e-19/184/1.66e-27)
-    print('particle velocity is ',pVel)
+    print(('particle velocity is ',pVel))
 
     for i in range(nParticles):
         xyz = sampleTriangle(x = np.array([x1[erodedSurfs[mins[i]]],x2[erodedSurfs[mins[i]]],x3[erodedSurfs[mins[i]]]]),
-	y = np.array([y1[erodedSurfs[mins[i]]],y2[erodedSurfs[mins[i]]],y3[erodedSurfs[mins[i]]]]),
-	z = np.array([z1[erodedSurfs[mins[i]]],z2[erodedSurfs[mins[i]]],z3[erodedSurfs[mins[i]]]]))
-	xx.append(xyz[0] - a[erodedSurfs[mins[i]]]/plane_norm[erodedSurfs[mins[i]]]*buff)
-	yy.append(xyz[1] - b[erodedSurfs[mins[i]]]/plane_norm[erodedSurfs[mins[i]]]*buff)
-	zz.append(xyz[2] - c[erodedSurfs[mins[i]]]/plane_norm[erodedSurfs[mins[i]]]*buff)
-	vx.append( - a[erodedSurfs[mins[i]]]/plane_norm[erodedSurfs[mins[i]]]*pVel)
-	vy.append( - b[erodedSurfs[mins[i]]]/plane_norm[erodedSurfs[mins[i]]]*pVel)
-	vz.append( - c[erodedSurfs[mins[i]]]/plane_norm[erodedSurfs[mins[i]]]*pVel)
+        y = np.array([y1[erodedSurfs[mins[i]]],y2[erodedSurfs[mins[i]]],y3[erodedSurfs[mins[i]]]]),
+        z = np.array([z1[erodedSurfs[mins[i]]],z2[erodedSurfs[mins[i]]],z3[erodedSurfs[mins[i]]]]))
+        xx.append(xyz[0] - a[erodedSurfs[mins[i]]]/plane_norm[erodedSurfs[mins[i]]]*buff)
+        yy.append(xyz[1] - b[erodedSurfs[mins[i]]]/plane_norm[erodedSurfs[mins[i]]]*buff)
+        zz.append(xyz[2] - c[erodedSurfs[mins[i]]]/plane_norm[erodedSurfs[mins[i]]]*buff)
+        vx.append( - a[erodedSurfs[mins[i]]]/plane_norm[erodedSurfs[mins[i]]]*pVel)
+        vy.append( - b[erodedSurfs[mins[i]]]/plane_norm[erodedSurfs[mins[i]]]*pVel)
+        vz.append( - c[erodedSurfs[mins[i]]]/plane_norm[erodedSurfs[mins[i]]]*pVel)
         
     #xx = x1[erodedSurfs[mins]]
     #yy = y1[erodedSurfs[mins]]
     #zz = z1[erodedSurfs[mins]]
-    print('xx',xx)
-    print('yy',yy)
-    print('zz',zz)
+    print(('xx',xx))
+    print(('yy',yy))
+    print(('zz',zz))
 
     x = []
     y = []
@@ -126,7 +129,7 @@ def particleSource(spylFile = 'SpylPerSpecies.dat',solps_path='solpsTarg.txt'):
     x=np.array(x)
     y=np.array(y)
     z=np.array(z)
-    print 'mininum z',z.min()
+    print('mininum z',z.min())
     fig = plt.figure()
     ax = fig.gca(projection='3d')
     ax.scatter(xc, yc, zc, c=surfaceParticleRate, marker='o')
