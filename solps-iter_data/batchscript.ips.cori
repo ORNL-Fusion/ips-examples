@@ -2,7 +2,7 @@
 #SBATCH --account=m1709
 #SBATCH --partition debug
 #SBATCH --nodes=1
-#SBATCH --time=00:02:00
+#SBATCH --time=00:04:00
 #SBATCH --output=log.slurm.stdOut
 #SBATCH --constraint=haswell
 
