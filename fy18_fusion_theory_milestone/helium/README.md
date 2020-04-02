@@ -3,17 +3,18 @@ This IPS workflow is the plasma-surface interaction integrated workflow.
 Helium and D-T simulations are both part of these examples.
 
 This workflow is currently underconstruction.
+## Step 1 - Run SOLPS for the given case
 As part one of the integrated workflow, SOLPS is used to simulate the scrape-off layer plasma.
 Details about that go here.
 
-Step two is to process SOLPS data for downstream components.
+## Step 2 - Process SOLPS data for downstream components
 Within this workflow, SOLPS data and geometries are processed for:
 1. Creating geometries and background plasma profiles for GITR.
 2. Producing target plasma profiles for use in hPIC.
 3. Making an ion species list for use in F-TRIDYN simulations.
 4. Creating a reference coordinate system (R-R_sep) in the plasma state. 
 
-# Run the workflow
+### Run the workflow
 1. From the helium or DT example folder, source the anaconda environment and environment file
 ```source $CODE_PATH/env/bin/activate```
 ```source ../env/env.ips3.cori```
