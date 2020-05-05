@@ -11,16 +11,16 @@ X = config.get_component_param(self, services, 'X', optional=True, verbose=False
 """
 # Working notes:
 # Batchelor 4/21/2020: Copied futurized component from dbb4 branch
-#
+# 
 
 # Try to get config parameter - wraps the exception handling for get_config_parameter()
-def get_config_param(self, services, param_name, optional=False, verbose = True):
+def get_global_param(self, services, param_name, optional=False, verbose = True):
 
 	try:
 		value = services.get_config_param(param_name)
 		if verbose: print(param_name, ' = ', value)
 	except Exception :
-		if optional:
+		if optional: 
 			print('optional config parameter ', param_name, ' not found')
 			value = None
 		else:
@@ -28,7 +28,7 @@ def get_config_param(self, services, param_name, optional=False, verbose = True)
 			print(message)
 			services.exception(message)
 			raise
-
+	
 	return value
 
 # Try to get component specific config parameter - wraps the exception handling
@@ -45,6 +45,6 @@ def get_component_param(self, services, param_name, optional=False, verbose = Tr
 		print(message)
 		services.exception(message)
 		raise
-
+	
 	return value
 
