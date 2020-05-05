@@ -62,7 +62,7 @@ class basic_init (Component):
         services = self.services
 
 # Check if this is a restart simulation
-        simulation_mode = config.get_config_param(self, services, 'SIMULATION_MODE')
+        simulation_mode = config.get_global_param(self, services, 'SIMULATION_MODE')
 
         if simulation_mode == 'RESTART':
             print('basic_init: RESTART')
@@ -79,8 +79,8 @@ class basic_init (Component):
             
         if simulation_mode == 'RESTART':
             # Get restart files listed in config file. Here just the  state files.
-            restart_root = config.get_config_param(self, services, 'RESTART_ROOT')
-            restart_time = config.get_config_param(self, services, 'RESTART_TIME')
+            restart_root = config.get_global_param(self, services, 'RESTART_ROOT')
+            restart_time = config.get_global_param(self, services, 'RESTART_TIME')
             try:
                  services.get_restart_files(restart_root, restart_time, self.RESTART_FILES)
             except:
@@ -91,7 +91,7 @@ class basic_init (Component):
             cur_state_file = self.services.get_config_param('CURRENT_STATE')
     
         # Check if there is a config parameter CURRENT_STATE and add data
-            cur_state_file = config.get_config_param(self, services, 'CURRENT_STATE', optional = True)
+            cur_state_file = config.get_global_param(self, services, 'CURRENT_STATE', optional = True)
             if cur_state_file != None or len(cur_state_file) > 0:
                 timeloop = services.get_time_loop()
                 tfinal = timeloop[-1]
@@ -109,7 +109,7 @@ class basic_init (Component):
         else:
 
             print('basic_init: simulation mode NORMAL')
-            state_file_list = config.get_config_param(self, services, 'STATE_FILES').split(' ')
+            state_file_list = config.get_global_param(self, services, 'STATE_FILES').split(' ')
 
         # Generate state files as dummies so framework will have a complete set
             for file in state_file_list:
@@ -130,9 +130,9 @@ class basic_init (Component):
                 return
 
         # Check if there is a config parameter CURRENT_STATE and add data if so.
-            cur_state_file = config.get_config_param(self, services, 'CURRENT_STATE', optional = True)
+            cur_state_file = config.get_global_param(self, services, 'CURRENT_STATE', optional = True)
             if cur_state_file != None and len(cur_state_file) > 0:
-                run_id = config.get_config_param(self, services, 'RUN_ID')
+                run_id = config.get_global_param(self, services, 'RUN_ID')
 
                 timeloop = services.get_time_loop()
                 tinit = timeloop[0]
