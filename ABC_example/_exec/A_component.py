@@ -50,7 +50,7 @@ class A_component (Component):
         services = self.services
 
     # Get global configuration parameters
-        cur_state_file = config.get_config_param(self, services,'CURRENT_STATE')
+        cur_state_file = config.get_global_param(self, services,'CURRENT_STATE')
 
     # Get component-specific configuration parameters. Note: Not all of these are
     # used in 'init' but if any are missing we get an exception now instead of
@@ -130,8 +130,8 @@ class A_component (Component):
         workdir = services.get_working_dir()
 
         # Get restart files listed in config file.        
-        restart_root = config.get_config_param(self, services,'RESTART_ROOT')
-        restart_time = config.get_config_param(self, services,'RESTART_TIME')
+        restart_root = config.get_global_param(self, services,'RESTART_ROOT')
+        restart_time = config.get_global_param(self, services,'RESTART_TIME')
 
         try:
             services.get_restart_files(restart_root, restart_time, self.RESTART_FILES)
@@ -161,7 +161,7 @@ class A_component (Component):
         services = self.services
 
     # Get global configuration parameters
-        cur_state_file = config.get_config_param(self, services,'CURRENT_STATE')
+        cur_state_file = config.get_global_param(self, services,'CURRENT_STATE')
  
     # Get component-specific configuration parameters.
         BIN_PATH = config.get_component_param(self, services, 'BIN_PATH')
