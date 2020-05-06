@@ -55,7 +55,7 @@ class basic_driver(Component):
 
       # get list of ports
 #        ports = services.getGlobalConfigParameter('PORTS')
-        ports = config.get_config_param(self, services,'PORTS')
+        ports = config.get_global_param(self, services,'PORTS')
         port_names = ports['NAMES'].split()
         print('PORTS =', port_names)
         port_dict = {}
@@ -78,7 +78,7 @@ class basic_driver(Component):
 
 
       # Is this a simulation startup or restart
-        sim_mode = config.get_config_param(self, services,'SIMULATION_MODE')
+        sim_mode = config.get_global_param(self, services,'SIMULATION_MODE')
 
       # Get timeloop for simulation
         timeloop = services.get_time_loop()
@@ -100,8 +100,8 @@ class basic_driver(Component):
         cur_state_file = services.get_config_param('CURRENT_STATE')
         
        # Get Portal RUNID and save to a file
-        run_id = config.get_config_param(self, services,'PORTAL_RUNID')
-        sym_root = config.get_config_param(self, services,'SIM_ROOT')
+        run_id = config.get_global_param(self, services,'PORTAL_RUNID')
+        sym_root = config.get_global_param(self, services,'SIM_ROOT')
         path = os.path.join(sym_root, 'PORTAL_RUNID')
         runid_file = open(path, 'a')
         runid_file.writelines(run_id + '\n')
@@ -109,7 +109,7 @@ class basic_driver(Component):
 
         # Check if there is a config parameter CURRENT_STATE and add data if so.
         # In this case set t0 = t1 = tinit
-        cur_state_file = config.get_config_param(self, services, 'CURRENT_STATE', optional = True)
+        cur_state_file = config.get_global_param(self, services, 'CURRENT_STATE', optional = True)
         if cur_state_file != None and len(cur_state_file) > 0:
             timeloop = services.get_time_loop()
             variable_dict = {'t0' : timeloop[0], 't1' : timeloop[0]}
@@ -241,7 +241,7 @@ class basic_driver(Component):
     def pre_step_logic(self, services, timeStamp):
 
     # Check if there is a config parameter CURRENT_STATE and update t0, t1 if so.
-        cur_state_file = config.get_config_param(self, services, 'CURRENT_STATE', optional = True)
+        cur_state_file = config.get_global_param(self, services, 'CURRENT_STATE', optional = True)
         print('pre-step-logic: cur_state_file = ', cur_state_file)
         if cur_state_file != None and len(cur_state_file) > 0:
             state_dict = edit.input_file_to_variable_dict(cur_state_file)
