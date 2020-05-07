@@ -45,8 +45,7 @@ class B_component (Component):
         if (self.services == None) :
             message = 'Error in B_component init (): No self.services'
             print(message)
-            services.error(message)
-            raise
+            raise Exception(message)
         services = self.services
 
     # Get global configuration parameters
@@ -68,7 +67,7 @@ class B_component (Component):
           services.stage_state()
         except Exception as e:
           print('Error in call to stage_state()' , e)
-          services.error('Error in call to stage_state()')
+          services.exception('Error in call to stage_state()')
           raise
       
     # Get input files  
@@ -76,7 +75,7 @@ class B_component (Component):
           services.stage_input_files(self.INPUT_FILES)
         except Exception as e:
           print('Error in call to stageInputFiles()' , e)
-          self.services.error('Error in call to stageInputFiles()')
+          self.services.exception('Error in call to stageInputFiles()')
           raise
 
     # Modify data in template input file with data from config file
@@ -95,7 +94,7 @@ class B_component (Component):
         except Exception:
           message = 'Error in call to update_state()'
           print(message)
-          services.error(message)
+          services.exception(message)
           raise
 
 # "Archive" output files in history directory
@@ -105,7 +104,7 @@ class B_component (Component):
         except Exception:
           message = 'Error in call to stage_output_files()'
           print(message)
-          services.error(message)
+          services.exception(message)
           raise
 
         return
@@ -124,8 +123,7 @@ class B_component (Component):
         if (self.services == None) :
             message = 'Error in B_component init(): No self.services'
             print(message)
-            services.error(message)
-            raise
+            raise Exception(message)
         services = self.services
         workdir = services.get_working_dir()
 
@@ -156,19 +154,15 @@ class B_component (Component):
         if (self.services == None) :
             message = 'Error in B_component init (): No self.services'
             print(message)
-            services.error(message)
-            raise
+            raise Exception(message)
         services = self.services
 
     # Get global configuration parameters
         cur_state_file = config.get_global_param(self, services,'CURRENT_STATE')
  
     # Get component-specific configuration parameters.
-        BIN_PATH = config.get_component_param(self, services, 'BIN_PATH')
-        RESTART_FILES = config.get_component_param(self, services, 'RESTART_FILES')
         NPROC = config.get_component_param(self, services, 'NPROC')
         EXECUTABLE = config.get_component_param(self, services, 'EXECUTABLE')
-        Y0 = config.get_component_param(self, services, 'Y0')
         c_lin = config.get_component_param(self, services, 'c_lin')
         d_nonlin = config.get_component_param(self, services, 'd_nonlin')
 
@@ -177,7 +171,7 @@ class B_component (Component):
           services.stage_state()
         except Exception as e:
           print('Error in call to stage_state()' , e)
-          services.error('Error in call to stage_state()')
+          services.exception('Error in call to stage_state()')
           raise
       
     # Get input files  
@@ -195,7 +189,7 @@ class B_component (Component):
     # Modify data in template input file with data from state files
         # Get data from cur_state_file
         state_dict = edit.input_file_to_variable_dict(cur_state_file)
-        change_dict = {'Y':state_dict['Y'], 'Y':state_dict['Y']}
+        change_dict = {'Y':state_dict['Y']}
         edit.modify_variables_in_file(change_dict, 'Y_dot_code.in')
       
     # Run Y_dot_code with modified template input file
@@ -211,7 +205,6 @@ class B_component (Component):
             print(message)
             self.services.error(message)
             raise Exception(message)
-            return 1
         print(cmd, ' finished \n')
 
     # Modify data in state files from output of X_dot code.
@@ -224,7 +217,7 @@ class B_component (Component):
         except Exception:
           message = 'Error in call to update_state()'
           print(message)
-          services.error(message)
+          services.exception(message)
           raise
 
 # "Archive" output files in history directory
@@ -233,7 +226,7 @@ class B_component (Component):
         except Exception:
             message = 'Error in call to stage_output_files()'
             print(message)
-            services.error(message)
+            services.exception(message)
             raise
 
         return
@@ -250,8 +243,7 @@ class B_component (Component):
         if (self.services == None) :
             message = 'Error in B_component init (): No self.services'
             print(message)
-            services.error(message)
-            raise
+            raise Exception(message)
         services = self.services
         services.save_restart_files(timestamp, self.RESTART_FILES)
         return 0
@@ -262,8 +254,6 @@ class B_component (Component):
 #
 # Does nothing
 # ------------------------------------------------------------------------------
-
-
 
     def finalize(self, timestamp=0.0):
         print('B_component finalize() called')

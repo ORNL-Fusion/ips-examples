@@ -45,7 +45,6 @@ class A_component (Component):
         if (self.services == None) :
             message = 'Error in A_component init (): No self.services'
             print(message)
-            self.services.error(message)
             raise Exception(message)
         services = self.services
 
@@ -124,7 +123,6 @@ class A_component (Component):
         if (self.services == None) :
             message = 'Error in A_component restart(): No self.services'
             print(message)
-            self.services.error(message)
             raise Exception(message)
         services = self.services
 
@@ -155,7 +153,6 @@ class A_component (Component):
         if (self.services == None) :
             message = 'Error in A_component step (): No self.services'
             print(message)
-            self.services.error(message)
             raise Exception(message)
         services = self.services
 
@@ -241,7 +238,6 @@ class A_component (Component):
         if (self.services == None) :
             message = 'Error in A_component init (): No self.services'
             print(message)
-            self.services.error(message)
             raise Exception(message)
         services = self.services
         services.save_restart_files(timestamp, self.RESTART_FILES)
