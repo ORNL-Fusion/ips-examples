@@ -67,7 +67,7 @@ class basic_init (Component):
         if simulation_mode == 'RESTART':
             print('basic_init: RESTART')
         if simulation_mode not in ['RESTART', 'NORMAL']:
-            logMsg = 'basic_init: unrecoginzed SIMULATION_MODE: ' + mode
+            logMsg = 'basic_init: unrecoginzed SIMULATION_MODE: ' + simulation_mode
             self.services.error(logMsg)
             raise ValueError(logMsg)
  
