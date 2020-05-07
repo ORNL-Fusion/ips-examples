@@ -45,8 +45,8 @@ class A_component (Component):
         if (self.services == None) :
             message = 'Error in A_component init (): No self.services'
             print(message)
-            services.error(message)
-            raise
+            self.services.error(message)
+            raise Exception(message)
         services = self.services
 
     # Get global configuration parameters
@@ -68,7 +68,7 @@ class A_component (Component):
           services.stage_state()
         except Exception as e:
           print('Error in call to stage_state()' , e)
-          services.error('Error in call to stage_state()')
+          services.exception('Error in call to stage_state()')
           raise
       
     # Get input files  
@@ -76,7 +76,7 @@ class A_component (Component):
           services.stage_input_files(self.INPUT_FILES)
         except Exception as e:
           print('Error in call to stageInputFiles()' , e)
-          self.services.error('Error in call to stageInputFiles()')
+          self.services.exception('Error in call to stage_input_files()')
           raise
 
     # Modify data in template input file with data from config file
@@ -95,7 +95,7 @@ class A_component (Component):
         except Exception:
           message = 'Error in call to update_state()'
           print(message)
-          services.error(message)
+          services.exception(message)
           raise
 
 # "Archive" output files in history directory
@@ -105,7 +105,7 @@ class A_component (Component):
         except Exception:
           message = 'Error in call to stage_output_files()'
           print(message)
-          services.error(message)
+          services.exception(message)
           raise
 
         return
@@ -122,12 +122,11 @@ class A_component (Component):
         print('A_component.restart() called')
 
         if (self.services == None) :
-            message = 'Error in A_component init(): No self.services'
+            message = 'Error in A_component restart(): No self.services'
             print(message)
-            services.error(message)
-            raise
+            self.services.error(message)
+            raise Exception(message)
         services = self.services
-        workdir = services.get_working_dir()
 
         # Get restart files listed in config file.        
         restart_root = config.get_global_param(self, services,'RESTART_ROOT')
@@ -138,7 +137,7 @@ class A_component (Component):
         except Exception:
             message = 'Error in call to get_restart_files()'
             print(message)
-            self.services.error(message)
+            self.services.exception(message)
             raise
         return 0
 
@@ -154,21 +153,18 @@ class A_component (Component):
         print('A_component.step() called')
 
         if (self.services == None) :
-            message = 'Error in A_component init (): No self.services'
+            message = 'Error in A_component step (): No self.services'
             print(message)
-            services.error(message)
-            raise
+            self.services.error(message)
+            raise Exception(message)
         services = self.services
 
     # Get global configuration parameters
         cur_state_file = config.get_global_param(self, services,'CURRENT_STATE')
  
     # Get component-specific configuration parameters.
-        BIN_PATH = config.get_component_param(self, services, 'BIN_PATH')
-        RESTART_FILES = config.get_component_param(self, services, 'RESTART_FILES')
         NPROC = config.get_component_param(self, services, 'NPROC')
         EXECUTABLE = config.get_component_param(self, services, 'EXECUTABLE')
-        X0 = config.get_component_param(self, services, 'X0')
         a_lin = config.get_component_param(self, services, 'a_lin')
         b_nonlin = config.get_component_param(self, services, 'b_nonlin')
 
@@ -177,7 +173,7 @@ class A_component (Component):
           services.stage_state()
         except Exception as e:
           print('Error in call to stage_state()' , e)
-          services.error('Error in call to stage_state()')
+          services.exception('Error in call to stage_state()')
           raise
       
     # Get input files  
@@ -185,7 +181,7 @@ class A_component (Component):
           services.stage_input_files(self.INPUT_FILES)
         except Exception:
           print('Error in call to stageInputFiles()')
-          self.services.error('Error in call to stageInputFiles()')
+          self.services.exception('Error in call to stageInputFiles()')
           raise
 
     # Modify data in template input file with data from config file
@@ -210,7 +206,6 @@ class A_component (Component):
             print(message)
             self.services.error(message)
             raise Exception(message)
-            return 1
         print(cmd, ' finished \n')
 
 
@@ -246,8 +241,8 @@ class A_component (Component):
         if (self.services == None) :
             message = 'Error in A_component init (): No self.services'
             print(message)
-            services.error(message)
-            raise
+            self.services.error(message)
+            raise Exception(message)
         services = self.services
         services.save_restart_files(timestamp, self.RESTART_FILES)
         return 0
