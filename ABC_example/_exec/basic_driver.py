@@ -17,13 +17,14 @@ in a different order from that of being stepped in the time loop.
 To terminate simulation after INIT phase, set optional DRIVER config 
 parameter INIT_ONLY = True.
 
-""" 
+"""
 
 import sys
 import os
 import utils.simple_assignment_file_edit as edit
 import utils.get_IPS_config_parameters as config
 from component import Component
+
 
 class basic_driver(Component):
 
@@ -38,7 +39,7 @@ class basic_driver(Component):
 # ------------------------------------------------------------------------------
 
     def init(self, timestamp=0):
-      # Driver initialization ? nothing to be done
+        # Driver initialization ? nothing to be done
         return
 
 # ------------------------------------------------------------------------------
@@ -69,23 +70,21 @@ class basic_driver(Component):
             if port_name in ["DRIVER"]: continue
             port = services.get_port(port_name) 
             if(port == None):
-                logMsg = 'Error accessing '+port_name+' component'
+                logMsg = 'Error accessing ' + port_name + ' component'
                 services.error(logMsg)
                 raise Exception(logMsg)
             port_dict[port_name] = port
             port_id_list.append(port)
-            print (' ')
+            print(' ')
 
-
-      # Is this a simulation startup or restart
+    # Is this a simulation startup or restart
         sim_mode = config.get_global_param(self, services,'SIMULATION_MODE')
 
-      # Get timeloop for simulation
+    # Get timeloop for simulation
         timeloop = services.get_time_loop()
-        tlist_str = ['%.3f'%t for t in timeloop]
-        t = tlist_str[0]
+        t = timeloop[0]
 
-      # Initialize components in PORTS list for startup or restart
+    # Initialize components in PORTS list for startup or restart
         print (' ')
         
         init_mode = 'init'
@@ -93,9 +92,9 @@ class basic_driver(Component):
 
         for port_name in port_names:
             if port_name in ['INIT','DRIVER']: continue 
-            self.component_call(services,port_name,port_dict[port_name],init_mode,t)
+            self.component_call(services, port_name, port_dict[port_name], init_mode, t)
 
-      # Get state files into driver work directory
+    # Get state files into driver work directory
         services.stage_state()
         cur_state_file = services.get_config_param('CURRENT_STATE')
         
@@ -121,7 +120,7 @@ class basic_driver(Component):
                 message = 'Unknown Simulation mode ' + sim_mode
                 print(message)
                 services.exception(message)
-                raise
+                raise Exception(message)
             
             services.update_state()
 
@@ -142,10 +141,9 @@ class basic_driver(Component):
 #
 # ------------------------------------------------------------------------------
 
-
         # Iterate through the timeloop
-        for t in tlist_str[1:len(timeloop)]:
-            print (' ')
+        for t in timeloop[1:len(timeloop)]:
+            print(' ')
             print('Driver: step to time = ', t)
             services.update_time_stamp(t)
 
@@ -162,7 +160,7 @@ class basic_driver(Component):
             services.update_state()
             print (' ')
 
-       # Call step for each component
+        # Call step for each component
 
             print (' ')
             for port_name in port_names:
@@ -171,7 +169,7 @@ class basic_driver(Component):
 
             services.stage_state()
 
-         # Post step processing: stage  state, checkpoint components and self
+        # Post step processing: stage  state, checkpoint components and self
             services.stage_output_files(t, self.OUTPUT_FILES)
             services.checkpoint_components(port_id_list, t)
             self.checkpoint(t)
@@ -182,13 +180,13 @@ class basic_driver(Component):
 #
 # ------------------------------------------------------------------------------
 
-      # Post simulation: call checkpoint on each component
+        # Post simulation: call checkpoint on each component
 
         services.checkpoint_components(port_id_list, t, Force = True)
         self.checkpoint(t)
-      
-      # Post simulation: call finalize on each component
-        print (' ')
+
+        # Post simulation: call finalize on each component
+        print(' ')
         for port_name in port_names:
             if port_name in ['INIT','DRIVER']: continue 
             self.component_call(services, port_name, port_dict[port_name], 'finalize', t)
