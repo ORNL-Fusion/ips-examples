@@ -43,8 +43,7 @@ class C_component (Component):
         if (self.services == None) :
             message = 'Error in C_component init (): No self.services'
             print(message)
-            services.error(message)
-            raise
+            raise Exception(message)
         services = self.services
 
     # Get global configuration parameters
@@ -117,10 +116,8 @@ class C_component (Component):
         if (self.services == None) :
             message = 'Error in C_component init(): No self.services'
             print(message)
-            services.error(message)
-            raise
+            raise Exception(message)
         services = self.services
-        workdir = services.get_working_dir()
 
         # Get restart files listed in config file.        
         restart_root = config.get_global_param(self, services,'RESTART_ROOT')
@@ -149,16 +146,13 @@ class C_component (Component):
         if (self.services == None) :
             message = 'Error in C_component init (): No self.services'
             print(message)
-            services.error(message)
-            raise
+            raise Exception(message)
         services = self.services
 
     # Get global configuration parameters
         cur_state_file = config.get_global_param(self, services,'CURRENT_STATE')
  
     # Get component-specific configuration parameters.
-        BIN_PATH = config.get_component_param(self, services, 'BIN_PATH')
-        RESTART_FILES = config.get_component_param(self, services, 'RESTART_FILES')
         NPROC = config.get_component_param(self, services, 'NPROC')
         EXECUTABLE = config.get_component_param(self, services, 'EXECUTABLE')
 
@@ -212,7 +206,6 @@ class C_component (Component):
             print(message)
             self.services.error(message)
             raise Exception(message)
-            return 1
         print(cmd, ' finished \n')
 
     # Modify data in state files from output of C_code.
@@ -245,8 +238,7 @@ class C_component (Component):
         if (self.services == None) :
             message = 'Error in C_component init (): No self.services'
             print(message)
-            services.error(message)
-            raise
+            raise Exception(message)
         services = self.services
         services.save_restart_files(timestamp, self.RESTART_FILES)
         return 0
