@@ -20,7 +20,8 @@ echo 'export IPS_DIR='${PWD} >> ~/.bashrc
 
 # Run the example
 
-1. Source the IPS environemnt
+1. Source the IPS environment (Note: This step is not needed for ABC_example, the .env file 
+is in simulation the directory -> env.ABC_example_)
 ```
 cd $IPS_DIR
 source ips-wrappers/env.ips
@@ -31,18 +32,19 @@ source ips-wrappers/env.ips
 cd ips-examples/ABC_example
 ips.py --simulation=ABC_simulation.config --platform=platform.conf
 ```
-  * On a batch system (e.g., Edison at NERSC)
+  * On a batch system (e.g., Cori at NERSC)
 ```
 cd ips-examples/ABC_example
-sbatch Edison_run
+sbatch Cori_run
 ```
 To clean all the run files and start with just the input deck run 
 ```
 ./cleanIpsRun.sh
 ```
 
-## Notes on the ABC exmple
-The ABC simulation is a somewhat more realistic example of IPS usage.  It is completely 
+## Notes on the ABC example
+The ABC simulation is a somewhat more realistic example of IPS usage than hello-world.  
+But it is completely 
 written in python and has no dependencies other than IPS.  As such it should run about 
 anywhere, at least it runs on Macs and at NERSC.  The input and output files are all 
 human readable text.  It largely has the structure of a real simulation in that it 
@@ -67,18 +69,18 @@ simulation.
 
 Typically a real simulation would be run as a batch job, submitted via a batch script.  In 
 trying to make this as much like a real simulation running as a batch job, a batch script 
-for Edison and a shell script for Mac are provided.  The exporting of IPS_DIR and 
+for Cori and a shell script for Mac are provided.  The exporting of IPS_DIR and 
 sourcing of ips.env are included in these scripts so these two steps described above can 
 be omitted.  The command lines to run from the /ips-examples/ABC_example/ directory are 
-on Edison
+on Cori
 ```
-sbatch Edison_run
+sbatch Cori_run
 ```
 and on Mac,
 ```
 ./Mac_run 
 ```
-This example also demonstrates simulation restart which is invoked with the Edison_restart
+This example also demonstrates simulation restart which is invoked with the Cori_restart
 and Mac_restart scripts. 
 
 
