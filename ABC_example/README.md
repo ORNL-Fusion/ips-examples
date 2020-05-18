@@ -20,21 +20,20 @@ echo 'export IPS_DIR='${PWD} >> ~/.bashrc
 
 # Run the example
 
-1. Source the IPS environment (Note: This step is not needed for ABC_example, the .env file 
-is in simulation the directory -> env.ABC_example_)
+1. Source the IPS environment for the (self contained) ABC example 
 ```
-cd $IPS_DIR
-source ips-wrappers/env.ips
+cd $IPS_DIR/ips-examples/ABC_example
+source env.ABC_example
 ```
 2. Run the ABC example
   * Locally
 ```
-cd ips-examples/ABC_example
+cd $IPS_DIR/ips-examples/ABC_example
 ips.py --simulation=ABC_simulation.config --platform=platform.conf
 ```
   * On a batch system (e.g., Cori at NERSC)
 ```
-cd ips-examples/ABC_example
+cd $IPS_DIR/ips-examples/ABC_example
 sbatch Cori_run
 ```
 To clean all the run files and start with just the input deck run 
