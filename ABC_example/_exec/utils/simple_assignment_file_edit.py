@@ -8,12 +8,11 @@ For now it only deals with single line assignments.
 """
 
 # Working notes:
+# Batchelor 5/15/2020: Simple reformatting and simplification from autopep8, flake8
 # Batchelor 4/21/2020: Copied futurized component from dbb4 branch
 #
 
-import sys
-
-#---------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------
 # Open an input file and return the lines
 def get_lines(filename):
     file = open(filename, 'r')
@@ -21,16 +20,17 @@ def get_lines(filename):
     file.close()
     return lines
 
-#---------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------
 # Open an output file and write lines into it
 def put_lines(filename, lines):
     file = open(filename, 'w')
     file.writelines(lines)
     file.close()
 
-#---------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------
 # Editing utilities
-#---------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------
+
 
 def lines_to_variable_dict(lines):
     variable_dict = {}
@@ -72,7 +72,6 @@ def modify_variables_in_file(change_dict, filename):
     lines = get_lines(filename)
 
     # Find the line in the file containing 'var = ' and change value
-    var_line_number = -1
     for i in range(len(lines)):
         line = lines[i]
 
@@ -93,7 +92,8 @@ def modify_variables_in_file(change_dict, filename):
             raise
     put_lines(filename, lines)
 
-#_________________________________________________________________________________________________
+# _________________________________________________________________________________________________
+
 
 if __name__ == '__main__':
 
@@ -114,4 +114,3 @@ if __name__ == '__main__':
 
     change_dict = {'Q': 600}
     add_variables_to_output_file(change_dict, 'test_file_2')
-

@@ -7,9 +7,8 @@
 #SBATCH --constraint=haswell
 
 cd $SLURM_SUBMIT_DIR   # optional, since this is the default behavior
-source $U2115/ips-wrappers/env.ips.cori
+source env.GENRAY_basic_example
 export PYTHONPATH=$PWD/_exec:PYTHONPATH
-export LD_LIBRARY_PATH=/global/homes/y/ypetrov/pgplot.intel:/opt/intel/compilers_and_libraries_2019.3.199/linux/compiler/lib/intel64:/opt/intel/compilers_and_libraries_2019.3.199/linux/mkl/lib/intel64 :$LD_LIBRARY_PATH
-$IPS_PATH/ips.py --config=GENRAY_basic_example_EC.config --platform=conf.ips.cori --log=log.framework 2>>log.stdErr 1>>log.stdOut
+ips.py --config=GENRAY_basic_example_EC.config --platform=conf.ips.cori --log=log.framework 2>>log.stdErr 1>>log.stdOut
 egrep -i 'error' log.* > log.errors
 ./setPermissions.sh
