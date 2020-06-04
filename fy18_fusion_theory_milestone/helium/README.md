@@ -23,6 +23,8 @@ Within this workflow, SOLPS data and geometries are processed for:
 3. Making an ion species list for use in F-TRIDYN simulations.
 4. Creating a reference coordinate system (R-R_sep) in the plasma state.
 
+Specific instructions on how to process SOLPS data ahead of time which is needed for hPIC setup/execution.
+
 ## Step 3 - Run hPIC for the given case
 As part one of the integrated workflow, hPIC is used to simulate the ion energy-angle distributions of the background plasma species at the divertor target.
 Davide Curreli (dcurreli@illinois.edu) is the point of contact for such simulations as part of the Plasma-Surface Interactiosn SciDAC.
