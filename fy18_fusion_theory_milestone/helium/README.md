@@ -34,8 +34,17 @@ Output data from hPIC which is utilized in this integrated simulation include th
 These files should be placed in a location which can be pointed to using the HPIC_DATA_PATH environment variable (set in the proper environment file.
 
 Things to set in the IPS config file should also go here? Relevant settings?
+## Step 4 Configure IPS Config File
+Configuration of the IPS Config File (ips.config) will determine how exactly the simulation is run.
+### SOLPS
+Although execution of SOLPS is currently external to the integrated simulation, the processing and utilization of this data can be determined by several input parameters in the config file.
+Which fields and what do they do?
+### F-TRIDYN
+Which fields and what do they do?
+### hPIC
+### GITR
 
-### Run the workflow
+## Step 5 Run the workflow
 1. From the helium or DT example folder, source the anaconda environment and environment file
 ```source $CODE_PATH/env/bin/activate```
 ```source ../env/env.ips3.cori```
