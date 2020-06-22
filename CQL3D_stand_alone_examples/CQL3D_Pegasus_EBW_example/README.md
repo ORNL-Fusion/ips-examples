@@ -1,7 +1,6 @@
 # Brief description
 A CQL3D stand alone example that runs CQL3D in the IPS, and that communicates through the
-Plasma State.  It is a rather complicated example that comes from work on iteration of
-TORLH and CQL3D.
+Plasma State. 
 
 Nota Bene:  There are fortran executables in the CQL3D wrappers directory (/ips-wrappers/ips-cql3d)
 that must be built after cloning.
