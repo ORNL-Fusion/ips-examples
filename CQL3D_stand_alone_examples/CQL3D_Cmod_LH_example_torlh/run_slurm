@@ -7,9 +7,8 @@
 #SBATCH --constraint=haswell
 
 cd $SLURM_SUBMIT_DIR   # optional, since this is the default behavior
-source $U2115/ips-wrappers/env.ips.cori
-#source $IPS_DIR/ips-wrappers/env.ips
+source env.CQL3D_examples
 mkdir www
-$IPS_PATH/bin/ips.py --config=CQL3D_SA.config --platform=conf.ips.cori --log=log.framework 2>>log.stdErr 1>>log.stdOut
+ips.py --config=CQL3D_SA.config --platform=conf.ips.cori --log=log.framework 2>>log.stdErr 1>>log.stdOut
 egrep -i 'error' log.* > log.errors
 ./setPermissions.sh
