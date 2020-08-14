@@ -10,7 +10,6 @@ cd $SLURM_SUBMIT_DIR   # optional, since this is the default behavior
 source $IPS_WRAPPER_PATH/env.ips.cori   # N.B. This is the Cori installation
 # Switch to use the local wrappers (e.g for development)
 source $LOCAL_WRAPPER_PATH/use_local_wrappers
-source $LOCAL_WRAPPER_PATH/use_local_examples
 #
 source $IPS_WRAPPER_PATH/env.COMPX_codes
 ips.py --config=GENRAY_basic_example_EC.config --platform=conf.ips.cori --log=log.framework 2>>log.stdErr 1>>log.stdOut
