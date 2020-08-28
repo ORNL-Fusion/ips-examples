@@ -49,7 +49,8 @@ to define an environment variable pointing to the users local wrapper directory,
 Also the batch scripts of the examples must source an environment file *use_local_wrappers*.
 This only involves uncommenting one line in the slurm batch script.
 
-```# Uncomment next line to use the local wrappers (e.g for development)
+```
+# Uncomment next line to use the local wrappers (e.g for development)
 #source $LOCAL_WRAPPER_PATH/use_local_wrappers
 ```
 
