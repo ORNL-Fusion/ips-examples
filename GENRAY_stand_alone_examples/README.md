@@ -15,7 +15,7 @@ be useful as is when the user has the genray input files and makes direct use of
 files.
 
 The other examples use the full rf_genray.py wrapper component, which does make use of the Plasma
-State system.  That is it obtains plasma profile data from a plasma state file, updates a 
+State system.  That is it obtains plasma profile data from a plasma state file, updates  
 a template genray input file with current plasma data, runs genray with the updated input file, 
 then processes the genray output file to update the plasma state file with the new rf data.  
 This is the standard GENRAY IPS component that has been used extensively in coupled multi-physics
@@ -44,11 +44,13 @@ git clone https://github.com/ORNL-Fusion/ips-wrappers.git
 To switch from using the installed wrappers to using a private, local copy it is necessary 
 to define an environment variable pointing to the users local wrapper directory, e.g.
 
-```export LOCAL_WRAPPER_PATH=*<my wrapper directory>*```
+```export LOCAL_WRAPPER_PATH=<my wrapper directory>```
 
 Also the batch scripts of the examples must source an environment file *use_local_wrappers*.
 This only involves uncommenting one line in the slurm batch script.
 
-'''# Uncomment next line to use the local wrappers (e.g for development)
-#source $LOCAL_WRAPPER_PATH/use_local_wrappers'''
+'''
+# Uncomment next line to use the local wrappers (e.g for development)
+#source $LOCAL_WRAPPER_PATH/use_local_wrappers
+'''
 
