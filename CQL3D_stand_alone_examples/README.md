@@ -1,6 +1,6 @@
 # CQL3D Stand Alone IPS Examples
 
-These examples exercise the CQL3D ray tracing code within the IPS simulation system.  They
+These examples exercise the CQL3D Fokker-Planck code within the IPS simulation system.  They
 are set up to run without modification on the Cori computer at NERSC.  The user only needs
 to export an environment variable pointing to the IPS installation. e.g.
 
