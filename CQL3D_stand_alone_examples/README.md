@@ -6,7 +6,7 @@ to export an environment variable pointing to the IPS installation. e.g.
 
 ```export ATOM=/global/common/software/atom/cori```
 
-CQL3D_basic_example and CQL3D_basic_example_pegasus run CQL3D using a set of input files located 
+CQL3D_basic_example and CQL3D_basic_example_pegasus run CQL3D using a set of input files located
 in *_inputs/cql3d_input*
 directory.  The component python wrapper is a stripped down version called CQL3D_basic_component.py
 which simply stages the input files to the cql3d work directory, launches the CQL3D code,
@@ -58,8 +58,14 @@ This only involves uncommenting one line in the slurm batch script.
 #### FYI
 
 Although the user should not need to know this:  To access the CQL3D binary the slurm batch
-script sources an environment file *env.COMPX_codes*.  The AToM copy of the fortran binary for 
+script sources an environment file *env.COMPX_codes*.  The AToM copy of the fortran binary for
 CQL3D resides in */global/common/software/atom/cori/binaries/cql3d/m77_CompX*.
 
+The input files for these examples, aside from the basic examples, are located on Cori
+in a collection of input data for IPS examples:
 
+
+```
+/global/common/software/atom/cori/examples_input_data
+```
 

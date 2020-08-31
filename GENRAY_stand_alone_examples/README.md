@@ -60,3 +60,11 @@ Although the user should not need to know this:  To access the GENRAY binary the
 script sources an environment file *env.COMPX_codes*.  The AToM copy of the fortran binary for
 GENRAY resides in */global/common/software/atom/cori/binaries/genray/m77_CompX*.
 
+The input files for these examples, aside from GENRAY_basic_example, are located on Cori
+in a collection of input data for IPS examples:
+
+
+```
+/global/common/software/atom/cori/examples_input_data
+```
+
