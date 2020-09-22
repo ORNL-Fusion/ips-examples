@@ -6,6 +6,7 @@ Skip this if you've already installed the IPS.
 mkdir IPS
 cd IPS
 git clone https://github.com/HPC-SimTools/IPS-framework.git ips-framework
+cd ips-framework; git checkout v0.1.0; cd ..
 git clone https://github.com/ORNL-Fusion/ips-wrappers.git
 git clone https://github.com/ORNL-Fusion/ips-examples.git
 ```
