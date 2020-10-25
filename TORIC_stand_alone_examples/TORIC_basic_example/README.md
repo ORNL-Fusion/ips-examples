@@ -9,8 +9,3 @@ conjunction with TSC.  The case is the same as that provided in TORIC_ITER_TSC_e
 However that example uses the full rf_toric_abr_mcmd.py wrapper component, which does 
 make use of the Plasma State system.  This example uses a much simpler TORIC python wrapper
 TORIC_basic_component.py.
-
-
-Nota Bene:  There are fortran executables in the TORIC wrappers directory (/ips-wrappers/ips-toric)
-that must be built after cloning.
-
