@@ -1,12 +1,10 @@
 # Brief description
-A TORIC stand alone example that runs TORIC in the IPS, and that communicates through 
-the Plasma State.  The example is taken from an ITER simulation done several years ago by 
-Francesca Poli in conjunction with TSC.  It uses the rf_ic_toric_abr_mcmd.py.py component
-to wrap TORIC. The plasma data is initialized using the generic_ps_init.py component.
-The plasma profiles are provided in an existing plasma state file.  The MHD equilibrium 
-eqdsk file is generated from the plasma state file using a Plasma State function ps_wr_geqdsk. 
-
-
-Nota Bene:  There are fortran executables in the TORIC wrappers directory (/ips-wrappers/ips-toric)
-that must be built after cloning.
+The TORIC_ITER_TSC_example uses the full `rf_toric_abr_mcmd.py` wrapper component, which
+makes use of the Plasma State system.  That is it obtains plasma profile data from a plasma 
+state file, updates, a template toric input file with current plasma data, runs toric 
+with the updated input file, then processes the toric output file to update the plasma state 
+file with the new rf data. This is the standard TORIC IPS component that has been used 
+extensively in the past.  The input files are in the Cori AToM installation, i.e. 
+`$ATOM/examples_input_data/TORIC_ITER_TSC_example`, where 
+`$ATOM=/global/common/software/atom/cori`.  
 
