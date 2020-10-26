@@ -1,0 +1,17 @@
+#!/bin/bash -l
+#SBATCH --account=atom
+#SBATCH --partition debug
+#SBATCH --nodes=1
+#SBATCH --time=00:10:00
+#SBATCH --output=log.slurm.stdOut
+#SBATCH --constraint=haswell
+
+cd $SLURM_SUBMIT_DIR   # optional, since this is the default behavior
+source $IPS_WRAPPER_PATH/env.ips.cori
+# Switch to use the local wrappers (e.g for development)
+source $LOCAL_WRAPPER_PATH/use_local_wrappers
+
+source $IPS_WRAPPER_PATH/env.TORIC_binary
+ips.py --config=TORIC_ITER_TSC.config --platform=conf.ips.cori --log=log.framework 2>>log.stdErr 1>>log.stdOut
+egrep -i 'error' log.* > log.errors
+./setPermissions.sh
