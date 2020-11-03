@@ -3,18 +3,20 @@
 """
 basic_init.py  Batchelor (3-11-2018)
 
-Version 1.0 (Batchelor 3/11/2018)
-Simplified initializer adapted from generic_ps_init.py, but eliminating
+Version 2.0 (Batchelor 10/31/2020)
+The purpose is to collect a complete set of initial state files and stage them to /work/state/
+directory. It is simplified and Simplified adapted from generic_ps_init.py, but eliminating
 reference to many features specific to plasma physics.  The immediate
 application is to simple, example simulations which do not make use of
-the SWIM Plasma State system.  The IPS framework uses the terminology
-plasma state to refer to all state files.  But the SWIM Plasma State need
-not be used at all.
+the SWIM Plasma State system. The SWIM Plasma State need not be used at all.
 
-By default this script merely touches all the files listed as STATE_FILES
-in the config file.  If a CURRENT_STATE is specified in the simulation config
+This script first touches all the files listed as STATE_FILES in the config file.
+If INPUT_FILES are listed in the [init] section of the config file these are then staged
+to the working directory thereby overwriting the dummy files generated before.
+
+If a CURRENT_STATE is specified in the simulation config
 file, this script adds the run_id and time loop variables to it -> tinit,
-and tfinal
+and tfinal.  The term CURRENT_STATE refers to a SWIM PLASMA_STATE if it is being used.
 
 If more work needs to be done before the individual components do their own
 init, one can specify an INIT_HELPER_CODE (full path) in the config file which
@@ -156,6 +158,7 @@ class basic_init (Component):
                 edit.add_variables_to_output_file(
                     variable_dict, cur_state_file)
 
+		# Stage input files if any, thereby overwriting the dummy files generated above
             try:
                 services.stage_input_files(self.INPUT_FILES)
             except Exception:
