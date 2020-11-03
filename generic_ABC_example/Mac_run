@@ -1,0 +1,4 @@
+source env.ABC_example
+mkdir www
+ips.py --simulation=generic_ABC_simulation.config --platform=platform.conf
+

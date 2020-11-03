@@ -1,0 +1,5 @@
+! Standard input file for Y_dot_code
+! Parameters of equation to be solved
+
+c_lin = 0.2
+d_nonlin = 0.1

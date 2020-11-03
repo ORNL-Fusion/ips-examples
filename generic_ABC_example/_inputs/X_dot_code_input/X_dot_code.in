@@ -1,0 +1,5 @@
+! Standard input file for X_dot_code
+! Parameters of equation to be solved
+
+a_lin = 0.25
+b_nonlin = 0.1
