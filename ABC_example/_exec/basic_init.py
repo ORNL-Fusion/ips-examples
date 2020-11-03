@@ -94,12 +94,10 @@ class basic_init (Component):
                 self.services.exception(logMsg)
                 raise
 
-            cur_state_file = self.services.get_config_param('CURRENT_STATE')
-
         # Check if there is a config parameter CURRENT_STATE and add data
             cur_state_file = config.get_global_param(
                 self, services, 'CURRENT_STATE', optional=True)
-            if cur_state_file is not None or len(cur_state_file) > 0:
+            if cur_state_file is not None and len(cur_state_file) > 0:
                 timeloop = services.get_time_loop()
                 tfinal = timeloop[-1]
 
