@@ -4,19 +4,26 @@
 basic_init.py  Batchelor (3-11-2018)
 
 Version 2.0 (Batchelor 10/31/2020)
-The purpose is to collect a complete set of initial state files and stage them to /work/state/
-directory. It is simplified and Simplified adapted from generic_ps_init.py, but eliminating
-reference to many features specific to plasma physics.  The immediate
-application is to simple, example simulations which do not make use of
-the SWIM Plasma State system. The SWIM Plasma State need not be used at all.
+The purpose is to collect a complete set of initial state files and stage them to the 
+/work/state/ directory. It is simplified and adapted from generic_ps_init.py, but 
+eliminating reference to many features specific to plasma physics.  The immediate  
+application is to simple, example simulations which do not make use of the SWIM Plasma 
+State system. The SWIM Plasma State need not be used at all but can be.
 
-This script first touches all the files listed as STATE_FILES in the config file.
+This script first touches all the files listed as STATE_FILES in the config file.  If
+config variable INIT_MODE = TOUCH_ONLY that is all that is done, then returns.
 If INPUT_FILES are listed in the [init] section of the config file these are then staged
-to the working directory thereby overwriting the dummy files generated before.
+to the working directory thereby overwriting the dummy files generated before.  It may be
+convenient to initialize a state file from an input file of a different name, therefore a
+service is provided to copy a file to another name before updating state.  This is
+controlled by config parameters COPY_FILES and COPIED_FILES_NEW_NAMES
 
-If a CURRENT_STATE is specified in the simulation config
-file, this script adds the run_id and time loop variables to it -> tinit,
-and tfinal.  The term CURRENT_STATE refers to a SWIM PLASMA_STATE if it is being used.
+COPY_FILES = list of files to be copied
+COPIED_FILES_NEW_NAMES = list of new names for files, must match COPY_FILES
+
+The term CURRENT_STATE refers to a SWIM PLASMA_STATE file if it is being used.  If a 
+CURRENT_STATE is specified in the simulation config file, this script adds the Plasma State
+variables to it -> run_id and time loop variables tinit, and tfinal.  
 
 If more work needs to be done before the individual components do their own
 init, one can specify an INIT_HELPER_CODE (full path) in the config file which
@@ -26,6 +33,7 @@ they must also be specified in the [init] section of the config file.
 """
 
 import subprocess
+import os
 import utils.simple_assignment_file_edit as edit
 import utils.get_IPS_config_parameters as config
 from component import Component
@@ -139,6 +147,15 @@ class basic_init (Component):
                     raise
                 return
 
+        # Stage input files if any, thereby overwriting the dummy files generated above
+            try:
+                services.stage_input_files(self.INPUT_FILES)
+            except Exception:
+                message = 'basic_init: Error in staging input files'
+                print(message)
+                services.exception(message)
+                raise
+
         # Check if there is a config parameter CURRENT_STATE and add data if
         # so.
             cur_state_file = config.get_global_param(
@@ -158,30 +175,51 @@ class basic_init (Component):
                 edit.add_variables_to_output_file(
                     variable_dict, cur_state_file)
 
-		# Stage input files if any, thereby overwriting the dummy files generated above
-            try:
-                services.stage_input_files(self.INPUT_FILES)
-            except Exception:
-                message = 'basic_init: Error in staging input files'
-                print(message)
-                services.exception(message)
-                raise
+       # Execute HELPER_CODES if any
+            HELPER_CODES = config.get_component_param(self, services,
+                'INIT_HELPER_CODES', optional = True, verbose = True)
+            # Check if there are codes to be run
+            if HELPER_CODES is not None and len(HELPER_CODES) > 0:
+                HELPER_CODES = HELPER_CODES.split(' ')
+                for code in HELPER_CODES:
+                    cmd = [code]
+                    print('Executing ', cmd)
+                    services.send_portal_event(event_type='COMPONENT_EVENT',
+                                               event_comment=cmd)
+                    retcode = subprocess.call(cmd)
+                    if (retcode != 0):
+                        logMsg = 'Error executing '.join(map(str, cmd))
+                        self.services.error(logMsg)
+                        raise Exception(logMsg)
 
-            INIT_HELPER_CODE_bin = config.get_component_param(self, services,
-                                                              'INIT_HELPER_CODE',
-                                                              optional=True)
+        # Copy files to new names if any
 
-            if (INIT_HELPER_CODE_bin is not None) and (
-                    len(INIT_HELPER_CODE_bin) != 0):
-                cmd = [INIT_HELPER_CODE_bin]
-                print('Executing ', cmd)
-                services.send_portal_event(event_type='COMPONENT_EVENT',
-                                           event_comment=cmd)
-                retcode = subprocess.call(cmd)
-                if (retcode != 0):
-                    logMsg = 'Error executing '.join(map(str, cmd))
-                    self.services.error(logMsg)
-                    raise Exception(logMsg)
+            COPY_FILES = config.get_component_param(self, services,
+                'COPY_FILES', optional = True)
+            COPIED_FILES_NEW_NAMES = config.get_component_param(self, services,
+                'COPIED_FILES_NEW_NAMES', optional = True)
+            # Check if there are files to be copied
+            if COPY_FILES is not None and len(COPY_FILES) > 0:
+                COPY_FILES = COPY_FILES.split(' ')
+                COPIED_FILES_NEW_NAMES = COPIED_FILES_NEW_NAMES.split(' ')
+                # Verify that list lengths are the same
+                if len(COPY_FILES) != len(COPIED_FILES_NEW_NAMES):
+                    message = ('Error in generic_component init: COPY_FILES and '
+                        'COPIED_FILES_NEW_NAMES lists are different lengths')
+                    print(message)
+                    self.services.error(message)
+                    raise Exception(message)
+
+                # Copy the files
+                for i in range(len(COPY_FILES)):
+                    try:
+                        os.system('cp ' + COPY_FILES[i] + ' ' + COPIED_FILES_NEW_NAMES[i])
+                    except OSError as xxx_todo_changeme:
+                        (errno, strerror) = xxx_todo_changeme.args
+                        print('Error copying file %s to %s' % (COPY_FILES[i],
+                         COPIED_FILES_NEW_NAMES[i]), strerror)
+                        services.error(COPY_FILES[i] + '-> ' + COPIED_FILES_NEW_NAMES[i])
+                        raise Exception('Error copying COPY_FILES -> COPIED_FILES_NEW_NAMES')
 
 
 # Update  state
@@ -193,6 +231,7 @@ class basic_init (Component):
 
 # "Archive" output files in history directory
         services.stage_output_files(timeStamp, self.OUTPUT_FILES)
+        print(' ')
 
 # ------------------------------------------------------------------------------
 #
@@ -207,6 +246,7 @@ class basic_init (Component):
         services = self.services
         services.stage_state()
         services.save_restart_files(timestamp, self.RESTART_FILES)
+        print(' ')
 
 # ------------------------------------------------------------------------------
 #
@@ -217,3 +257,4 @@ class basic_init (Component):
 
     def finalize(self, timestamp=0.0):
         print('basic_init.finalize() called')
+        print(' ')

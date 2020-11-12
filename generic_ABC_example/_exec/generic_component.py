@@ -3,16 +3,20 @@
 """
 generic_component 10/27/2020 (Batchelor)
 
-A simple IPS component wrapper for the case that the only thing needed is the staging
-of input and state files to the work directory, execution of the physics code, and updating 
+A simple IPS component wrapper for the case that the only thing needed is the staging of
+input and state files to the work directory, execution of the physics code, and updating
 of state files and archiving of the output files.  It does no processing of the input and
-state files nor processing of the output files and state files which have been modified by
-the physics code.  In other words it is useful if the user has in hand, or other components
-produce, input files readable by the physics code, and the code output files can be used 
-as is.  The component is generic in that it can, without modification, wrap any physics 
-code for use with IPS.  It could also be used as a starting template for a more general 
-component.  The specification of all aspects of the component to be implemented occurs in 
-the simulation configuration file.
+state files nor processing of the output files or state files which have been modified by
+the physics code, except possible copying of input or output files.  In other words it is
+useful if the user has in hand, or other components produce, input files readable by the
+physics code, and the code output files can be used as is.  The component is generic in
+that it can, without modification, wrap any physics code for use with IPS.  The
+specification of all aspects of the component to be implemented is in the simulation
+configuration file.  No Python programming at all is required.
+
+It could also be used as a starting template for a much more general component.  An optional
+service is provided to execute helper codes before and after the physics code run.  Thus
+additional processing, such as translation between file formats can be modularly accommodated.
 
 There are three classes of files specified in the config file: 
 1) Input files which are likely used only by the physics code and are the static during  
@@ -33,6 +37,19 @@ done in the simulation INIT component using the basic_init.py code.
 Output files are archived to an appropriate subdirectory  of the /simulation_results/ 
 directory.
 
+The physics code may expect generic names of input files (e.g. <my_code>.in) which are not
+convenient to use in the input directory or it may produce output files with inconvenient 
+names. Therefore an optional service is provided to copy some files to new names   
+before code execution and copy others after execution.  This is the only file processing  
+done by this component.
+
+If more work needs to be done before or after the physics code does its work, one can
+specify a list of PRE_RUN_HELPER_CODES and/or POST_RUN_HELPER_CODES (full path) in the config
+file which if present will be executed.  Such codes for example might interact with the
+Plasma State. If input files are needed for the helper codes they must also be specified
+in the component section of the config file.
+
+
 Configuration parameters:
 
 [generic_component]
@@ -50,11 +67,23 @@ Configuration parameters:
     OUTPUT_FILES = list of output files to be archived
     STATE_FILES = list of state files used by EXECUTABLE (input or output)
     RESTART_FILES = files needed for restart
-
+# Optional parameters
+    PRE_RUN_COPY_FILES = list of files to be copied before code run
+    PRE_RUN_COPY_NEW_NAMES = list of new names for files, must match PRE_RUN_COPY_FILES
+    POST_RUN_COPY_FILES = list of files to be copied after code run
+    POST_RUN_COPY_NEW_NAMES = list of new names for files, must match POST_RUN_COPY_FILES
+    PRE_RUN_HELPER_CODES = list of codes to be executed before physics code run (full path)
+    POST_RUN_HELPER_CODES = list of codes to be executed after physics code run (full path)
+    LOGFILE_NAME = log file into which code standard out is directed (default = logfile.log,
+                   to send output to stdout instead of logfile try = /dev/stdout)
+    COMMAND_LINE_ARGS = any commmand line arguments that need to be fed to the code execution
+    
 """
 
 import utils.simple_assignment_file_edit as edit
 import utils.get_IPS_config_parameters as config
+import subprocess
+import os
 from component import Component
 
 
@@ -111,6 +140,10 @@ class generic_component (Component):
             self.services.exception('Error in call to stage_input_files()')
             raise
 
+        LOGFILE_NAME = config.get_component_param(self, services, 'LOGFILE_NAME',
+            optional = True)
+        COMMAND_LINE_ARGS = config.get_component_param(self, services, 'COMMAND_LINE_ARGS',
+            optional = True)
 
     # Update  state files in state work directory
         try:
@@ -178,8 +211,31 @@ class generic_component (Component):
         NPROC = config.get_component_param(self, services, 'NPROC')
         EXECUTABLE = config.get_component_param(self, services, 'EXECUTABLE', verbose=False)
 
+
+    # Get component-specific optional configuration parameters.
+
+        PRE_RUN_COPY_FILES = config.get_component_param(self, services,
+            'PRE_RUN_COPY_FILES', optional = True, verbose = False)
+        PRE_RUN_COPY_NEW_NAMES = config.get_component_param(self, services,
+            'PRE_RUN_COPY_NEW_NAMES', optional = True, verbose = False)
+        POST_RUN_COPY_FILES = config.get_component_param(self, services,
+            'POST_RUN_COPY_FILES', optional = True, verbose = False)
+        POST_RUN_COPY_NEW_NAMES = config.get_component_param(self, services,
+            'POST_RUN_COPY_NEW_NAMES', optional = True, verbose = False)
+
+        PRE_RUN_HELPER_CODES = config.get_component_param(self, services,
+            'PRE_RUN_HELPER_CODES', optional = True, verbose = False)
+        POST_RUN_HELPER_CODES = config.get_component_param(self, services,
+            'POST_RUN_HELPER_CODES', optional = True, verbose = False)
+
+        LOGFILE_NAME = config.get_component_param(self, services, 'LOGFILE_NAME',
+            optional = True, verbose = False)
+        COMMAND_LINE_ARGS = config.get_component_param(self, services, 'COMMAND_LINE_ARGS',
+            optional = True, verbose = False)
+
 # Nota Bene: On STEP we get input files first then state.  That way any initial state files
-# input directory are overwritten by the current files in state.  It's reversed on INIT.
+#  in the input directory are overwritten by the current files in state.  It's reversed 
+#  on INIT.
 
     # Get input files
         try:
@@ -197,12 +253,63 @@ class generic_component (Component):
             services.exception('Error in call to stage_state()')
             raise
 
-    # Run code
+    # Copy files if there are files to be renamed before physics code run
+
+        COPY_FILES = PRE_RUN_COPY_FILES
+        COPIED_FILES_NEW_NAMES = PRE_RUN_COPY_NEW_NAMES
+        # Check if there are files to be renamed
+        if COPY_FILES is not None and len(COPY_FILES) > 0:
+            COPY_FILES = COPY_FILES.split(' ')
+            COPIED_FILES_NEW_NAMES = COPIED_FILES_NEW_NAMES.split(' ')
+            # Verify that list lengths are the same
+            if len(COPY_FILES) != len(COPIED_FILES_NEW_NAMES):
+                message = ('Error in generic_component init: COPY_FILES and '
+                    'COPIED_FILES_NEW_NAMES lists are different lengths')
+                print(message)
+                self.services.error(message)
+                raise Exception(message)
+            # Copy the files
+            for i in range(len(COPY_FILES)):
+                try:
+                    os.system('cp ' + COPY_FILES[i] + ' ' + COPIED_FILES_NEW_NAMES[i])
+                except OSError as xxx_todo_changeme:
+                    (errno, strerror) = xxx_todo_changeme.args
+                    print('Error copying file %s to %s' % (COPY_FILES[i],
+                     COPIED_FILES_NEW_NAMES[i]), strerror)
+                    services.error(COPY_FILES[i] + '-> ' + COPIED_FILES_NEW_NAMES[i])
+                    raise Exception('Error copying COPY_FILES -> COPIED_FILES_NEW_NAMES')
+
+   # Execute PRE_RUN_HELPER_CODES if any
+        # Check if there are codes to be run
+        if PRE_RUN_HELPER_CODES is not None and len(PRE_RUN_HELPER_CODES) > 0:
+            HELPER_CODES = PRE_RUN_HELPER_CODES.split(' ')
+            for code in HELPER_CODES:
+                cmd = [code]
+                print('Executing ', cmd)
+                services.send_portal_event(event_type='COMPONENT_EVENT',
+                                           event_comment=cmd)
+                retcode = subprocess.call(cmd)
+                if (retcode != 0):
+                    logMsg = 'Error executing '.join(map(str, cmd))
+                    self.services.error(logMsg)
+                    raise Exception(logMsg)
+
+
+    # Run physics code
+        if LOGFILE_NAME is not None and len(LOGFILE_NAME) > 0:
+            LOGFILE = LOGFILE_NAME
+        else:
+            LOGFILE = 'logfile.log'
+
+
         cmd = EXECUTABLE
-        print('Executing = ', cmd)
+        if COMMAND_LINE_ARGS is not None and len(COMMAND_LINE_ARGS) > 0:
+            cmd = EXECUTABLE + COMMAND_LINE_ARGS
+       
+        print('\nExecuting = ', cmd)
         services.send_portal_event(event_type='COMPONENT_EVENT',event_comment=cmd)
         cwd = services.get_working_dir()
-        task_id = services.launch_task(NPROC, cwd, cmd)
+        task_id = services.launch_task(self.NPROC, cwd, cmd, logfile=LOGFILE)
         retcode = services.wait_task(task_id)
         if (retcode != 0):
             message = 'Error executing ', cmd
@@ -211,6 +318,48 @@ class generic_component (Component):
             raise Exception(message)
         print(cmd, ' finished \n')
 
+
+   # Execute POST_RUN_HELPER_CODES if any
+        # Check if there are codes to be run
+        if POST_RUN_HELPER_CODES is not None and len(POST_RUN_HELPER_CODES) > 0:
+            HELPER_CODES = POST_RUN_HELPER_CODES.split(' ')
+            for code in HELPER_CODES:
+                cmd = [code]
+                print('Executing ', cmd)
+                services.send_portal_event(event_type='COMPONENT_EVENT',
+                                           event_comment=cmd)
+                retcode = subprocess.call(cmd)
+                if (retcode != 0):
+                    logMsg = 'Error executing '.join(map(str, cmd))
+                    self.services.error(logMsg)
+                    raise Exception(logMsg)
+
+    # Copy files if there are files to be renamed after physics code run
+
+        COPY_FILES = POST_RUN_COPY_FILES
+        COPIED_FILES_NEW_NAMES = POST_RUN_COPY_NEW_NAMES
+        # Check if there are files to be renamed
+        if COPY_FILES is not None and len(COPY_FILES) > 0:
+            COPY_FILES = COPY_FILES.split(' ')
+        if COPIED_FILES_NEW_NAMES is not None and len(COPIED_FILES_NEW_NAMES) > 0:
+            COPIED_FILES_NEW_NAMES = COPIED_FILES_NEW_NAMES.split(' ')
+            # Verify that list lengths are the same
+            if len(COPY_FILES) != len(COPIED_FILES_NEW_NAMES):
+                message = ('Error in generic_component init: COPY_FILES and '
+                    'COPIED_FILES_NEW_NAMES lists are different lengths')
+                print(message)
+                self.services.error(message)
+                raise Exception(message)
+            # Copy the files
+            for i in range(len(COPY_FILES)):
+                try:
+                    os.system('cp ' + COPY_FILES[i] + ' ' + COPIED_FILES_NEW_NAMES[i])
+                except OSError as xxx_todo_changeme:
+                    (errno, strerror) = xxx_todo_changeme.args
+                    print('Error copying file %s to %s' % (COPY_FILES[i],
+                     COPIED_FILES_NEW_NAMES[i]), strerror)
+                    services.error(COPY_FILES[i] + '-> ' + COPIED_FILES_NEW_NAMES[i])
+                    raise Exception('Error copying COPY_FILES -> COPIED_FILES_NEW_NAMES')
 
 # Update state files in state work directory
         try:
@@ -230,7 +379,7 @@ class generic_component (Component):
             services.error(message)
             raise
 
-        return
+        return 0
 
 # ------------------------------------------------------------------------------
 #

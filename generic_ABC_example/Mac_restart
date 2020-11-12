@@ -1,4 +1,3 @@
 source env.ABC_example
-mkdir www
 ips.py --simulation=generic_ABC_simulation_restart.config --platform=platform.conf
 
