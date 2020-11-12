@@ -1,5 +1,5 @@
 # generic_ABC_example
-
+# 
 A reworked version of the *ABC_example* to use the *generic_component.py* for all three
 (A,B,C) components. As with the *ABC_example* this example is fully self contained here.
 The inputs are located in the *_input* directory and the codes are in *_exec*.  As such it
@@ -25,7 +25,7 @@ C\_comp - Demonstrates redirecting stdio of the "physics code" to real stdio, wh
 equivalent to eliminating the LOGFILE_NAME variable from the config file
 
 ## generic_component.py
-
+## 
 *generic_component.py* is an IPS component wrapper for the case that the only thing needed
 is the staging of input and state files to the work directory, execution of the physics
 code, updating of state files and archiving of the output files.  It does no processing of
@@ -33,7 +33,8 @@ the input and state files nor processing of the output files or state files whic
 been modified by the physics code, except possible copying of input or output files to
 more convenient names. In other words it  is useful if the user has in hand, or other
 components produce, input files readable by the physics code, and the code output files
-can be used as is. The component is generic in that it can, without modification, wrap any
+can be used as is. It also supports running helper codes before and/or after running the
+physics code. The component is generic in that it can, without modification, wrap any
 physics code for use with IPS.  It could  also be used as a starting template for a more
 general component.  The specification of  all aspects of the component to be implemented
 is in the simulation configuration file.  For more details see the docstring in
@@ -41,7 +42,7 @@ is in the simulation configuration file.  For more details see the docstring in
 
 
 ## basic_init.py
- 
+## 
 *basic_init.py* collects a complete set of initial state files and stages them to the 
 /work/state/ directory. It is expanded from the simpler version presently in the
 *ABC_simulation* which itself is simplified and adapted from *generic_ps_init.py*, but
