@@ -10,7 +10,8 @@ directory. The input files correspond to an ECH regression test case
 D3D\_96143\_one\_ray/edison\_test
 
 The example uses the basic\_driver.py and the generic\_component.py instead of a CQL3D
-specific components. The full path to the CQL3D executable appears in the config file.  It
-presently points to the AToM collection of code binaries on NERSC Cori:
+specific component. The full path to the CQL3D executable appears in the env.COMPX\_codes
+file in /ips-wrappers/. It presently points to the AToM collection of code binaries on
+NERSC Cori:
 
 /global/common/software/atom/cori/binaries/cql3d/m77_CompX/
