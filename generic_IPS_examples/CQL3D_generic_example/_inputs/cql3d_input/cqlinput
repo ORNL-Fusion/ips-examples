@@ -1,0 +1,292 @@
+ &setup
+ ibox='box g35',
+ iuser='harvey',
+ ioutput=6,
+ lrz=15
+ noplots='enabled'
+ mnemonic='96143_one_ray.1_short'
+ &end
+**
+ &setup
+ acoefne=-1.80,-7.83,+051.57,-353.68
+ acoefte=8.01,-13.60,+08.69,-114.59
+ bnumb(1)=-1.,
+ bnumb(2)=1.0,
+ bnumb(3)=-1.,
+ bootst='disabled',
+ bth=1.00e+3,
+ btor=1.032e+4,
+ chang='noneg',
+ colmodl=3,
+ contrmin=1.e-12,
+ dtr=1.e-3
+ eegy(1,1,1,1)=0.,
+ eegy(1,2,1,1)=2.,
+ eegy(2,1,1,1)=0.,
+ eegy(2,2,1,1)=6.,
+ elecfld(0)=+4.68e-4,
+ elecfld(1)=+4.68e-4,
+ enloss(1)=200.,
+ enmax=100.,
+ enmin=05.,
+ enorm=500.
+ eoved=.00,
+ ephicc=1.,
+ fds=.2,
+ fmass(1)=9.1095e-28,
+ fmass(2)=3.3433e-24,
+ fmass(3)=9.1095e-28,
+ gamaset=0.,
+ gsla=270.,gslb=35.,
+ iactst='enabled',
+ idskf='disabled',
+ idskrf='disabled',
+ implct='enabled',
+ ineg='disabled',
+ iproelec='spline',
+ iprone='spline',
+ iprote='spline',
+ iproti='spline',
+ iprozeff='spline',
+ irzplt(1)=2,
+ irzplt(2)=4,
+ irzplt(3)=6,
+ irzplt(4)=8,
+ irzplt(5)=10,
+ irzplt(6)=0,
+ iy=100,
+ izeff='backgrnd',
+ jx=100,
+ kfrsou=0,
+ kpress(2)='enabled',
+ kspeci(1,1)='e',kspeci(2,1)='general',
+ kspeci(1,2)='d',kspeci(2,2)='maxwell',
+ kspeci(1,3)='e',kspeci(2,3)='maxwell',
+ lbdry(1)='scale',
+ locquas='disabled',
+ lossmode(1)='disabled',
+ lz=80,
+ machine='toroidal',
+ manymat='disabled'
+ meshy='fixed_y',
+ mpwr=0.1, 1.00, 1.00, 1.00
+ mx=3,
+ nchec=1,
+ ncoef=1,
+ ncont=20,
+ nen=30,
+ netcdfnm='enabled'
+ netcdfvece='enabled',
+ netcdfvecrf='enabled',
+ netcdfvecal='enabled',
+ netcdfvecs='irzplt',
+ ngen=1,
+ njene=11,
+ nmax=2,
+ noffel=10000,
+ nonel=0,
+ nplot=2,
+ nplt3d=2
+ npwr=2.,2.,2.,2.,
+ nrskip=0,
+ nrstrt=1,
+ nstop=2,
+ numby=30,
+ nv=2,
+ partner='bramb',
+ plt3d='enabled',
+ pltd='enabled',
+ pltdn='disabled',
+ pltend='enabled',
+ pltfvs='enabled',
+ pltinput='enabled',
+ pltlim='x'
+ pltlimm=0.2
+ pltmag=1.,
+ pltpowe='last',
+ pltprpp='disabled',
+ pltrst='disabled',
+ pltstrm='disabled',
+ pltvecal='enabled',
+ pltvecc='disabled',
+ pltvece='disabled',
+ pltvecrf='enabled',
+ pltvflu='disabled',
+ pltvs='rho',
+ profpsi='disabled',
+ psimodel='spline',
+ qsineut='disabled',
+ radmaj=700.,
+ radmin=250.,
+ rd=300.,
+ reden(1,0)=3.0e13
+ reden(1,1)=0.3e13
+ reden(2,0)=3.0e13
+ reden(2,1)=0.3e13
+ reden(3,0)=3.0e13
+ reden(3,1)=0.3e13
+ relativ='enabled',
+ rfacz=1.,
+ rmirror=7.5,
+ rovera=1.e-6,
+ roveram=.00,
+ rya(1)=.05 .200,.250,.275,.30,.325,.35,.375
+ rya(8)=.4,.425,.45,.5,.75,.9,
+ ryain =  0.0 .1 .2 .3 .4 .5 .6 .7 .8 .9 1.0
+ rzset='enabled',
+ softxry='enabled',
+ syncrad='disabled',
+ tauloss(1,1)=.3,
+ tauloss(2,1)=0.,
+ tauloss(3,1)=0.,
+ tbnd=.002,
+ tein = 3.38 3.20 2.77 2.20 1.64 1.18 .83 .56 .36 .19 .05
+ temp(1,0)=4.0
+ temp(1,1)=0.1
+ temp(2,0)=4.0
+ temp(2,1)=0.1
+ temp(3,0)=4.0
+ temp(3,1)=0.1
+ tfac=0.75,
+ tfacz=1.,
+ thet1=80.,90.
+ thet2=170.,180.
+ thetd=0.0
+ tiin= 3.29 2.67 2.08 1.71 1.47 1.29 1.06 .78 .45  .10
+ torloss(1)='disabled',
+ veclnth=2.0
+ xfac=+.5,
+ xlwr=.085,
+ xmdl=.25,
+ xpctlwr=.1,
+ xpctmdl=.4,
+ ylower=1.22,
+ yreset='disabled',
+ yupper=1.275,
+ zeffin(1)=2.06 2.08 2.13 2.23 2.40 2.66 2.96 3.18 3.29 3.27 3.08
+ zmax=408.
+ iproelec='spline',
+ iprone='spline',
+ iprote='spline',
+ iproti='spline',
+ iprozeff='spline',
+ njene= 11
+ ryain=     0.0  0.1  0.2  0.3  0.4  0.5  0.6  0.7  0.8  0.9  1.0
+ enein=      2.671E+13      2.613E+13     2.458E+13    2.236E+13
+             1.975E+13      1.703E+13     1.442E+13    1.193E+13
+             0.952E+13      0.715E+13     0.481E+13
+ tein= 3.10  2.95  2.57  2.08  1.58  1.16  0.84  0.58  0.38  0.20  0.04
+ tiin= 3.57  3.29  2.67  2.08  1.71  1.47  1.29  1.06  0.78  0.45  0.10
+ zeffin(1)=  1.93  1.96  2.04  2.18  2.36  2.56  2.78  2.97  3.12  3.15 2.88
+ elecin(1)= -9.56741e-5   -1.09526e-4  -1.47339e-4 -1.98782e-4
+            -2.51971e-4   -3.00431e-4  -3.42281e-4 -3.73012e-4
+            -3.87655e-4   -3.85237e-4  -3.71319e-4
+  ryain=     0.0  0.1  0.2  0.3  0.4  0.5  0.6  0.7  0.8  0.9  1.0
+ enein(1,1)=  2.61620E+13    2.55845E+13   2.40441E+13  2.18294E+13
+             1.92288E+13    1.65319E+13   1.39627E+13  1.15152E+13
+             0.915565E+13   0.685027E+13  0.456520E+13
+ tein= 3.14  2.98  2.60  2.09  1.58  1.13  0.80  0.57  0.38  0.20  0.02
+ tiin= 3.57  3.29  2.67  2.08  1.71  1.47  1.29  1.06  0.78  0.45  0.10
+ zeffin(1)=  1.94  1.97  2.06  2.19  2.39  2.63  2.87  3.07  3.20  3.21 2.98
+ nonel=10000,
+ elecin(1)= +1.10980e-4   +1.26268e-4  +1.68667e-4 +2.27669e-4
+            +2.87389e-4   +3.33724e-4  +3.61670e-4 +3.75660e-4
+            +3.82248e-4   +3.81801e-4  +3.66867e-4
+ rya(1)=    .1 .250  .270  .290  .310  .330   0.350  .370
+ rya(9)=    .390  .410  .430  .450  .500   0.700  .900
+ &end
+**
+ &trsetup
+ adimeth='disabled',
+ difusr=1.0e4,
+ pinch='simple',
+ relaxden=1.,
+ relaxtsp='enabled',
+ transp='disabled',
+ advectr=1.
+ &end
+**
+ &sousetup
+ noffso(1,1)=10000,noffso(1,2)=10000,
+ nonso(1,1)=0,nonso(1,2)=0,
+ nso=0,
+ nsou=1,
+ pltso='enabled',
+ soucoord='disabled',
+ komodel='mr'
+ flemodel='pol'
+ knockon='enabled'
+ jfl=350
+ nkorfn=1,
+ nonko=0
+ noffko=10000
+ soffvte=-3.
+ soffpr=0.5
+ isoucof=1
+ faccof=0.5
+ xlfac=-0.5,
+ xllwr=.0005,
+ xlmdl=.050,
+ xlpctlwr=.15,
+ xlpctmdl=.60
+ &end
+**
+ &eqsetup
+ atol=1.e-8,
+ bsign=-1.
+ ellptcty=0.,
+ eqmod='enabled',
+ eqpower=2,
+ eqsource='eqdsk',
+ fpsimodl='constant',
+ methflag=10,
+ nconteq='disabled',
+ nconteqn=50,
+ rbox=92.,
+ rboxdst=120.,
+ rmag=166.,
+ rtol=1.e-8,
+ zbox=92.
+ &end
+**
+ &rfsetup
+ call_lh='disabled',
+ call_ech='disabled',
+ call_fw='disabled',
+ lh='disabled',
+ ech='enabled',
+ fw='disabled',
+ iurfl='disabled',
+ iurfcoll='disabled',
+ nbssltbl=2000,
+ nharms=2,
+ nharm1=2,
+ nrfitr1=1000,
+ nrfitr2=0,
+ nrfitr3=1,
+ nrfpwr=0,
+ nrfstep1(1)=600,
+ nrfstep1(2)=600,
+ nrfstep2=000,
+ noffrf(1)=100000,
+ nonrf(1)=0,
+ nrf=0,
+ pwrscale(1)=1.e-6
+ pwrscale(2)=1.e-6
+ scaleurf='enabled',
+ urfdmp='secondd',
+ urfmod='enabled',
+ vlfmod='disabled',
+ vlhmod='disabled',
+ vparmax=.7956,
+ vparmin=.1768,
+ vprprop='disabled'
+ &end
+**
+ &frsetup
+ &end
+end
+end
+LEAVE
+THESE
+HERE
