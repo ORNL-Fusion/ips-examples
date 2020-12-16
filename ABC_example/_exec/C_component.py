@@ -17,7 +17,7 @@ code's usual I/O.  The role of the component wrapper is to:
 """
 import utils.simple_assignment_file_edit as edit
 import utils.get_IPS_config_parameters as config
-from component import Component
+from ipsframework import Component
 
 
 class C_component (Component):
