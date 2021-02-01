@@ -1,4 +1,4 @@
 source env.ABC_example
 mkdir www
-ips.py --simulation=ABC_simulation.config --platform=platform.conf
+ips.py --config=ABC_simulation.config --platform=platform.conf
 
