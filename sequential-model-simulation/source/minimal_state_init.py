@@ -32,7 +32,7 @@
 # by the framework from the path indicated by the INPUT_DIR config parameter in the 
 # [minimal_state_init] section.  The new values of ps%t0 and ps%tfinal are written into
 # CURRENT_STATE, and CURRENT_STATE is copied to PRIOR_STATE and NEXT_STATE if these are
-# in the PLASMA_STATE_FILES list.  The state files are copied to the plasma state work
+# in the STATE_FILES list.  The state files are copied to the plasma state work
 # directory by services.update_plasma_state().
 #
 # Nota Bene: For restart the plasma state files should be listed in the config file as  
