@@ -9,7 +9,9 @@
 source $U2115/ips-wrappers/env.ips.cori
 #source $IPS_WRAPPER_PATH_CORI/env.ips.cori
 mkdir www
-$IPS_PATH/bin/ips.py --config=sequential_model_simulation.config --platform=conf.ips.cori --log=log.framework 2>>log.stdErr 1>>log.stdOut
+module load python
+source activate my_ips_env
+ips.py --config=sequential_model_simulation.config --platform=conf.ips.cori --log=log.framework 2>>log.stdErr 1>>log.stdOut
 egrep -i 'error' log.* > log.errors
 ./setPermissions.sh
 

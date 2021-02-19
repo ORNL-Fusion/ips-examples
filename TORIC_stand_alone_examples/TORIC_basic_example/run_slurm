@@ -12,6 +12,8 @@ source $IPS_WRAPPER_PATH/env.ips.cori
 source $LOCAL_WRAPPER_PATH/use_local_wrappers
 
 source $IPS_WRAPPER_PATH/env.TORIC_binary
+module load python
+source activate my_ips_env
 ips.py --config=TORIC_basic_example.config --platform=conf.ips.cori --log=log.framework 2>>log.stdErr 1>>log.stdOut
 egrep -i 'error' log.* > log.errors
 ./setPermissions.sh
