@@ -12,8 +12,9 @@ source $IPS_WRAPPER_PATH/env.ips.cori
 source $LOCAL_WRAPPER_PATH/use_local_wrappers
 
 source $IPS_WRAPPER_PATH/env.TORIC_binary
-module load python
-source activate my_ips_env
+# Uncomment next line to use the local wrappers with new-ips package
+source $LOCAL_WRAPPER_PATH/env.new-ips-local-wrappers.cori
+source /global/common/software/atom/cori/ips-framework-new/bin/activate
 ips.py --config=TORIC_ITER_TSC.config --platform=conf.ips.cori --log=log.framework 2>>log.stdErr 1>>log.stdOut
 egrep -i 'error' log.* > log.errors
 ./setPermissions.sh

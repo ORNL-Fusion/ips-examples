@@ -7,15 +7,20 @@
 #SBATCH --constraint=haswell
 
 cd $SLURM_SUBMIT_DIR   # optional, since this is the default behavior
-source $ATOM/ips-wrappers/env.ips.cori   # N.B. This is the Cori installation
+##source $ATOM/ips-wrappers/env.ips.cori   # N.B. This is the Cori installation
 
 # Uncomment next line to use the local wrappers (e.g for development)
-source $LOCAL_WRAPPER_PATH/use_local_wrappers
+#source $LOCAL_WRAPPER_PATH/use_local_wrappers
+
+# Uncomment next line to use the local wrappers with new-ips package
+source $LOCAL_WRAPPER_PATH/env.new-ips-local-wrappers.cori
+
+# Uncomment next line to use the local wrappers with new-ips package
+source $LOCAL_WRAPPER_PATH/env.new-ips-local-wrappers.cori
 
 source $IPS_WRAPPER_PATH/env.COMPX_codes
-module load python
-source activate my_ips_env
-ips.py --config=GENRAY_basic_example_LH.config --platform=conf.ips.cori --log=log.framework 2>>log.stdErr 1>>log.stdOut
+
+source /global/common/software/atom/cori/ips-framework-new/bin/activateips.py --config=GENRAY_basic_example_LH.config --platform=conf.ips.cori --log=log.framework 2>>log.stdErr 1>>log.stdOut
 egrep -i 'error' log.* > log.errors
 ./setPermissions.sh
 
