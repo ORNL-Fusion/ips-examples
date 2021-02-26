@@ -6,18 +6,37 @@ Skip this if you've already installed the new version of the IPS.
 
    /global/common/software/atom/cori/ips-framework-new/bin
    
-   So there is no need to install the new IPS for running on Cori.
-
-For information on installing the your own copy of new IPS version at NERSC see documentation at:
-https://ips-framework.readthedocs.io/en/latest/user_guides/nersc_conda.html
+   So there is no need to install the new IPS for running on Cori.  For information on installing the your own copy of new IPS version at NERSC see documentation at:
+   
+   https://ips-framework.readthedocs.io/en/latest/user_guides/nersc_conda.html
 
 2. For information on installing the new IPS version on a local machine see documentation at:
 https://ips-framework.readthedocs.io/en/latest/getting_started/getting_started.html
 
+## Clone your own copies of the wrappers and examples repositories
+```
+mkdir IPS
+cd IPS
+git clone https://github.com/ORNL-Fusion/ips-wrappers.git
+git clone https://github.com/ORNL-Fusion/ips-examples.git
+```
+Checkout the dbb_ex_new_ips and dbb_wr_new_ips branches.  These branches have the modifications needed for the examples using the new IPS package.
+
+```
+git checkout dbb_ex_new_ips
+git checkout dbb_wr_new_ips
+```
+
 ## Run examples
 
 1. Source the IPS environemnt
-
+   The environment presently in the /global/common/software/atom/cori//global/common/software/atom/cori/ installation is presently not compatible
+   with the new ips package.  So for now you need your own local copy of the wrappers. You will also need to export
+   the path to your wrappers in your .bashrc file e.g.
+   
+```
+export LOCAL_WRAPPER_PATH=\<path to your wrappers\>
+```   
 
 2. Run the ABC example
   * Locally
