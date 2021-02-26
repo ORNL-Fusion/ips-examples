@@ -31,11 +31,12 @@ git checkout dbb_wr_new_ips
 
 1. Source the IPS environemnt
    The environment presently in the /global/common/software/atom/cori//global/common/software/atom/cori/ installation is presently not compatible
-   with the new ips package.  So for now you need your own local copy of the wrappers. You will also need to export
-   the path to your wrappers in your .bashrc file e.g.
+   with the new ips package.  So for now you need your own local copys of the wrappers and examples. You will also need to export
+   the path to your wrappers and examples in your .bashrc file e.g.
    
 ```
-export LOCAL_WRAPPER_PATH=\<path to your wrappers\>
+export LOCAL_WRAPPER_PATH=\<path to your ips-wrappers\>
+export LOCAL_EXAMPLES_PATH=\<path to your ips-examples\>
 ```   
 
 2. Run the ABC example
