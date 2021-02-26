@@ -35,8 +35,8 @@ git checkout dbb_wr_new_ips
    the path to your wrappers and examples in your .bashrc file e.g.
    
 ```
-export LOCAL_WRAPPER_PATH=\<path to your ips-wrappers\>
-export LOCAL_EXAMPLES_PATH=\<path to your ips-examples\>
+export LOCAL_WRAPPER_PATH=<path to your ips-wrappers>
+export LOCAL_EXAMPLES_PATH=<path to your ips-examples>
 ```   
 
 2. Run the ABC example
