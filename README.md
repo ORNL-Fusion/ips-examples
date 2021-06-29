@@ -1,13 +1,21 @@
 # Info for the dbb_ex_new_ips branch
+## Note on migrating from the old IPS version
+Configuration files for workflows for the old IPS has a variable IPS_ROOT.   This is no longer
+used with the new framework and will cause a problem if present.  Specifically a line in the config file of the form:
+
+```
+IPS_ROOT = $IPS_PATH
+```
+should be eliminated or commented out.
 ## Install the IPS
 Skip this if you've already installed the new version of the IPS.
 
 1. At NERSC Cori there is an installation of the new IPS framework at
 
    /global/common/software/atom/cori/ips-framework-new/bin
-   
+
    So there is no need to install the new IPS for running on Cori.  For information on installing the your own copy of new IPS version at NERSC see documentation at:
-   
+
    https://ips-framework.readthedocs.io/en/latest/user_guides/nersc_conda.html
 
 2. For information on installing the new IPS version on a local machine see documentation at:
@@ -33,11 +41,11 @@ git checkout dbb_wr_new_ips
    The environment presently in the /global/common/software/atom/cori//global/common/software/atom/cori/ installation is presently not compatible
    with the new ips package.  So for now you need your own local copies of the wrappers and examples. You will also need to export
    the path to your wrappers and examples in your .bashrc file e.g.
-   
+
 ```
 export LOCAL_WRAPPER_PATH=<path to your ips-wrappers>
 export LOCAL_EXAMPLES_PATH=<path to your ips-examples>
-```   
+```
 
 2. Run the ABC example
   * Locally
