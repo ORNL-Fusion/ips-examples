@@ -1,6 +1,15 @@
 # Info for the dbb_ex_new_ips branch
-## Note on migrating from the old IPS version
-Configuration files for workflows for the old IPS has a variable IPS_ROOT.   This is no longer
+## Notes on migrating from the old IPS version
+
+In moving from the old framework to the new one modifications are needed in component 
+wrapper codes and to batch scripts and simulation configuration files.  Information on
+needed code modifications can be found at:
+
+```
+https://ips-framework.readthedocs.io/en/latest/user_guides/migration.html
+```
+
+Configuration files for workflows for the old IPS have a variable IPS_ROOT.   This is no longer
 used with the new framework and will cause a problem if present.  Specifically a line in the config file of the form:
 
 ```
