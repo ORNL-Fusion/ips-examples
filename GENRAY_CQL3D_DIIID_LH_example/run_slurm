@@ -1,21 +1,18 @@
-#!/bin/bash -l
-#SBATCH --account=atom
-#SBATCH --partition debug
-#SBATCH --nodes=1
-#SBATCH --time=10:00
-#SBATCH --output=log.slurm.stdOut
-#SBATCH --constraint=haswell
+#!/bin/bash -x
+#SBATCH -p debug
+#SBATCH -N 1
+#SBATCH -C haswell
+#SBATCH -t 00:05:00
+#SBATCH -o ips.out
+#SBATCH -e ips.err
 
-cd $SLURM_SUBMIT_DIR   # optional, since this is the default behavior
-source $IPS_WRAPPER_PATH/env.ips.cori   # N.B. This is the Cori installation
-# Switch to use the local wrappers (e.g for development)
-#source $LOCAL_WRAPPER_PATH/use_local_wrappers
+export IPS_WRAPPER_PATH=/global/homes/r/rwp/GENRAY_CQL3D_DIIID_LH/ips-wrappers
+export PYTHONPATH=$IPS_WRAPPER_PATH/utilities:$PYTHONPATH
 
-# Uncomment next line to use the local wrappers with new-ips package
-source $LOCAL_WRAPPER_PATH/env.new-ips-local-wrappers.cori
+export UPDATE_STATE_BIN_DIR=/global/common/software/atom/cori/share/ntcc_intel/bin
+export PATH=$UPDATE_STATE_BIN_DIR:$PATH
 
 source $IPS_WRAPPER_PATH/env.COMPX_codes
+
 source /global/common/software/atom/cori/ips-framework-new/bin/activate
-ips.py --config=GENRAY_CQL3D_LH.config --platform=conf.ips.cori --log=log.framework 2>>log.stdErr 1>>log.stdOut
-egrep -i 'error' log.* > log.errors
-./setPermissions.sh
+ips.py --config=GENRAY_CQL3D_LH.config --platform=conf.ips.cori --log=ips.log
