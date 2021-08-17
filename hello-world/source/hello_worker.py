@@ -1,6 +1,6 @@
 #! /usr/bin/env python
 
-from  component import Component
+from ipsframework import Component
 
 class hello_worker(Component):
     def __init__(self, services, config):

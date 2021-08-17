@@ -18,7 +18,7 @@ codes.  The philosopy of the IPS is to not require any modification of the
 
 import utils.simple_assignment_file_edit as edit
 import utils.get_IPS_config_parameters as config
-from component import Component
+from ipsframework import Component
 
 
 class B_component (Component):

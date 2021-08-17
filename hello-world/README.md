@@ -1,33 +1,21 @@
 # Install the IPS
 Skip this if you've already installed the IPS. 
 
-1. Create an IPS directory and clone the IPS-framework, wrappers, and examples repos.
+1. Clone the examples repo
 ```
-mkdir IPS
-cd IPS
-git clone https://github.com/HPC-SimTools/IPS-framework.git ips-framework
-git clone https://github.com/ORNL-Fusion/ips-wrappers.git
 git clone https://github.com/ORNL-Fusion/ips-examples.git
+cd ips-examples
 ```
-2. Export the `IPS_DIR` environment variable
+2. Export the `IPS_EXAMPLES_PATH` environment variable
 ```
-export IPS_DIR=${PWD}
-```
-3. Add this to your `.bashrc` or otherwise so it's there next time you open a shell (Note: Adapt for `csh` or otherwise).
-```
-echo 'export IPS_DIR='${PWD} >> ~/.bashrc 
+export IPS_EXAMPLES_PATH=${PWD}
 ```
 
 # Run the example
 
-1. Source the IPS environemnt
+1. Run the hello-world example
 ```
-cd $IPS_DIR
-source ips-wrappers/env.ips
-```
-2. Run the hello-world example
-```
-cd ips-examples/hello-world
+cd hello-world
 ips.py --simulation=ips.config --platform=platform.conf
 ```
 To clean all the run files and start with just the input deck run 

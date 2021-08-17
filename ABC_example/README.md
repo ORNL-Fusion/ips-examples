@@ -1,41 +1,30 @@
 # Install the IPS
 Skip this if you've already installed the IPS. 
 
-1. Create an IPS directory and clone the IPS-framework, wrappers, and examples repos.
+1. Clone and examples repo.
 ```
-mkdir IPS
-cd IPS
-git clone https://github.com/HPC-SimTools/IPS-framework.git ips-framework
-cd ips-framework; git checkout v0.1.0; cd ..
-git clone https://github.com/ORNL-Fusion/ips-wrappers.git
 git clone https://github.com/ORNL-Fusion/ips-examples.git
-```
-2. Export the `IPS_DIR` environment variable
-```
-export IPS_DIR=${PWD}
-```
-3. Add this to your `.bashrc` or otherwise so it's there next time you open a shell (Note: Adapt for `csh` or otherwise).
-```
-echo 'export IPS_DIR='${PWD} >> ~/.bashrc 
 ```
 
 # Run the example
 
 1. Source the IPS environment for the (self contained) ABC example 
 ```
-cd $IPS_DIR/ips-examples/ABC_example
+cd ips-examples/ABC_example
 source env.ABC_example
 ```
+
 2. Run the ABC example
   * Locally
 ```
-cd $IPS_DIR/ips-examples/ABC_example
+cd ips-examples/ABC_example
 ips.py --simulation=ABC_simulation.config --platform=platform.conf
 ```
   * On a batch system (e.g., Cori at NERSC)
 ```
 cd $IPS_DIR/ips-examples/ABC_example
 sbatch Cori_run
+
 ```
 To clean all the run files and start with just the input deck run 
 ```
