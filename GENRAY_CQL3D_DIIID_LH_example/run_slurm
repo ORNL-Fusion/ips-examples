@@ -1,4 +1,4 @@
-#!/bin/bash -x
+#!/bin/bash
 #SBATCH -p debug
 #SBATCH -N 1
 #SBATCH -C haswell
@@ -11,5 +11,7 @@ source /global/common/software/atom/cori/ips-wrappers/env.COMPX_codes
 export UPDATE_STATE_BIN_DIR=/global/common/software/atom/cori/share/ntcc_intel/bin
 export PATH=$UPDATE_STATE_BIN_DIR:$PATH
 
-source /global/common/software/atom/cori/ips-framework-new/bin/activate
+module load python
+source activate /global/common/software/atom/cori/ips-framework-new-dev
+
 ips.py --config=GENRAY_CQL3D_LH.config --platform=conf.ips.cori --log=ips.log
