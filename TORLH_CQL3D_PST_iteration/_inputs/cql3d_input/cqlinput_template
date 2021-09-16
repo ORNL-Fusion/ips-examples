@@ -1,6 +1,6 @@
  &setup0
- ibox='box g35',
- iuser='jungpyo' ,
+ ibox='cori',
+ iuser='sfrank' ,
  ioutput=6 ,
  lrz=60,
  nlrestrt='disabled',
@@ -12,6 +12,7 @@
  &setup
  acoefne=-1.80,-7.83,+051.57,-353.68
  acoefte=8.01,-13.60,+08.69,-114.59
+ ampfmod='disabled'
  bnumb(1)=-1.d0,
  bnumb(2)=1.00,
  bnumb(3)=-1.00,
@@ -19,6 +20,7 @@
  bth=1.e+3,
  btor=1.e+4,
  chang='noneg',
+ simpbfac = 1.0
  colmodl=0,
  contrmin=1.e-12,
  dtr=0.0050 ,
@@ -45,6 +47,8 @@
  fmass(1)=9.1095e-28,
  fmass(2)=3.3210e-24,
  fmass(3)=9.1095e-28,
+ f4d_out = 'disabled'
+ TAVG = 'disabled'
  fpld(1,1)=0.0
  gamaset=0,
  gamafac='enabled',
@@ -59,6 +63,8 @@
  iprote='spline',
  iproti='spline',
  iprozeff='spline',
+ ipronn = 'disabled',
+ iprocur = 'disabled',
  irzplt(1)=2,
  irzplt(2)=4,
  irzplt(3)=10,
@@ -136,6 +142,7 @@
  pltvecrf='disabled',
  pltvflu='disabled',
  pltvs='rho',
+ pltrdc='allcolor',
  profpsi='disabled',
  psimodel='axitorus',
  qsineut='disabled',
@@ -232,6 +239,7 @@
  difusr=2.e+17,
  pinch='simple',
  relaxden=1.,
+ difus_io = 4*'disabled'
  relaxtsp='enabled',
  transp='disabled',
  advectr=1.
@@ -294,13 +302,18 @@
  &end
 
  &rfsetup
- rdcmod='format1'
+ rdcmod='format1',
+ nrdc = 1,
+ nrdcspecies = 1,
+ rdcscale = 10*1,
+ rdcfile = 'du0u0_input',9*'notset',
+ rdc_netcdf='disabled',
  call_lh='disabled',
  call_ech='disabled',
  call_fw='disabled',
  lh='disabled',
  ech='disabled',
- fw='enabled',
+ fw='disabled',
  iurfl='enabled',
  iurfcoll='damp_out',
  nbssltbl=2000,
@@ -354,6 +367,7 @@
  awidth(1,1)=60.,
  awidth(1,2)=60.,
  awidth(1,3)=60.,
+ beamplse = 'disabled',
  bcur(1)=110.,
  bcur(2)=110.,
  bcur(3)=110.,
@@ -407,6 +421,7 @@
  fbcur(3,2)=.16,
  fbcur(3,3)=.16,
  frmod='disabled',
+ fr_gyro='disabled',
  frplt='enabled',
  ibcur=1     iborb=0,
  iexcit=-1,
@@ -430,6 +445,8 @@
  zpivot(1)=0.0,
  zpivot(2)=0.0,
  zpivot(3)=0.0
+ READ_BIRTH_PTS = 'disabled'
+ BIRTH_PTS_FILES = 24*'notset'
  &end
 
 NSTX ION CASE:  NBI+FW Shot 108251.00235
