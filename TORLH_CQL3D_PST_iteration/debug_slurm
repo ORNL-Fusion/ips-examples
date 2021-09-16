@@ -7,13 +7,8 @@
 #SBATCH --output=log.slurm.stdOut
 cd $SLURM_SUBMIT_DIR   # optional, since this is the default behavior
 
-module list
-echo 'About to source $ATOM/ips-wrappers/env.ips.cori'
-#source  /global/homes/s/sfrnk/IPS/ips-wrappers/env.ips.cori
 conda deactivate # See if this allows netCDF4 to be imported from env.ips.cori
 source $ATOM/ips-wrappers/env.ips.cori   # N.B. This is the Cori installation
-echo 'After source $ATOM/ips-wrappers/env.ips.cori'
-module list
 
 # Uncomment next line to use the local wrappers (e.g for development)
 source $LOCAL_WRAPPER_PATH/use_local_wrappers
