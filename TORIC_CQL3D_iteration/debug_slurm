@@ -14,7 +14,7 @@ source $ATOM/ips-wrappers/env.ips.cori   # N.B. This is the Cori installation
 source $LOCAL_WRAPPER_PATH/use_local_wrappers
 source $IPS_WRAPPER_PATH/env.TORLH_binary
 source $IPS_WRAPPER_PATH/env.COMPX_codes
-ips.py --config=PST_LH.config --platform=conf.ips.cori --log=log.framework 2>>log.stdErr 1>>log.stdOut
+ips.py --config=TORIC_CQL_iterate.config --platform=conf.ips.cori --log=log.framework 2>>log.stdErr 1>>log.stdOut
 egrep -i 'error' log.* > log.errors
 ./setPermissions.sh
 
