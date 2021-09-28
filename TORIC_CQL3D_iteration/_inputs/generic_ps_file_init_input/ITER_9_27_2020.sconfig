@@ -1,0 +1,89 @@
+&sconfig
+
+   ! name: shot_number  units: integer
+   ! description: integer shot number
+
+   shot_number = 00000
+
+   ! name: S  units: species_list
+   ! description: thermal species list
+
+   iAMU_S(1) = 2
+   iZatom_S(1) = 1
+   iZion_S(1) = 1
+
+   iAMU_S(2) = 3
+   iZatom_S(2) = 1
+   iZion_S(2) = 1
+
+   ! name: RFMIN  units: species_list
+   ! description: ICRF minority species
+   
+   iAMU_RFMIN(1) = 3
+   iZatom_RFMIN(1) = 2
+   iZion_RFMIN(1) = 2
+
+
+   ! name: freq_ic  units: Hz
+   ! description: frequency on each ICRF source
+
+   freq_ic(1) =  4.8d7
+
+   ! name: n_straps  units: integer
+   ! description: number of straps in the antenna
+
+   n_straps(1) = 0
+
+   ! name: max_n_straps  units: integer
+   ! description: Maximum size of variable length enumeration: N_STRAPS
+
+   max_n_straps = 0
+
+   ! name: R_ant  units: m
+   ! description: major radius of antenna
+
+   R_ant(1) =  0.0
+
+   ! name: Z_ant  units: m
+   ! description: height of antenna
+
+   Z_ant(1) =  0.0
+
+   ! name: Z_mid_ant  units: m
+   ! description: center of antenna relative to TF coil midplane
+
+   Z_mid_ant(1) =  0.0
+
+   ! name: num_nphi_vac  units: integer
+   ! description: number of non-zero n_phi values
+
+   num_nphi_vac(1) = 0
+
+   ! name: max_num_nphi_vac  units: integer
+   ! description: Maximum size of variable length enumeration: NUM_NPHI_VAC
+
+   max_num_nphi_vac = 0
+
+   ! name: Real_ant_coef  units: Amps/m
+   ! description: real part of Fourier Coef
+
+   ! name: Imag_ant_coef  units: Amps/m
+   ! description: imag part of Fourier Coef
+
+   ! name: num_nphi  units: integer
+   ! description: number of non-zero n_phi values
+
+   num_nphi(1) = 0
+
+   ! name: max_num_nphi  units: integer
+   ! description: Maximum size of variable length enumeration: NUM_NPHI
+
+   max_num_nphi = 0
+
+   ! name: nphi  units: integer
+   ! description: n_phi wave spectrum from antenna
+
+   ! name: wt_nphi  units: -
+   ! description: vacuum spectrum n_phi weight
+   
+ /

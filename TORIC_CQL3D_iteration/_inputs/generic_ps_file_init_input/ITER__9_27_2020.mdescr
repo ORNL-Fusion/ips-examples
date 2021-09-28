@@ -1,0 +1,85 @@
+ &mdescr
+
+
+   ! name: tokamak_id  units: character
+   ! description: Tokamak (Machine Description) ID
+
+   tokamak_id = "ITER"
+
+   ! name: geometry  units: character
+   ! description: path to file(s) vac. vessel & coil descr.
+
+   geometry = " "
+
+   ! name: num_rzlim  units: integer
+   ! description: number of points, axisymmetric (R,Z) limiter
+
+   num_rzlim = 28
+
+   ! name: rlim  units: m
+   ! description: R points in closed (R,Z) contour sequence
+
+   rlim(1) =  4.409,  4.337,  4.36,  4.065,  4.049,  4.049,  4.106,  4.491
+   rlim(9) =  4.673,  4.929,  5.459,  5.765,  6.689,  7.143,  7.54,  7.872
+   rlim(17) =  8.134,  8.321,  8.41,  8.41,  8.324,  8.153,  7.787,  7.683
+   rlim(25) =  6.406,  6.208,  5.564,  4.409
+
+   ! name: zlim  units: m
+   ! description: Z points in closed (R,Z) contour sequence
+
+   zlim(1) = -3.347, -2.534, -2.441, -1.314, -1.187,  3.368,  3.6,  4.335
+   zlim(9) =  4.53,  4.603,  4.608,  4.507,  3.808,  3.413,  2.961,  2.459
+   zlim(17) =  1.917,  1.345,  0.816,  0.28, -0.249, -0.757, -1.604, -1.757
+   zlim(25) = -3.047, -3.2, -3.9, -3.347
+
+   ! name: R_min_box  units: m
+   ! description: R_min of bounding box
+
+   R_min_box =  2.5
+
+   ! name: R_max_box  units: m
+   ! description: R_max of bounding box
+
+   R_max_box =  10.75
+
+   ! name: Z_min_box  units: m
+   ! description: Z_min of bounding box
+
+   Z_min_box = -6.0
+
+   ! name: Z_max_box  units: m
+   ! description: Z_max of bounding box
+
+   Z_max_box =  6.0
+   
+  ! name: icrf_src_name  units: character
+   ! description: number & name of ICRF sources
+
+   icrf_src_name(1) = "IC1"
+
+   ! name: ant_model  units: character
+   ! description: antenna model filenames (1 per antenna source)
+
+   ant_model(1) = " "
+
+   ! name: nrz_antgeo  units: integer
+   ! description: number of (R,Z) points, antenna geometries
+
+   nrz_antgeo(1) = 0
+
+   ! name: max_nrz_antgeo  units: integer
+   ! description: Maximum size of variable length enumeration: NRZ_ANTGEO
+
+   max_nrz_antgeo = 0
+
+   ! name: R_antgeo  units: m
+   ! description: antenna geo: R pts
+
+   ! name: Z_antgeo  units: m
+   ! description: antenna geo: Z pts
+
+   ! name: dx_fshield  units: m
+   ! description: distance, antenna to Faraday shield
+
+   dx_fshield(1) =  0.0
+ /
