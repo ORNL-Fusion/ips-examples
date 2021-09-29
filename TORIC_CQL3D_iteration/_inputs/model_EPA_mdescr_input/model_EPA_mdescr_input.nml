@@ -5,7 +5,7 @@
 ! sqrt(toroidal flux) ranging between (0,1).  In my "Power_Parabolic" model the radial
 ! coordinate is raised to the alpha_xxx_1 power.  In Jungpyo's model psi is raised to the
 ! ppxxxie power.  So to approximately match his profiles I am taking my alpha_xxx_1 power
-! to be 1/2 his ppxxxie.  We'll probably want to do better later.
+! to be 2 times his ppxxxie.  We'll probably want to do better later.
 
 
 &state_data
@@ -40,20 +40,20 @@
   Te_profile_model_name = 'Power_Parabolic',
   Te_0 = 25.0,
   Te_edge = 5.3,
-  alpha_Te_1 = 1.0,
-  alpha_Te_2 = 1.5,
+  alpha_Te_1 = 4.0,
+  alpha_Te_2 = 3.0,
 
   ne_profile_model_name = 'Power_Parabolic',
   ne_0 = 10.5e19,
   ne_edge = 4.9e19,
-  alpha_ne_1 = 16.0,
-  alpha_ne_2 = 0.5,
+  alpha_ne_1 = 64.0,
+  alpha_ne_2 = 1.0,
 
  Ti_profile_model_name = 'Power_Parabolic',
   Ti_0 = 27.5,
   Ti_edge =5.3,
-  alpha_Ti_1 = 1.0,
-  alpha_Ti_2 = 1.5,
+  alpha_Ti_1 = 4.0,
+  alpha_Ti_2 = 3.0,
 
  ni_profile_model_name = 'fraction_of_electron'
  frac_ni(1) =0.48
