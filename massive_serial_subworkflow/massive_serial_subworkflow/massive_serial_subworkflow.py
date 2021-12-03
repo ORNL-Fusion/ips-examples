@@ -6,7 +6,7 @@
 #
 #-------------------------------------------------------------------------------
 
-form ipsframework import Component
+from ipsframework import Component
 import os
 import shutil
 from ips_component_utilities import ZipState
@@ -33,11 +33,15 @@ class massive_serial_subworkflow(Component):
 #-------------------------------------------------------------------------------
     def init(self, timeStamp=0.0, **keywords):
 
+        self.services.stage_input_files(self.INPUT_FILES)
+
 #  Keys for the subworkflow.
         keys = {
-            'PWD'      : self.services.get_config_param('PWD'),
-            'SIM_NAME' : 'Example_massive_serial_subworkflow',
-            'LOG_FILE' : 'log.Example_massive_serial_subworkflow'
+            'PWD'           : self.services.get_config_param('PWD'),
+            'SIM_NAME'      : 'Example_massive_serial_subworkflow',
+            'LOG_FILE'      : 'log.Example_massive_serial_subworkflow',
+            'NNODES'        : 1,
+            'INPUT_DIR_SIM' : 'massive_serial_subworkflow_input_dir'
         }
 
         if os.path.exists('massive_serial_subworkflow_input_dir'):
@@ -60,13 +64,14 @@ class massive_serial_subworkflow(Component):
                                                                                    'massive_serial_subworkflow_input_dir')
 
         massive_serial_state = self.services.get_config_param('MASSIVE_SERIAL_STATE')
-        self.services.stage_input_files(self.INPUT_FILES)
 
         shutil.copy2(massive_serial_state, 'massive_serial_subworkflow_input_dir')
         os.chdir('massive_serial_subworkflow_input_dir')
 
-        with ZipState.ZipState(self.current_siesta_state, 'r') as zip_ref:
+        with ZipState.ZipState(massive_serial_state, 'r') as zip_ref:
             zip_ref.extractall()
+            with ZipState.ZipState('input.zip', 'r') as input_ref:
+               input_ref.extractall()
 
         os.chdir('../')
 

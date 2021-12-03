@@ -20,12 +20,12 @@
 #SBATCH --image=docker:registry.services.nersc.gov/rwp53/ips-massive-serial:latest
 #SBATCH --volume="/global/cscratch1/sd/rwp/tmpfiles:/tmp:perNodeCache=size=1G"
 
-rm -rf $SCRATCH/test_massive_serial_runner_shifter
-mkdir $SCRATCH/test_massive_serial_runner_shifter
-cp -rd * $SCRATCH/test_massive_serial_runner_shifter
-cd $SCRATCH/test_massive_serial_runner_shifter
+rm -rf $SCRATCH/test_massive_serial_subworkflow
+mkdir $SCRATCH/test_massive_serial_subworkflow
+cp -rd * $SCRATCH/test_massive_serial_subworkflow
+cd $SCRATCH/test_massive_serial_subworkflow
 
-conda activate fastran
+conda activate subworkflow
 ips.py --platform=cori_haswell.conf --simulation=massive_serial_subworkflow.config
 
 wait
