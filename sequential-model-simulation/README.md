@@ -1,4 +1,4 @@
-## IPS-sequential-model-simulation (with restart)
+## ips-sequential-model-simulation (with restart)
 Here "sequential" refers to each component being run sequentially, as opposed to 
 concurrently, which will be dealt with in another example.
 This model simulation is intended to look almost like a real simulation, short of 
