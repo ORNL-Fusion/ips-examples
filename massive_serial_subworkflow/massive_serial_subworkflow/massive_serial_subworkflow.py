@@ -10,6 +10,7 @@ from ipsframework import Component
 import os
 import shutil
 from ips_component_utilities import ZipState
+from configobj import ConfigObj
 
 #-------------------------------------------------------------------------------
 #
@@ -49,6 +50,7 @@ class massive_serial_subworkflow(Component):
         os.mkdir('massive_serial_subworkflow_input_dir')
 
         massive_serial_config = self.services.get_config_param('MASSIVE_SERIAL_CONFIG')
+        massive_serial_node_config = self.services.get_config_param('MASSIVE_SERIAL_NODE_CONFIG')
 
         self.massive_serial_worker = {
             'sim_name' : None,
@@ -72,6 +74,11 @@ class massive_serial_subworkflow(Component):
             zip_ref.extractall()
             with ZipState.ZipState('input.zip', 'r') as input_ref:
                input_ref.extractall()
+
+
+        override = ConfigObj(infile=massive_serial_node_config, interpolation='template', file_error=True)
+        override['INPUT_DIR_SIM'] = os.getcwd()
+        override.write()
 
         os.chdir('../')
 
