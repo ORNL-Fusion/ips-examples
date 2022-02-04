@@ -38,11 +38,12 @@ class massive_serial_subworkflow(Component):
 
 #  Keys for the subworkflow.
         keys = {
-            'PWD'           : self.services.get_config_param('PWD'),
-            'SIM_NAME'      : 'Example_massive_serial_subworkflow',
-            'LOG_FILE'      : 'log.Example_massive_serial_subworkflow',
-            'NNODES'        : 1,
-            'INPUT_DIR_SIM' : 'massive_serial_subworkflow_input_dir'
+            'PWD'            : self.services.get_config_param('PWD'),
+            'SIM_NAME'       : 'Example_massive_serial_subworkflow',
+            'LOG_FILE'       : 'log.Example_massive_serial_subworkflow',
+            'NNODES'         : 1,
+            'INPUT_DIR_SIM'  : 'massive_serial_subworkflow_input_dir',
+            'OUTPUT_DIR_SIM' : '{}/massive_serial_subworkflow_output_dir'.format(os.getcwd())
         }
 
         if os.path.exists('massive_serial_subworkflow_input_dir'):
@@ -51,6 +52,7 @@ class massive_serial_subworkflow(Component):
 
         massive_serial_config = self.services.get_config_param('MASSIVE_SERIAL_CONFIG')
         massive_serial_node_config = self.services.get_config_param('MASSIVE_SERIAL_NODE_CONFIG')
+        fastran_config = self.services.get_config_param('FASTRAN_CONFIG')
 
         self.massive_serial_worker = {
             'sim_name' : None,
@@ -79,6 +81,10 @@ class massive_serial_subworkflow(Component):
         override = ConfigObj(infile=massive_serial_node_config, interpolation='template', file_error=True)
         override['INPUT_DIR_SIM'] = os.getcwd()
         override.write()
+
+        override2 = ConfigObj(infile=fastran_config, interpolation='template', file_error=True)
+        override2['INPUT_DIR_SIM'] = os.getcwd()
+        override2.write()
 
         os.chdir('../')
 
