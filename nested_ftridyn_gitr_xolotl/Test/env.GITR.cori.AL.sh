@@ -1,4 +1,5 @@
 #!/bin/bash
+##module unload cray-hdf5-parallel #TEST TEST TEST
 module load cray-netcdf
 module load boost #1.70.0  #1.63 no longer available
 module load cray-mpich

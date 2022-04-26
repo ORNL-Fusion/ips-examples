@@ -2,8 +2,8 @@
 #SBATCH --account=atom
 #SBATCH --partition debug
 #SBATCH -C haswell
-#SBATCH --nodes=4
-#SBATCH --time=00:25:00
+#SBATCH --nodes=2
+#SBATCH --time=00:30:00
 #SBATCH --output=log.slurm.stdOut
 
 cd $SLURM_SUBMIT_DIR   # optional, since this is the default behavior
@@ -18,6 +18,8 @@ cd $SLURM_SUBMIT_DIR   # optional, since this is the default behavior
 source $SLURM_SUBMIT_DIR/env.ips.cori #.python3
 source $SLURM_SUBMIT_DIR/env.GITR.cori.AL.sh 
 #source /project/projectdirs/atom/atom-install-cori/GITR/env.cori.sh
+#add this to run the correct binTridyn file (located in submission directory)
+#NO LONGER NEEDED #export PYTHONPATH=$SLURM_SUBMIT_DIR:$PYTHONPATH
 
 module load python/3.7-anaconda-2019.07 # python/3.6-anaconda-4.4
 #other modules are now loaded in environment files
@@ -28,9 +30,6 @@ module load python/3.7-anaconda-2019.07 # python/3.6-anaconda-4.4
 #export OMP_NUM_THREADS=32
 export OMP_PLACES=threads
 export OMP_PROC_BIND=spread
-
-#if running from projectdir,include / not needed if submitted from scratch:
-export HDF5_USE_FILE_LOCKING='FALSE'
 
 python3 $IPS_PATH/bin/ips.py --config=ips.ftx.config --platform=conf.ips.cori --log=log.framework 2>>log.stdErr 1>>log.stdOut 
 
