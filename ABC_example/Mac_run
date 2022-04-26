@@ -1,10 +1,4 @@
-echo 'Clean up first'
-echo ' '
-./cleanIpsRun.sh
-export IPS_DIR=../..
-source $IPS_DIR/ips-wrappers/env.ips
-export PYTHONPATH=./_exec:$PYTHONPATH
+source env.ABC_example
 mkdir www
-which ips.py
-python $(which ips.py) --simulation=ABC_simulation.config --platform=platform.conf
+ips.py --simulation=ABC_simulation.config --platform=platform.conf
 

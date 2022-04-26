@@ -1,0 +1,3 @@
+! Standard input file for integrator. Static code data
+
+delta_t = 0.1

@@ -2,12 +2,12 @@
 # Copyright 2006-2012 UT-Battelle, LLC. See LICENSE for more information.
 #-------------------------------------------------------------------------------
 
-from  component import Component
+from ipsframework import Component
 
 class HelloDriver(Component):
     def __init__(self, services, config):
         Component.__init__(self, services, config)
-        print 'Created %s' % (self.__class__)
+        print('Created %s' % (self.__class__))
 
     def init(self, timeStamp=0.0):
         return
@@ -23,6 +23,6 @@ class HelloDriver(Component):
             raise
         self.services.call(worker_comp, 'step', 0.0)
         return
-        print 'made it out of the worker call'
+        print('made it out of the worker call')
     def finalize(self, timeStamp=0.0):
         return

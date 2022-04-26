@@ -1,0 +1,64 @@
+ &TORIC_MODE
+ TORICMODE       = "toric     "
+ /
+ &TORICAINP
+ NVRB    =           3,
+ NMOD    =          31,
+ NTT     =          64,
+ NELM    =         240,
+ NPTVAC  =          -1,
+ MXMVAC  =          15,
+ FREQCY  =   48000000.0000000     ,
+ NPHI    =          27,
+ ANTLEN  =   176.000000000000     ,
+ ANTLC   =  1.000000000000000E-002,
+ THEANT  =  0.000000000000000E+000,
+ IFLR    =           1,
+ IBPOL   =           1,
+ IQTOR   =           1,
+ ICOLL   =           0,
+ ENHCOL  =   1.00000000000000     ,
+ IMDEDG  =           2,
+ IEZVAC  =           1,
+ IBWELD  =           1,
+ ICOSIG  =           0,
+ IREGAX  =           1,
+ ISOL    =           1,
+ MASTCH  =           2,
+ IOUT    =           0,
+ IDLOUT  =           1,
+ IO_NCDF =           1,
+ IWDISK  =           1,
+ IPLTHT  =           0,
+ ZEFF    =   2.43212792299857     ,
+ ICLRES  =           0,
+ DNURES  =   1.00000000000000     ,
+ TNURES  =   1.00000000000000     ,
+ TIMING_ON       = T,
+ SCRATCHPATH     = "/scratch/scratchdirs/u1565/tmp                    ",
+ BSCALE  =          12,
+ USE_INCORE      = T,
+ PCBLOCK =           4
+ /
+ &EQUIDATA
+ IGSMHD  =           1,
+ INTCHB  =           0,
+ IDPROF  =           1,
+ NSPEC   =           8,
+ IUDSYM  =           0,
+ MAINSP  =           1,
+ ATM     =           2,           3,           4,           9,          40,           2,           3,           4,
+  8*0,
+ AZI     = 2*1,           2,           4,          18,           1, 2*2, 8*0,
+ SO_THICKNESS    =   3.00000000000000     ,
+ DIST_PLAFARS    =   4.00000000000000     ,
+ DIST_PLAANT     =   6.00000000000000     ,
+ DIST_PLAWALL    = 4*75.0000000000000        ,
+ INPUTPATH       = "./                      ",
+ EQUIL_FILE      = "equigs.data             ",
+ PROFNT_FILE     = "equidt.data             "
+ /
+ &IPS
+ TORIC_TO_ALLA   =           1,           2,           3,           4,           5,           6,           7,           8,
+  22*0
+ /

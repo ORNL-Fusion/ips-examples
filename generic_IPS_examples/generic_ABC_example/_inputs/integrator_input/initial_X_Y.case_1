@@ -1,0 +1,4 @@
+! State data X(t), Y(t).  Sets Initial X,Y values
+
+X = 0.1
+Y = 0.1

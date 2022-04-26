@@ -1,48 +1,39 @@
 # Install the IPS
 Skip this if you've already installed the IPS. 
 
-1. Create an IPS directory and clone the IPS-framework, wrappers, and examples repos.
+1. Clone and examples repo.
 ```
-mkdir IPS
-cd IPS
-git clone https://github.com/HPC-SimTools/IPS-framework.git ips-framework
-git clone https://github.com/ORNL-Fusion/ips-wrappers.git
 git clone https://github.com/ORNL-Fusion/ips-examples.git
-```
-2. Export the `IPS_DIR` environment variable
-```
-export IPS_DIR=${PWD}
-```
-3. Add this to your `.bashrc` or otherwise so it's there next time you open a shell (Note: Adapt for `csh` or otherwise).
-```
-echo 'export IPS_DIR='${PWD} >> ~/.bashrc 
 ```
 
 # Run the example
 
-1. Source the IPS environemnt
+1. Source the IPS environment for the (self contained) ABC example 
 ```
-cd $IPS_DIR
-source ips-wrappers/env.ips
+cd ips-examples/ABC_example
+source env.ABC_example
 ```
+
 2. Run the ABC example
   * Locally
 ```
 cd ips-examples/ABC_example
 ips.py --simulation=ABC_simulation.config --platform=platform.conf
 ```
-  * On a batch system (e.g., Edison at NERSC)
+  * On a batch system (e.g., Cori at NERSC)
 ```
-cd ips-examples/ABC_example
-sbatch Edison_run
+cd $IPS_DIR/ips-examples/ABC_example
+sbatch Cori_run
+
 ```
 To clean all the run files and start with just the input deck run 
 ```
 ./cleanIpsRun.sh
 ```
 
-## Notes on the ABC exmple
-The ABC simulation is a somewhat more realistic example of IPS usage.  It is completely 
+## Notes on the ABC example
+The ABC simulation is a somewhat more realistic example of IPS usage than hello-world.  
+But it is completely 
 written in python and has no dependencies other than IPS.  As such it should run about 
 anywhere, at least it runs on Macs and at NERSC.  The input and output files are all 
 human readable text.  It largely has the structure of a real simulation in that it 
@@ -67,18 +58,18 @@ simulation.
 
 Typically a real simulation would be run as a batch job, submitted via a batch script.  In 
 trying to make this as much like a real simulation running as a batch job, a batch script 
-for Edison and a shell script for Mac are provided.  The exporting of IPS_DIR and 
+for Cori and a shell script for Mac are provided.  The exporting of IPS_DIR and 
 sourcing of ips.env are included in these scripts so these two steps described above can 
 be omitted.  The command lines to run from the /ips-examples/ABC_example/ directory are 
-on Edison
+on Cori
 ```
-sbatch Edison_run
+sbatch Cori_run
 ```
 and on Mac,
 ```
 ./Mac_run 
 ```
-This example also demonstrates simulation restart which is invoked with the Edison_restart
+This example also demonstrates simulation restart which is invoked with the Cori_restart
 and Mac_restart scripts. 
 
 

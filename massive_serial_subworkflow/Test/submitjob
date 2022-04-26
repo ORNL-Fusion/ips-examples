@@ -1,0 +1,31 @@
+#!/bin/bash -l
+
+#SBATCH -p debug
+
+##SBATCH -p regular
+##SBATCH -q premium
+
+#SBATCH --nodes=1
+#SBATCH --tasks-per-node=1
+#SBATCH --cpus-per-task=64
+#SBATCH -t 00:30:00
+#SBATCH -C haswell
+
+#SBATCH -J ips_fastran
+#SBATCH -e ips.err
+#SBATCH -o ips.out
+
+#SBATCH -C haswell
+
+#SBATCH --image=docker:registry.services.nersc.gov/rwp53/ips-massive-serial:latest
+#SBATCH --volume="/global/cscratch1/sd/rwp/tmpfiles:/tmp:perNodeCache=size=1G"
+
+rm -rf $SCRATCH/test_massive_serial_subworkflow
+mkdir $SCRATCH/test_massive_serial_subworkflow
+cp -rd * $SCRATCH/test_massive_serial_subworkflow
+cd $SCRATCH/test_massive_serial_subworkflow
+
+conda activate subworkflow
+ips.py --platform=cori_haswell.conf --simulation=massive_serial_subworkflow.config
+
+wait

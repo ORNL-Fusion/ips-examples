@@ -1,0 +1,14 @@
+#!/bin/bash -l
+#SBATCH --account=m77
+#SBATCH --partition=regular
+#SBATCH --qos=premium
+#SBATCH --nodes=16
+#SBATCH --constraint=haswell
+#SBATCH --time=24:00:00
+#SBATCH --output=log.slurm.stdOut
+cd $SLURM_SUBMIT_DIR   # optional, since this is the default behavior
+source  /global/homes/s/sfrnk/IPS/ips-wrappers/env.ips.cori 
+$IPS_PATH/bin/ips.py --config=PST_LH.config --platform=conf.ips.cori --log=log.framework 2>>log.stdErr 1>>log.stdOut
+egrep -i 'error' log.* > log.errors
+./setPermissions.sh
+

@@ -2,12 +2,12 @@
 # Copyright 2006-2012 UT-Battelle, LLC. See LICENSE for more information.
 #-------------------------------------------------------------------------------
 
-from  component import Component
+from ipsframework import Component
 
 class HelloWorker(Component):
     def __init__(self, services, config):
         Component.__init__(self, services, config)
-        print 'Created %s' % (self.__class__)
+        print('Created %s' % (self.__class__))
 
     def init(self, timeStamp=0.0):
         return
@@ -16,7 +16,7 @@ class HelloWorker(Component):
         return
 
     def step(self, timeStamp=0.0):
-        print 'Hello from HelloWorker - new1'
+        print('Hello from HelloWorker - new1')
         self.services.stage_input_files(self.INPUT_FILES)
         subflow_config = self.INPUT_FILES
         override = {}
