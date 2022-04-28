@@ -18,10 +18,10 @@ cd $SLURM_SUBMIT_DIR   # optional, since this is the default behavior
 source $SLURM_SUBMIT_DIR/env.ips.cori #.python3
 source $SLURM_SUBMIT_DIR/env.GITR.cori.AL.sh 
 #source /project/projectdirs/atom/atom-install-cori/GITR/env.cori.sh
-#add this to run the correct binTridyn file (located in submission directory)
-#NO LONGER NEEDED #export PYTHONPATH=$SLURM_SUBMIT_DIR:$PYTHONPATH
+#add this to run any python scripts located in submission directory
+export PYTHONPATH=$SLURM_SUBMIT_DIR:$PYTHONPATH
 
-module load python/3.7-anaconda-2019.07 # python/3.6-anaconda-4.4
+module load python/3.7-anaconda-2019.07 
 #other modules are now loaded in environment files
 #module swap PrgEnv-intel PrgEnv-gnu
 #module unload cray-netcdf
