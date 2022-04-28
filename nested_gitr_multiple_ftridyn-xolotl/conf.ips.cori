@@ -1,4 +1,4 @@
-HOST = edison
+HOST = cori
 MPIRUN = srun #mpirun
 #MPIRUN = aprun
 PHYS_BIN_ROOT = /project/projectdirs/m876/phys-bin/phys-hopper/
@@ -18,12 +18,12 @@ NODE_DETECTION = slurm_env # checkjob | qstat | pbs_env | slurm_env
 TOTAL_PROCS = 96
 NODES = 4
 
-PROCS_PER_NODE = 24
+PROCS_PER_NODE = 32
 
 #######################################
 # node topology description
 #######################################
-CORES_PER_NODE = 24
+CORES_PER_NODE = 32
 SOCKETS_PER_NODE = 2
 
 #######################################
