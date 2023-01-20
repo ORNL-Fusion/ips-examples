@@ -1,7 +1,7 @@
 HOST = cori
 MPIRUN = srun #mpirun
 
-PORTAL_URL = http://lb.ipsportal.production.svc.spin.nersc.org
+PORTAL_URL = #http://lb.ipsportal.production.svc.spin.nersc.org
 
 #######################################
 # resource detection method
