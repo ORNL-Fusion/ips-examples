@@ -19,8 +19,8 @@ PROCS_PER_NODE = 128
 #######################################
 # node topology description
 #######################################
-CORES_PER_NODE = 64
-SOCKETS_PER_NODE = 2
+CORES_PER_NODE = 128
+SOCKETS_PER_NODE = 1
 
 #######################################
 # framework setting for node allocation
