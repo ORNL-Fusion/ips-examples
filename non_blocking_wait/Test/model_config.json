@@ -1,0 +1,8 @@
+{
+  "inputs" : [
+    {"name" : "x", "upper_range" : 3.0, "lower_range" : -3.0}
+  ],
+  "outputs" : [
+    {"name" : "y", "upper_range" : 1.0, "lower_range" : -1.0}
+  ]
+}

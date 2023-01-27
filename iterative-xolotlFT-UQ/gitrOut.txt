@@ -1,0 +1,5 @@
+plasmaSpecies=He W
+fluxFraction={fluxFraction_He} {fluxFraction_W}
+flux={flux}
+plasmaOutputDir_W={GITRoutput_dir}
+plasmaOutputDir_He={GITRoutput_dir}
