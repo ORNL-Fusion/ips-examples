@@ -6,12 +6,12 @@
 #SBATCH --output=log.slurm.stdOut
 #SBATCH --constraint=cpu
 
-source $U2115/ips-wrappers/env.ips.cori
+#source $U2115/ips-wrappers/env.ips.cori
 #source $IPS_WRAPPER_PATH_CORI/env.ips.cori
 mkdir www
 # Uncomment next line to use the local wrappers with new-ips package
-source $LOCAL_WRAPPER_PATH/env.new-ips-local-wrappers.cori
-source /global/common/software/atom/cori/ips-framework-new/bin/activate
-ips.py --config=sequential_model_simulation.config --platform=conf.ips.cori --log=log.framework 2>>log.stdErr 1>>log.stdOut
+source $LOCAL_WRAPPER_PATH/env.run_perlmutter
+#source /global/common/software/atom/cori/ips-framework-new/bin/activate
+ips.py --config=sequential_model_simulation.config --platform=conf.ips.perlmutter --log=log.framework 2>>log.stdErr 1>>log.stdOut
 egrep -i 'error' log.* > log.errors
 ./setPermissions.sh
