@@ -6,10 +6,8 @@
 #SBATCH --output=log.slurm.stdOut
 #SBATCH --constraint=cpu
 
-#source $U2115/ips-wrappers/env.ips.cori
-#source $IPS_WRAPPER_PATH_CORI/env.ips.cori
 mkdir www
-# Uncomment next line to use the local wrappers with new-ips package
+
 source $IPS_WRAPPER_PATH/env.run.perlmutter
 source $IPS_WRAPPER_PATH/env.COMPX_codes
 ips.py --config=GENRAY_basic_example_EC.config --platform=conf.ips.perlmutter --log=log.framework 2>>log.stdErr 1>>log.stdOut
