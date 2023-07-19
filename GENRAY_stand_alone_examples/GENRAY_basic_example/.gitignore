@@ -4,4 +4,6 @@ checklist.conf
 resource_usage
 restart/
 simulation_setup/
-log.warningwork/
+log.warning
+work/
+dask_preload.py
