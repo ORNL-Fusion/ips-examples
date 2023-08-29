@@ -1,6 +1,7 @@
 #!/bin/bash
 rm -r simulation_setup
 rm -rf work
+rm -rf www
 rm -r simulation_results
 rm -r simulation_log
 rm resource_usage
