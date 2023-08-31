@@ -1,0 +1,25 @@
+&sconfig
+
+   ! name: shot_number  units: integer
+   ! description: integer shot number
+
+   shot_number = 12345
+
+   ! name: S  units: species_list
+   ! description: thermal species list
+
+   iAMU_S(1) = 2
+   iZatom_S(1) = 1
+   iZion_S(1) = 1
+
+   ! name: RFMIN  units: species_list
+   ! description: ICRF minority species
+   iAMU_RFMIN(1) = 1
+   iZatom_RFMIN(1) = 1
+   iZion_RFMIN(1) = 1
+
+   ! name: freq_lh  units: Hz
+   ! description:  frequency on each LHRF source
+   freq_lh(1) = 4.6e9
+   
+ /
