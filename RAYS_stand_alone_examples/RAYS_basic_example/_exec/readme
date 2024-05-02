@@ -1,0 +1,5 @@
+The simulation config file points to the components in the ips-wrappers tree.  The wrappers
+ in this directory are here for convneience in case somone wants to use this without the whole 
+ips-wrappers directory.  To do that the user needs to change the config parameter IPS_COMPONENTS_ROOT
+to point to this directory IPS_COMPONENTS_ROOT=_exec
+

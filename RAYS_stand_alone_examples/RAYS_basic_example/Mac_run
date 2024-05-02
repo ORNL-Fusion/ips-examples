@@ -1,0 +1,4 @@
+source env.RAYS_basic_example
+mkdir www
+ips.py --config=RAYS_basic_simulation.config --platform=platform.conf
+

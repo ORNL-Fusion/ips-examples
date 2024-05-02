@@ -1,0 +1,10 @@
+log.*
+work
+www
+simulation_log
+simulation_results
+simulation_setup
+restart
+dask_preload.py
+PORTAL_RUNID
+resource_usage
