@@ -3,6 +3,7 @@ rm -r simulation_setup
 rm -rf work
 rm -r simulation_results
 rm -r simulation_log
+rm -r www
 rm resource_usage
 rm checklist.conf
 rm *.zip
