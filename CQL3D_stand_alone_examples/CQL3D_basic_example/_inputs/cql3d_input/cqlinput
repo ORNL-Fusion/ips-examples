@@ -1,12 +1,14 @@
- &setup
+ &setup0
  ibox='box g35',
  iuser='harvey',
  ioutput=6,
  lrz=15
  noplots='enabled'
  mnemonic='96143_one_ray.1_short'
+ special_calls='disabled'
  &end
-**
+
+
  &setup
  acoefne=-1.80,-7.83,+051.57,-353.68
  acoefte=8.01,-13.60,+08.69,-114.59
@@ -76,9 +78,9 @@
  ncont=20,
  nen=30,
  netcdfnm='enabled'
- netcdfvece='enabled',
- netcdfvecrf='enabled',
- netcdfvecal='enabled',
+ netcdfvece='disabled',
+ netcdfvecrf='disabled',
+ netcdfvecal='disabled',
  netcdfvecs='irzplt',
  ngen=1,
  njene=11,
@@ -195,7 +197,7 @@
  rya(1)=    .1 .250  .270  .290  .310  .330   0.350  .370
  rya(9)=    .390  .410  .430  .450  .500   0.700  .900
  &end
-**
+
  &trsetup
  adimeth='disabled',
  difusr=1.0e4,
@@ -205,7 +207,7 @@
  transp='disabled',
  advectr=1.
  &end
-**
+
  &sousetup
  noffso(1,1)=10000,noffso(1,2)=10000,
  nonso(1,1)=0,nonso(1,2)=0,
@@ -230,7 +232,7 @@
  xlpctlwr=.15,
  xlpctmdl=.60
  &end
-**
+
  &eqsetup
  atol=1.e-8,
  bsign=-1.
@@ -238,6 +240,7 @@
  eqmod='enabled',
  eqpower=2,
  eqsource='eqdsk',
+ eqdskin='g096143.01440',  !YuP/regression_tests
  fpsimodl='constant',
  methflag=10,
  nconteq='disabled',
@@ -248,7 +251,7 @@
  rtol=1.e-8,
  zbox=92.
  &end
-**
+
  &rfsetup
  call_lh='disabled',
  call_ech='disabled',
@@ -282,7 +285,7 @@
  vparmin=.1768,
  vprprop='disabled'
  &end
-**
+
  &frsetup
  &end
 end
