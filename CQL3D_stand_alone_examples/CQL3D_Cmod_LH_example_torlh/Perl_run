@@ -8,6 +8,7 @@
 
 mkdir www
 
+module load python
 conda deactivate
 conda activate my_ips_env
 source $IPS_WRAPPER_PATH/env.run.perlmutter
