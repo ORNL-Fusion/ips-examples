@@ -1,7 +1,7 @@
 HOST = cori
 MPIRUN = srun #mpirun
 
-PORTAL_URL = http://lb.ipsportal.production.svc.spin.nersc.org
+PORTAL_URL = #http://lb.ipsportal.production.svc.spin.nersc.org
 
 #######################################
 # resource detection method
@@ -11,10 +11,10 @@ NODE_DETECTION = slurm_env # checkjob | qstat | pbs_env | slurm_env
 #######################################
 # manual allocation description
 #######################################
-TOTAL_PROCS = 136
-NODES = 2
+#TOTAL_PROCS = 136
+#NODES = 2
 
-PROCS_PER_NODE = 68
+#PROCS_PER_NODE = 68
 
 #######################################
 # node topology description
