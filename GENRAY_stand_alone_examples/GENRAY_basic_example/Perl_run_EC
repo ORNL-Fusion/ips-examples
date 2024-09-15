@@ -11,7 +11,7 @@ mkdir www
 source $IPS_WRAPPER_PATH/env.run.perlmutter
 source $IPS_WRAPPER_PATH/env.COMPX_codes
 module load python
-conda dactivate
+conda deactivate
 conda activate my_ips_env
 ips.py --config=GENRAY_basic_example_EC.config --platform=conf.ips.perlmutter --log=log.framework 2>>log.stdErr 1>>log.stdOut
 egrep -i 'error' log.* > log.errors
